@@ -1,4 +1,4 @@
 # OSUApp
 
-Build System  : Gradle\n
-Web FrameWork : Spring Boot
+Build System  : Gradle  
+Web FrameWork : Spring Boot  
