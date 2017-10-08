@@ -10,17 +10,17 @@ import com.google.gson.Gson;
 @RequestMapping("/api")
 public class UserController {
 	
-	UserService loginSerivce; 
+	UserService userSerivce; 
 	Gson gson = new Gson(); 
 	
 	//dependency injection of login service 
 	@Autowired
 	public UserController(UserService loginSerivce) {
-		this.loginSerivce = loginSerivce;
+		this.userSerivce = loginSerivce;
 	}
 
 	@RequestMapping(value="/getAllUsers",method=RequestMethod.GET)
 	public String getUsers() {
-		return gson.toJson(loginSerivce.getAllUser());
+		return gson.toJson(userSerivce.getAllUser());
 	}
 }
