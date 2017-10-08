@@ -16,3 +16,22 @@ db.tutor.insert (
       "course_offering" : ["CS519 Algorithm", "CS 515 Algoritm"]
    }
 )
+
+
+# Run Development server
+
+### Backend
+
+```
+
+gradle  bootRun
+
+```
+
+### Frontend
+
+```
+
+ng serve
+
+```
