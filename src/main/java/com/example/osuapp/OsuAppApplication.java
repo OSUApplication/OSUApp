@@ -3,7 +3,7 @@ package com.example.osuapp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"com.healthcontroller","com.UserController"})
+@SpringBootApplication(scanBasePackages = {"com.healthcontroller","com.userController"})
 public class OsuAppApplication {
 
 	public static void main(String[] args) {
