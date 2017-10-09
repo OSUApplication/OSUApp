@@ -1,0 +1,32 @@
+<div class="container">
+    <h1>Tutor Registration Form</h1>
+
+    <form>
+  
+  <div class="form-group">
+    <label for="exampleInputPassword1" style="float:left;">Enter Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter Name" [(ngModel)]='name' #fname="ngModel" (change)="log(fname)" name="name"  required>
+    <div class="alert alert-danger" *ngIf="!fname.valid">Name must be entered</div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1" style="float: left">Email address</label>
+    <input type="email" required class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]='email' #em="ngModel" (change) = "log(em)" name="email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <div class="alert alert-danger" *ngIf="!em.valid">Email must be entered</div>
+
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1" style="float:left;">Password</label>
+    <input type="password" required class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]='password' #pword="ngModel" name="password">
+  <div class="alert alert-danger" *ngIf="!pword.valid">Password must be entered</div>
+
+
+  
+
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click) ="display([name,password,email])">Submit</button>
+</form>
+</div>
