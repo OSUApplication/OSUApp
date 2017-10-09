@@ -4,12 +4,15 @@ jobs:
    build_frontend:
      working_directory: ~/OSUApp/
      docker:
-       - image: circleci/node:6
+       - image: circleci/node:latest
      steps:
        - checkout
        - run: #TODO remove
           name: List Frontend Folder
           command: 'cd frontend/osuApp && ls'
+       - run:
+          name: Node version
+          command: 'node -v'
        - run:
           name: Update npm
           command: 'cd frontend/osuApp && sudo npm install -g npm@latest'
@@ -19,7 +22,7 @@ jobs:
    test_frontend:
        working_directory: ~/OSUApp
        docker:
-         - image: circleci/node:6
+         - image: circleci/node:latest
        steps:
          - checkout
          - run:
