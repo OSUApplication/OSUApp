@@ -74,9 +74,6 @@ workflows:
     jobs:
       - build_frontend
       - build_backend
-      - test_frontend:
+      - test_frontend
           requires:
             - build_frontend
-          filters:
-            branches:
-              only: master
