@@ -32,6 +32,6 @@ gradle  bootRun
 
 ```
 
-ng serve
+ng serve or npm start
 
 ```
