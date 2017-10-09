@@ -9,19 +9,13 @@ jobs:
        - checkout
        - run: #TODO remove
           name: List Frontend Folder
-          command: 'ls'
+          command: 'cd frontend/osuApp && ls'
        - run:
           name: Update npm
           command: 'cd frontend/osuApp && sudo npm install -g npm@latest'
-       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
        - run:
           name: Install npm
           command: 'cd frontend/osuApp && npm install'
-       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - node_modules
    test_frontend:
        working_directory: ~/OSUApp
        docker:
