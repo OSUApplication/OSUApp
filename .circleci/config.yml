@@ -2,7 +2,7 @@ version: 2
 
 jobs:
    build_frontend:
-     working_directory: ~/OSUApp/frontend
+     working_directory: ~/OSUApp/
      docker:
        - image: circleci/node:6
      steps:
@@ -12,12 +12,12 @@ jobs:
           command: 'ls'
        - run:
           name: Update npm
-          command: 'sudo npm install -g npm@latest'
+          command: 'cd frontend && sudo npm install -g npm@latest'
        - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
        - run:
           name: Install npm
-          command: npm install
+          command: cd frontend && npm install
        - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -49,7 +49,7 @@ jobs:
 
         - run:
            name: List Backend Folder
-           command: 'ls'
+           command: 'cd backend && ls'
 
         # Download and cache dependencies
         - restore_cache:
@@ -58,7 +58,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-        - run: gradle dependencies
+        - run: cd backend && gradle dependencies
 
         - save_cache:
             paths:
@@ -66,7 +66,7 @@ jobs:
             key: v1-dependencies-{{ checksum "build.gradle" }}
 
         # run tests!
-        - run: gradle test
+        - run: cd backend && gradle test
 
 workflows:
   version: 2
