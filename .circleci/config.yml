@@ -51,7 +51,9 @@ jobs:
            name: List Backend Folder
            command: 'cd backend && ls'
 
-        - run: cd backend && gradle dependencies
+        - run:
+           name: Run Gradle dependencies
+           command: cd backend && gradle dependencies
 
   test_backend:
     docker:
@@ -60,7 +62,9 @@ jobs:
     steps:
       - checkout
 
-      - run: cd backend && gradle test
+      - run:
+         name: Run Test
+         command: cd backend && gradle test
 
 workflows:
   version: 2
