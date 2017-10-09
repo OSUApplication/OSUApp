@@ -22,17 +22,17 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-   test_frontend:
-       working_directory: ~/osu-app/OSUApp/frontend/osuApp
-       docker:
-         - image: circleci/node:6
-       steps:
-         - checkout
-         - run:
-            name: Test
-            command: ng test
+  #  test_frontend:
+  #      working_directory: ~/osu-app/OSUApp/frontend/osuApp
+  #      docker:
+  #        - image: circleci/node:6
+  #      steps:
+  #        - checkout
+  #        - run:
+  #           name: Test
+  #           command: ng test
 
-    build_backend:
+   build_backend:
       docker:
         # specify the version you desire here
         - image: circleci/openjdk:8-jdk
