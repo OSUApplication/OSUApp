@@ -49,3 +49,4 @@ nbdist/
 
 bin/*
 .DS_Store
+/.metadata/
