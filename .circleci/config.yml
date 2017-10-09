@@ -42,14 +42,14 @@ jobs:
         # documented at https://circleci.com/docs/2.0/circleci-images/
         # - image: circleci/postgres:9.4
 
-      working_directory: ~/osu-app/
+      working_directory: ~/osu-app/backend
 
       steps:
         - checkout
 
         - run:
-           name: Go to Backend Folder
-           command: 'cd backend'
+           name: List Backend Folder
+           command: 'ls'
 
         # Download and cache dependencies
         - restore_cache:
