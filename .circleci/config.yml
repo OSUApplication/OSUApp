@@ -12,25 +12,25 @@ jobs:
           command: 'ls'
        - run:
           name: Update npm
-          command: 'cd frontend && sudo npm install -g npm@latest'
+          command: 'cd frontend/osuApp && sudo npm install -g npm@latest'
        - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
        - run:
           name: Install npm
-          command: cd frontend && npm install
+          command: cd frontend/osuApp && npm install
        - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-  #  test_frontend:
-  #      working_directory: ~/osu-app/OSUApp/frontend/osuApp
-  #      docker:
-  #        - image: circleci/node:6
-  #      steps:
-  #        - checkout
-  #        - run:
-  #           name: Test
-  #           command: ng test
+   test_frontend:
+       working_directory: ~/OSUApp
+       docker:
+         - image: circleci/node:6
+       steps:
+         - checkout
+         - run:
+            name: Test
+            command: cd frontend/osuApp && ng test
 
    build_backend:
       docker:
@@ -51,22 +51,16 @@ jobs:
            name: List Backend Folder
            command: 'cd backend && ls'
 
-        # Download and cache dependencies
-        - restore_cache:
-            keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
         - run: cd backend && gradle dependencies
 
-        - save_cache:
-            paths:
-              - ~/.m2
-            key: v1-dependencies-{{ checksum "build.gradle" }}
+  test_backend:
+    docker:
+      # specify the version you desire here
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
 
-        # run tests!
-        - run: cd backend && gradle test
+      - run: cd backend && gradle test
 
 workflows:
   version: 2
@@ -74,6 +68,9 @@ workflows:
     jobs:
       - build_frontend
       - build_backend
-      # - test_frontend
-      #     requires:
-      #       - build_frontend
+      - test_frontend
+          requires:
+            - build_frontend
+      - test_backend
+          requires:
+            - build_backend
