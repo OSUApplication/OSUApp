@@ -17,7 +17,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
        - run:
           name: Install npm
-          command: cd frontend/osuApp && npm install
+          command: 'cd frontend/osuApp && npm install'
        - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -30,7 +30,7 @@ jobs:
          - checkout
          - run:
             name: Test
-            command: cd frontend/osuApp && ng test
+            command: 'cd frontend/osuApp && ng test'
 
    build_backend:
       docker:
@@ -53,18 +53,18 @@ jobs:
 
         - run:
            name: Run Gradle dependencies
-           command: cd backend && gradle dependencies
+           command: 'cd backend && gradle dependencies'
 
-  test_backend:
-    docker:
-      # specify the version you desire here
-      - image: circleci/openjdk:8-jdk
-    steps:
-      - checkout
+   test_backend:
+     docker:
+        # specify the version you desire here
+        - image: circleci/openjdk:8-jdk
+     steps:
+        - checkout
 
-      - run:
-         name: Run Test
-         command: cd backend && gradle test
+        - run:
+           name: Run Test
+           command: 'cd backend && gradle test'
 
 workflows:
   version: 2
