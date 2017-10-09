@@ -7,7 +7,7 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 
-@Entity("user")
+@Entity("tutor")
 public class User {
 	
 	@Property("name")
@@ -19,11 +19,11 @@ public class User {
 	@Property("email")
 	public String email;
 	
-	@Property("student")
-	public boolean student;
+	@Property("student_as")
+	public boolean studentAs;
 	
-	@Property("tutor")
-	public boolean tutor;
+	@Property("tutor_as")
+	public boolean tutorAs;
 	
 	@Property("course_seeking")
 	public List<String> courseSeeking;
