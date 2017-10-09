@@ -2,14 +2,14 @@ version: 2
 
 jobs:
    build_frontend:
-     working_directory: ~/osu-app/
+     working_directory: ~/OSUApp/frontend
      docker:
        - image: circleci/node:6
      steps:
        - checkout
-       - run:
-          name: Go to Frontend Folder
-          command: 'cd frontend'
+       - run: #TODO remove
+          name: List Frontend Folder
+          command: 'ls'
        - run:
           name: Update npm
           command: 'sudo npm install -g npm@latest'
