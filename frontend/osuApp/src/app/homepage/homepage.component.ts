@@ -16,4 +16,8 @@ export class HomepageComponent implements OnInit {
     this.router.navigate(['/tutor-registration']);
   }
 
+  search_tutor(){
+    this.router.navigate(['/search-tutor'])
+  }
+
 }

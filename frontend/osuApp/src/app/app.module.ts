@@ -5,7 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
-import { HomepageComponent } from './homepage/homepage.component'
+import { HomepageComponent } from './homepage/homepage.component';
+import { SearchTutorComponent } from './search-tutor/search-tutor.component'
 
 const appRoutes : Routes = [
   {
@@ -13,6 +14,9 @@ const appRoutes : Routes = [
   },
   {
     path: 'tutor-registration', component: TutorRegistrationComponent
+  },
+  {
+    path:'search-tutor', component:SearchTutorComponent
   }
 ]
 
@@ -20,7 +24,8 @@ const appRoutes : Routes = [
   declarations: [
     AppComponent,
     TutorRegistrationComponent,
-    HomepageComponent
+    HomepageComponent,
+    SearchTutorComponent
   ],
   imports: [
     BrowserModule,
