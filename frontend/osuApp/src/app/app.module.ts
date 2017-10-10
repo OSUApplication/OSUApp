@@ -6,7 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { SearchTutorComponent } from './search-tutor/search-tutor.component'
+import { SearchTutorComponent } from './search-tutor/search-tutor.component';
+import { LoginComponent } from './login/login.component'
 
 const appRoutes : Routes = [
   {
@@ -25,7 +26,8 @@ const appRoutes : Routes = [
     AppComponent,
     TutorRegistrationComponent,
     HomepageComponent,
-    SearchTutorComponent
+    SearchTutorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

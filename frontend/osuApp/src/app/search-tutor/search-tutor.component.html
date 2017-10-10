@@ -1,0 +1,10 @@
+<div>
+Select a Department:
+<select placeholder="Department" id="search_tutor_id">
+  <option *ngFor="let i of subjects" value=i id="subjects_dropdown">{{i}}</option>
+</select>
+</div>
+<div>
+<input type="textbox" placeholder="Search by Name, subject name or CRN" id="search_tutor_id">
+</div>
+<button>submit</button>
