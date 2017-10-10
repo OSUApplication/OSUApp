@@ -1,8 +1,7 @@
 <div class="container">
     <h1>Tutor Registration Form</h1>
+  <form>
 
-    <form>
-  
   <div class="form-group">
     <label for="exampleInputPassword1" style="float:left;">Enter Name</label>
     <input type="text" class="form-control" id="name" placeholder="Enter Name" [(ngModel)]='name' #fname="ngModel" (change)="log(fname)" name="name"  required>
@@ -21,9 +20,6 @@
     <label for="exampleInputPassword1" style="float:left;">Password</label>
     <input type="password" required class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]='password' #pword="ngModel" name="password">
   <div class="alert alert-danger" *ngIf="!pword.valid">Password must be entered</div>
-
-
-  
 
   </div>
 
