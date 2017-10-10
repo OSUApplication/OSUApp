@@ -1,0 +1,7 @@
+.home {
+  background: url(../../assets/Osu_logo.png) no-repeat;
+  width: 1080px;
+  height: 240px;
+  display: block;
+  background-position: center;
+}
