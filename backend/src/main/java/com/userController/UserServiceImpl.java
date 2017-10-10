@@ -4,16 +4,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.google.gson.Gson;
-import com.mongodb.MongoClient;
-import com.osuapp.constants.ApplicationConstants;
 import com.osuapp.constants.MongoConnection;
 
 @Service
