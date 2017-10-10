@@ -9,13 +9,16 @@ import { Tutor } from './tutor';
 export class TutorRegistrationComponent implements OnInit {
 
    public model: Tutor;
-  
+
+   name:string = "Shashank"
+
+
    constructor(){
        this.model = new Tutor();
        this.model.name = "Tutor 1";
    }
 
-  ngOnInit() {
+   ngOnInit() {
 
   	  console.log("THe model value is",this.model.name);
   }
