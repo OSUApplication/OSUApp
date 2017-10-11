@@ -4,7 +4,7 @@ jobs:
    build_frontend:
      working_directory: ~/OSUApp/
      docker:
-       - image: circleci/node:6.11.4
+       - image: circleci/node:6.11.4-browsers
      steps:
        - checkout
        - run: #TODO remove
