@@ -16,9 +16,6 @@ jobs:
        - run:
           name: Update npm
           command: 'cd frontend/osuApp && sudo npm install -g npm@latest'
-       -run:
-          name: Install Angular CLI
-          command: 'cd frontend/osuApp && sudo npm install -g @angular/cli@latest'
        - run:
           name: Install npm
           command: 'cd frontend/osuApp && npm install'
