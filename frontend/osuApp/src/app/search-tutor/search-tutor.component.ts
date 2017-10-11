@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SearchTutorComponent implements OnInit {
   subjects:string[]
 
-  constructor() { }
+  constructor(){ }
 
   ngOnInit() {
     this.subjects =["CS","Civil","Mechanical"]

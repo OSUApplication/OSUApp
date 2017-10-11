@@ -2,11 +2,20 @@
   width: 50%;
   height: 60px;
   margin-top: 5cm;
-  margin-left: 8cm;
-},
+
+}
 
 .search_tutor_btn{
   width: 50%;
   height: 60px;
-  margin-left: 5cm;
+  margin-top: 2cm;
+
+}
+
+.home{
+  background: url(../../assets/Osu_logo.png) no-repeat;
+  width: 1080px;
+  height: 240px;
+  display: block;
+  background-position: center;
 }
