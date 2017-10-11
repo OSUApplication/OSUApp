@@ -19,4 +19,8 @@ export class SearchTutorComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  dropdown_value(val:any){
+    console.log(val);
+  }
+
 }

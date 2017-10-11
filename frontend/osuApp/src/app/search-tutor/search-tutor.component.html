@@ -4,8 +4,9 @@
 
     <div class="form-group">
     <label style="float:left;">Select a Department:</label>
-    <select placeholder="Department" id="search_tutor_id">
-      <option *ngFor="let i of subjects" value=i id="subjects_dropdown">{{i}}</option>
+    <select placeholder="Department" id="search_tutor_id" (change)="dropdown_value($evevnt.target.value)" required>
+      <option value="mandatory">Select a Department</option>
+      <option *ngFor="let i of subjects" [ngValue]=i  id="subjects_dropdown" (click)="test()">{{i}}</option>
     </select>
     </div>
 
