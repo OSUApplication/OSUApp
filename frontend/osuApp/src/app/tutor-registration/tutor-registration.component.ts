@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Tutor } from './tutor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tutor-registration',
@@ -13,13 +14,12 @@ export class TutorRegistrationComponent implements OnInit {
    name:string = "Shashank"
 
 
-   constructor(){
+   constructor(private router: Router){
        this.model = new Tutor();
        this.model.name = "Tutor 1";
    }
 
    ngOnInit() {
-
   	  console.log("THe model value is",this.model.name);
   }
 
@@ -27,7 +27,7 @@ export class TutorRegistrationComponent implements OnInit {
   			console.log("name is",name);
   }
 
-  log(x){
-  console.log(x);
+  back(){
+    this.router.navigate(['/']);
   }
 }

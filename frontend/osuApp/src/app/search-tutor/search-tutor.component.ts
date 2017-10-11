@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-tutor',
@@ -8,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class SearchTutorComponent implements OnInit {
   subjects:string[]
 
-  constructor(){ }
+  constructor(private router: Router){}
 
   ngOnInit() {
     this.subjects =["CS","Civil","Mechanical"]
+  }
+
+  back(){
+    this.router.navigate(['/']);
   }
 
 }

@@ -22,7 +22,9 @@
   <div class="alert alert-danger" *ngIf="!pword.valid">Password must be entered</div>
 
   </div>
+  <button type="back" class="btn btn-danger" (click)="back()">Back</button>
 
-  <button type="submit" class="btn btn-primary" (click) ="display([name,password,email])">Submit</button>
+  <button type="submit" class="btn btn-primary" (click) ="display([name,password,email])" style="float:right;">Submit</button>
+
 </form>
 </div>
