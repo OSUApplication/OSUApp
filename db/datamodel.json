@@ -1,0 +1,33 @@
+db.tutor.insert (
+   {
+      "name" : "Vella",
+      "department" : "cs",
+      "email" : "vellaa@oregonstate.edu",
+      "student" : "true",
+      "tutor" : "true",
+      "course_seeking" : [ "CS540 DBMS" ],
+      "course_offering" : ["CS519 Algorithm", "CS 515 Algoritm"]
+   }
+)
+
+db.tutor.insert (
+   {
+      "name" : "Tom",
+      "department" : "cs",
+      "email" : "tomc@oregonstate.edu",
+      "student" : "true",
+      "tutor" : "false",
+      "course_seeking" : [ "CS519 Algorithm" ]
+   }
+)
+
+db.tutor.insert (
+   {
+      "name" : "Richard",
+      "department" : "cs",
+      "email" : "richardj@oregonstate.edu",
+      "student" : "false",
+      "tutor" : "true",
+      "course_offering" : ["CS540 DBMS"]
+   }
+)
