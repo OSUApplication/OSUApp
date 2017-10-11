@@ -14,6 +14,9 @@ jobs:
           name: Node version
           command: 'node -v'
        - run:
+          name: Install angularcli
+          command: sudo npm install -g @angular/cli@latest
+       - run:
           name: Install npm
           command: 'cd frontend/osuApp && npm install'
    test_frontend:
