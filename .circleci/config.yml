@@ -14,9 +14,6 @@ jobs:
           name: Node version
           command: 'node -v'
        - run:
-          name: Update npm
-          command: 'cd frontend/osuApp && sudo npm install -g npm@latest'
-       - run:
           name: Install npm
           command: 'cd frontend/osuApp && npm install'
    test_frontend:
