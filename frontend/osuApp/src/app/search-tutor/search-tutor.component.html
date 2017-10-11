@@ -1,10 +1,24 @@
-<div>
-Select a Department:
-<select placeholder="Department" id="search_tutor_id">
-  <option *ngFor="let i of subjects" value=i id="subjects_dropdown">{{i}}</option>
-</select>
+<div class="container">
+  <h1>Search for a Tutor</h1>
+  <form>
+
+    <div class="form-group">
+      <div class="dropdown">
+          <select placeholder="Department" class="btn dropdown-toggle" id="department_name_id" type="button" data-toggle="dropdown" (change)="dropdownValue($event.target.value)">
+            <option value="Department_Placeholder"> Select a Department</option>
+            <option id= "subject" [ngValue]=i *ngFor="let i of subjects"> {{i}}</option>
+          </select>
+
+      </div>
+    </div>
+
+    <div class= "form-group">
+      <input type="textbox" class="form-control" placeholder="Search by Name or Subject" id="search_tutor_id" required>
+    </div>
+
+    <button type="back" class="btn btn-danger" (click)="back()">Back</button>
+    <button class="btn btn-primary" style="float:right;" (click)="submit()">submit</button>
+
+  </form>
+
 </div>
-<div>
-<input type="textbox" placeholder="Search by Name, subject name or CRN" id="search_tutor_id">
-</div>
-<button>submit</button>
