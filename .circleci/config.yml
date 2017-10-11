@@ -27,8 +27,7 @@ jobs:
          - checkout
          - run:
             name: Test
-            override:
-               command: 'cd frontend/osuApp && npm run test'
+            command: 'cd frontend/osuApp && npm run test'
 
    build_backend:
       docker:
