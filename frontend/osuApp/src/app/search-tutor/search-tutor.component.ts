@@ -12,11 +12,14 @@ export class SearchTutorComponent implements OnInit {
   constructor(private router: Router){}
 
   ngOnInit() {
-    this.subjects =["CS","Civil","Mechanical"]
+    this.subjects =["ECE","CS","Civil","Mechanical"]
   }
 
   back(){
     this.router.navigate(['/']);
   }
-
+  
+  firstDropDownChanged(val: any) {
+    console.log(val);
+  }
 }

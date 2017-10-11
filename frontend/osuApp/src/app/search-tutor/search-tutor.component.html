@@ -4,11 +4,11 @@
 
     <div class="form-group">
       <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Department
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu" >
-          <li *ngFor="let i of subjects"> {{i}}</li>
-        </ul>
+          <select placeholder="Department" class="btn dropdown-toggle" type="button" data-toggle="dropdown" (change)="firstDropDownChanged($event.target.value)">
+            <<option value="Department_Placeholder"> Select a Department</option>
+            <option id= "subject" [ngValue]=i *ngFor="let i of subjects"> {{i}}</option>
+          </select>
+
       </div>
     </div>
 
