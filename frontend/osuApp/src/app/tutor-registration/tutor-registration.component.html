@@ -11,7 +11,7 @@
 
   <div class="form-group">
     <label for="exampleInputEmail1" style="float: left">Email address</label>
-    <input type="email" required class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]='email' #em="ngModel" (change) = "log(em)" name="email">
+    <input type="email" required class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]='email' #em="ngModel" name="email">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     <div class="alert alert-danger" *ngIf="!em.valid">Email must be entered</div>
   </div>

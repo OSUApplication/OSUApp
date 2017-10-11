@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 })
 export class SearchTutorComponent implements OnInit {
   subjects:string[]
-  x:object={}
 
   constructor(private router: Router){}
 
@@ -25,10 +24,6 @@ export class SearchTutorComponent implements OnInit {
   }
 
   submit(){
-
-    this.x['department_name'] = (document.getElementById("button") as HTMLInputElement).value;
-    //this.x['subject_name'] = document.getElementById("search_tutor_id").value();
-
     console.log("Hello");
   }
 }
