@@ -38,4 +38,10 @@ public class UserServiceImpl implements UserService {
 		else
 			return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
 	}
+
+	@Override
+	public List<User> getAllUsers(String subjectName) {
+		List<User> userList = MongoConnection.dataStore.createQuery(User.class).field("course_offering").equal(subjectName).asList();
+		return userList;
+	}
 }

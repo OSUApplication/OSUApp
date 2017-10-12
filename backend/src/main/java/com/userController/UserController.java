@@ -39,4 +39,9 @@ public class UserController {
 		return userSerivce.addUser(user);
 	}
 	
+	@RequestMapping(value="/getTutor/{subjectName}",method=RequestMethod.GET)
+	public String getTutors(@PathVariable("subjectName") String subjectName){
+		return gson.toJson(userSerivce.getAllUsers(subjectName));
+	}
+	
 }
