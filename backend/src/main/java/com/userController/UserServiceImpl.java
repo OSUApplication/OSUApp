@@ -30,13 +30,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public ResponseEntity<?> addUser(User user) throws URISyntaxException {
-		List<User> userList = MongoConnection.dataStore.createQuery(User.class).asList();
-		MongoConnection.dataStore.save(user);
-		List<User> updatedUserList = MongoConnection.dataStore.createQuery(User.class).asList();
-		if((userList.size()+1) == updatedUserList.size())
-			return ResponseEntity.status(HttpStatus.CREATED).location(new URI("/api/getUser"+user.email)).build();
+		
+		User addedUser = MongoConnection.dataStore.createQuery(User.class).field("name").equal(user.name).get();
+		if(addedUser.equals(user))
+			return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).location(new URI("/api/getUser/"+user.email)).build();
 		else
-			return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+			MongoConnection.dataStore.save(user);
+			return ResponseEntity.status(HttpStatus.CREATED).location(new URI("/api/getUser/"+user.email)).build();
 	}
 
 	@Override
