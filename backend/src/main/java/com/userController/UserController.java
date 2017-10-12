@@ -18,7 +18,7 @@ public class UserController {
 	UserService userSerivce; 
 	Gson gson = new Gson(); 
 	
-	//dependency injection of login service 
+	//dependency injection of user service 
 	@Autowired
 	public UserController(UserService userSerivce) {
 		this.userSerivce = userSerivce;
