@@ -13,18 +13,53 @@
     <label for="exampleInputEmail1" style="float: left">Email address</label>
     <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]='email' #em="ngModel" name="email" required>
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    <div class="alert alert-danger" *ngIf="!em.valid">Email must be entered</div>
+    <div class="alert alert-danger" *ngIf="!em.valid && em.touched">Email must be entered</div>
   </div>
 
   <div class="form-group">
     <label for="exampleInputPassword1" style="float:left;">Password</label>
     <input type="password" required class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]='password' #pword="ngModel" name="password">
-  <div class="alert alert-danger" *ngIf="!pword.valid">Password must be entered</div>
+  <div class="alert alert-danger" *ngIf="!pword.valid&&pword.touched">Password must be entered</div>
 
   </div>
-  <button type="back" class="btn btn-danger" (click)="back()">Back</button>
 
-  <button type="submit" class="btn btn-primary" (click) ="display([name,email,password])" style="float:right;">Submit</button>
+
+<div class="panel panel-info">
+<div class="panel-heading">
+
+<span style="font-size: 30px"> Courses Offered </span>
+
+<button style="float:right" class="btn btn-primary" (click) = "addCourseInfo()"> Add Another Course</button>
+</div>
+
+  <li *ngFor="let person of course; let i = index">
+      <div class="form-group">
+
+      <div class="panel-heading">
+       <span style="font-size: 24px"> Course {{person.id}}</span>
+
+       <a class="glyphicon glyphicon-remove" style="float: right; color: red" (click) ="deleteCourseInfo(person)"></a>
+       </div>
+
+        <div class="panel-body">
+       <label for="cousesofferingno" style="float:left;">Course Number</label>
+
+       <input type="text" required class="form-control" id="courseno" placeholder="Enter Course Number" [(ngModel)]='person.cno' #courseno="ngModel" name="cno{{i}}"/>
+
+      <div class="alert alert-danger" *ngIf="!courseno.valid&&courseno.youched">Course Number must be entered</div>
+
+      <label for="cousesofferingname" style="float:left;">Course Name</label>
+       <input type="text" required class="form-control" id="coursename" placeholder="Enter Course Name" [(ngModel)]='person.cname' #cname="ngModel" name="cname{{i}}">
+      <div class="alert alert-danger" *ngIf="!cname.valid&&cname.touched">Course Name must be entered</div>
+      </div>
+      </div>
+
+</li>
+</div>
+
+  <button type="back" class="btn btn-danger" (click)="back">Back</button>
+
+  <button type="submit" class="btn btn-primary" (click) ="display()" style="float:right;">Submit</button>
 
 </form>
 </div>

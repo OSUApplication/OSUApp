@@ -14,4 +14,6 @@ public interface UserService {
 	User getUser(String emailID);
 	
 	ResponseEntity<?> addUser(User user) throws URISyntaxException;
+	
+	List<User> getAllUsers(String subjectName);
 }

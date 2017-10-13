@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.osuapp.constants.ApplicationConstants;
 import com.osuapp.constants.MongoConnection;
 
 @Service
@@ -24,18 +25,24 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUser(String emailID) {
-		Query<User> userQuery = MongoConnection.dataStore.createQuery(User.class).field("email").equal(emailID);
+		Query<User> userQuery = MongoConnection.dataStore.createQuery(User.class).field(ApplicationConstants.FIELD_EMAIL).equal(emailID);
 		return userQuery.get();
 	}
 
 	@Override
 	public ResponseEntity<?> addUser(User user) throws URISyntaxException {
-		List<User> userList = MongoConnection.dataStore.createQuery(User.class).asList();
-		MongoConnection.dataStore.save(user);
-		List<User> updatedUserList = MongoConnection.dataStore.createQuery(User.class).asList();
-		if((userList.size()+1) == updatedUserList.size())
-			return ResponseEntity.status(HttpStatus.CREATED).location(new URI("/api/getUser"+user.email)).build();
+		
+		User addedUser = MongoConnection.dataStore.createQuery(User.class).field(ApplicationConstants.FIELD_EMAIL).equal(user.email).get();
+		if(addedUser.equals(user))
+			return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).location(new URI(ApplicationConstants.GET_USER_END_POINT + user.email)).build();
 		else
-			return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+			MongoConnection.dataStore.save(user);
+			return ResponseEntity.status(HttpStatus.CREATED).location(new URI(ApplicationConstants.GET_USER_END_POINT + user.email)).build();
+	}
+
+	@Override
+	public List<User> getAllUsers(String subjectName) {
+		List<User> userList = MongoConnection.dataStore.createQuery(User.class).field(ApplicationConstants.FIELD_COURSE_OFFERING).equal(subjectName).asList();
+		return userList;
 	}
 }

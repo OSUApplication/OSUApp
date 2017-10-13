@@ -11,21 +11,41 @@ export class TutorRegistrationComponent implements OnInit {
 
    public model: Tutor;
 
-   name:string = "Shashank"
+   name:string = "Shashank";
 
+   course:any[] = [{'id': 1,'cno':'','cname':''}];
+
+   id:number = 1;
 
    constructor(private router: Router){
-       this.model = new Tutor();
-       this.model.name = "Tutor 1";
+
    }
 
-   ngOnInit() {
-  	  console.log("THe model value is",this.model.name);
+   ngOnInit(){
+
+   }
+
+
+  display(name){
+  			console.log("cousre offered are",this.course);
   }
 
-  display(array){
-  			console.log("name is",array);
+  addCourseInfo(){
+    this.course.push({'id': this.id+1, 'cno':'','cname':''});
+    this.id += 1;
+
   }
+
+  deleteCourseInfo(id){
+    var target = this.course.indexOf(id);
+    var index = target;
+    if(index < 1){
+        index = 0;
+    }
+    this.course.splice(index,1);
+
+  }
+
 
   back(){
     this.router.navigate(['/']);

@@ -4,7 +4,7 @@ jobs:
    build_frontend:
      working_directory: ~/OSUApp/
      docker:
-       - image: circleci/node:6.11.4
+       - image: circleci/node:6.11.4-browsers
      steps:
        - checkout
        - run: #TODO remove
@@ -14,20 +14,15 @@ jobs:
           name: Node version
           command: 'node -v'
        - run:
-          name: Update npm
-          command: 'cd frontend/osuApp && sudo npm install -g npm@latest'
+          name: Install angularcli
+          command: sudo npm install -g @angular/cli@latest
        - run:
           name: Install npm
           command: 'cd frontend/osuApp && npm install'
-   test_frontend:
-       working_directory: ~/OSUApp
-       docker:
-         - image: circleci/node:6.11.4
-       steps:
-         - checkout
-         - run:
-            name: Test
-            command: 'cd frontend/osuApp && ng test'
+       - run:
+          name: Test
+          command: 'cd frontend/osuApp && npm run test'
+
 
    build_backend:
       docker:
@@ -52,16 +47,10 @@ jobs:
            name: Run Gradle dependencies
            command: 'cd backend && gradle dependencies'
 
-   test_backend:
-     docker:
-        # specify the version you desire here
-        - image: circleci/openjdk:8-jdk
-     steps:
-        - checkout
-
         - run:
            name: Run Test
            command: 'cd backend && gradle test'
+
 
 workflows:
   version: 2
@@ -69,9 +58,3 @@ workflows:
     jobs:
       - build_frontend
       - build_backend
-      - test_frontend:
-          requires:
-            - build_frontend
-      - test_backend:
-          requires:
-            - build_backend
