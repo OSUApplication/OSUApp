@@ -31,18 +31,18 @@
 <button style="float:right" class="btn btn-primary" (click) = "addCourseInfo()"> Add Another Course</button>
 </div>
 
-  <li *ngFor="let person of course; let i = index"> 
+  <li *ngFor="let person of course; let i = index">
       <div class="form-group">
 
       <div class="panel-heading">
        <span style="font-size: 24px"> Course {{person.id}}</span>
-    
+
        <a class="glyphicon glyphicon-remove" style="float: right; color: red" (click) ="deleteCourseInfo(person)"></a>
        </div>
-      
+
         <div class="panel-body">
        <label for="cousesofferingno" style="float:left;">Course Number</label>
-       
+
        <input type="text" required class="form-control" id="courseno" placeholder="Enter Course Number" [(ngModel)]='person.cno' #courseno="ngModel" name="cno{{i}}"/>
 
       <div class="alert alert-danger" *ngIf="!courseno.valid&&courseno.youched">Course Number must be entered</div>
@@ -53,10 +53,10 @@
       </div>
       </div>
 
-</li>    
+</li>
 </div>
 
-  <button type="back" class="btn btn-danger" (click)="back">Back</button>
+  <button type="back" class="btn btn-danger" (click)="back()">Back</button>
 
   <button type="submit" class="btn btn-primary" (click) ="display()" style="float:right;">Submit</button>
 
