@@ -23,8 +23,8 @@ export class TutorRegistrationComponent implements OnInit {
   	  console.log("THe model value is",this.model.name);
   }
 
-  display(name){
-  			console.log("name is",name);
+  display(array){
+  			console.log("name is",array);
   }
 
   back(){
