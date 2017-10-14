@@ -9,6 +9,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { SearchTutorComponent } from './search-tutor/search-tutor.component';
 import { LoginComponent } from './login/login.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const appRoutes : Routes = [
   {
@@ -22,6 +23,9 @@ const appRoutes : Routes = [
   },
   {
     path:'about-us', component:AboutUsComponent
+  },
+  {
+    path:'contact-us', component:ContactUsComponent
   }
 ]
 
@@ -32,7 +36,8 @@ const appRoutes : Routes = [
     HomepageComponent,
     SearchTutorComponent,
     LoginComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
