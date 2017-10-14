@@ -21,26 +21,26 @@ export class TutorRegistrationComponent implements OnInit {
 
    ngOnInit(){}
 
-  display(name){
-  			console.log("cousre offered are",this.course);
-  }
-
-  addCourseInfo(){
-    this.course.push({'id': this.id+1, 'cno':'','cname':''});
-    this.id += 1;
-  }
-
-  deleteCourseInfo(id){
-    var target = this.course.indexOf(id);
-    var index = target;
-    if(index < 1){
-        index = 0;
+    display(name){
+    			console.log("cousre offered are",this.course);
     }
-    this.course.splice(index,1);
-  }
 
-  back(){
-    this.router.navigate(['homepage']);
-  }
+    addCourseInfo(){
+      this.course.push({'id': this.id+1, 'cno':'','cname':''});
+      this.id += 1;
+    }
+
+    deleteCourseInfo(id){
+      var target = this.course.indexOf(id);
+      var index = target;
+      if(index < 1){
+          index = 0;
+      }
+      this.course.splice(index,1);
+    }
+
+    back(){
+      this.router.navigate(['homepage']);
+    }
 
 }
