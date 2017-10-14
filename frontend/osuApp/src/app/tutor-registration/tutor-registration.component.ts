@@ -17,40 +17,30 @@ export class TutorRegistrationComponent implements OnInit {
 
    id:number = 1;
 
-   constructor(private router: Router){
-       
-   }
+   constructor(private router: Router){}
 
-   ngOnInit(){
-
-   }
-
+   ngOnInit(){}
 
   display(name){
   			console.log("cousre offered are",this.course);
   }
 
   addCourseInfo(){
-
-    this.course.push({'id': this.id+1, 'cno':'','cname':''}); 
-
-    
+    this.course.push({'id': this.id+1, 'cno':'','cname':''});
     this.id += 1;
-
   }
 
   deleteCourseInfo(id){
-    var target = this.course.indexOf(id); 
+    var target = this.course.indexOf(id);
     var index = target;
     if(index < 1){
         index = 0;
     }
     this.course.splice(index,1);
-
   }
-
 
   back(){
-    this.router.navigate(['/']);
+    this.router.navigate(['homepage']);
   }
+
 }

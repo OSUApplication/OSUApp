@@ -1,10 +1,19 @@
-<div>
-  Enter your username or email:
-<input type="text" id="username">
-</div>
-<div>
-  <input type="password" id="password">
-</div>
-<div>
-  <button id="login_button">Log in</button>
+<div class="container" align="centre">
+  <h1 style="text-align:center;">Welcome to Tutor Nation</h1>
+<form style="margin-top:5.5cm;">
+  <div class="form-group">
+    <label for="exampleInputPassword1" style="float:left;">Username or email</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter Name" [(ngModel)]='name' #fname="ngModel"  name="name"  required>
+    <div class="alert alert-danger" *ngIf="!fname.valid&&fname.touched">This field cannot be blank</div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1" style="float:left;">Password</label>
+    <input type="password" class="form-control" placeholder="Enter password" id="passsword_id" [(ngModel)]='password' #epassword="ngModel" name="passwword"  required >
+    <div class="alert alert-danger" *ngIf="!epassword.valid&&epassword.touched">This field cannot be blank</div>
+  </div>
+</form>
+<button type="back" class="btn btn-danger" (click)="register_user()">Not an User? Please Register</button>
+
+<button type="submit" class="btn btn-primary" (click) ="login_user()" style="float:right;">Login</button>
 </div>

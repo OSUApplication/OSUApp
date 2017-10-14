@@ -16,7 +16,7 @@ export class SearchTutorComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/']);
+    this.router.navigate(['homepage']);
   }
 
   dropdownValue(val: any) {

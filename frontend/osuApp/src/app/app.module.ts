@@ -11,7 +11,10 @@ import { LoginComponent } from './login/login.component'
 
 const appRoutes : Routes = [
   {
-    path: '', component: HomepageComponent
+    path: '', component: LoginComponent
+  },
+  {
+    path:'homepage', component: HomepageComponent
   },
   {
     path: 'tutor-registration', component: TutorRegistrationComponent
