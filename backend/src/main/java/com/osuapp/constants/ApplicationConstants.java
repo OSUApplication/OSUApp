@@ -14,4 +14,11 @@ public class ApplicationConstants {
 	
 	//API Address Constants 
 	public static String GET_USER_END_POINT = "/api/getUser/";
+	public static String GET_ALL_USERS = "/getAllUsers";
+	public static String GET_USER = "/getUser/{email:.+}";
+	public static String ADD_USER = "/addUser";
+	public static String GET_TUTOR = "/getTutor/{subjectName}";
+	
+	//Front-End localhost constant
+	public static String FRONT_END_LOCALHOST = "http://localhost:4200";
 }
