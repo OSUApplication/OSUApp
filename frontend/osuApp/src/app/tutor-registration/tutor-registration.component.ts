@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Tutor } from './tutor';
 import { Router } from '@angular/router';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+import {Jsonp} from '@angular/http';
+
+
 
 @Component({
   selector: 'app-tutor-registration',
@@ -17,12 +22,23 @@ export class TutorRegistrationComponent implements OnInit {
 
    id:number = 1;
 
-   constructor(private router: Router){
+   result:Array<any> = [];
+
+   constructor(private router: Router, private http : Http){
+
 
    }
 
+
+   
    ngOnInit(){
 
+    this.http.get('http://localhost:8084/api/getAllUsers').map((response)=>response.json()).subscribe(
+        function(data){
+            this.result=data;
+            console.log(this.result);
+        }
+      )
    }
 
 
