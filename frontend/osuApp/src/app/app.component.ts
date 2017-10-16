@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ViewContainerRef } from '@angular/core';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,16 +11,11 @@ import 'rxjs/add/operator/map';
 })
 export class AppComponent  {
   title = 'app';
-  result
   constructor(private http: Http){
-
+  		
   }
-
+  
   ngOnInit() {
-
-      this.http.get('https://jsonplaceholder.typicode.com/posts').map((response)=>response.json()).subscribe(
-      	(data) => console.log(data)
-      )
    
   }
 }
