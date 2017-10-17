@@ -6,8 +6,6 @@ import { Tutor } from './tutor';
 import { HttpModule } from '@angular/http';
 import { Http,URLSearchParams, Headers } from '@angular/http';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
-
-
 import { RouterModule,Router } from '@angular/router';
 
 describe('TutorRegistrationComponent', () => {
@@ -17,7 +15,7 @@ describe('TutorRegistrationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TutorRegistrationComponent ],
-      imports: [RouterTestingModule,FormsModule,HttpModule,ToastModule.forRoot()]
+      imports:[FormsModule, HttpModule, RouterTestingModule, ToastModule.forRoot()]
     })
     .compileComponents();
   }));
