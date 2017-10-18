@@ -6,7 +6,8 @@ brew services start mongodb
 mongo
 
 mongoshell> show dbs
-mongoshell> use tutor
+mongoshell> use osuapp
+
 
 ---- Now simply paste the datamodel file's content in terminal and enter. This will insert all the documents 
 --- document schema is given in document file 
