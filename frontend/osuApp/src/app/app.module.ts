@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SearchTutorComponent } from './search-tutor/search-tutor.component';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component'
 
 const appRoutes : Routes = [
   {
@@ -20,8 +21,11 @@ const appRoutes : Routes = [
     path: 'tutor-registration', component: TutorRegistrationComponent
   },
   {
-    path:'search-tutor', component:SearchTutorComponent
-  }
+    path: 'search-tutor', component:SearchTutorComponent
+  },
+  {
+    path: 'sign-up', component:SignUpComponent
+  },
 ]
 
 @NgModule({
@@ -30,7 +34,8 @@ const appRoutes : Routes = [
     TutorRegistrationComponent,
     HomepageComponent,
     SearchTutorComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
