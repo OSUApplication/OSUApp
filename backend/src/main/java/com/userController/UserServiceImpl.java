@@ -5,6 +5,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import org.mongodb.morphia.query.Query;
+import org.mongodb.morphia.query.UpdateOperations;
+import org.mongodb.morphia.query.UpdateResults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -48,5 +50,26 @@ public class UserServiceImpl implements UserService {
 		List<User> userList = MongoConnection.dataStore.createQuery(User.class).field(ApplicationConstants.FIELD_COURSE_OFFERING).equal(subjectName).asList();
 		return userList;
 	}
+	
+	@Override
+	public ResponseEntity<?> updateUser(User user) throws URISyntaxException
+	{
+		User updatedUser = user;
+		
+		Query<User> query = MongoConnection.dataStore.createQuery(User.class).field("email").equal(user.email);
+		UpdateOperations<User> operations = MongoConnection.dataStore.createUpdateOperations(User.class).set("name", "update user works!!");
+	    UpdateResults t = MongoConnection.dataStore.update(query, operations);
+	    
+	    if(t.getUpdatedExisting()==true) {
+			return ResponseEntity.status(HttpStatus.ACCEPTED).location(new URI(ApplicationConstants.GET_USER_END_POINT + user.email)).build();
+
+	    }
+	    else {
+			return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).location(new URI(ApplicationConstants.GET_USER_END_POINT + user.email)).build();
+	   
+	    }
+	}
+	
+
 
 }
