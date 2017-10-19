@@ -8,7 +8,7 @@ import { ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 
-
+  
 
 
 @Component({
@@ -57,6 +57,10 @@ export class TutorRegistrationComponent implements OnInit {
       )
    }
 
+    log(x){
+      console.log(x);
+    }
+
     showSuccess() {
         this.toastr.success('Tutor Added !', 'Success!');
       }
@@ -77,7 +81,7 @@ export class TutorRegistrationComponent implements OnInit {
         headers.append('Content-Type','application/json');
         headers.append('Access','application/json');
 
-      
+        
         let postBody = JSON.stringify({"name" : this.name, "email" : this.email, "department" : "cs","tutorAs":"true","courseOffering":this.courseOffering});
         this.http.post('http://localhost:8084/api/addUser',postBody, {
         headers:headers
