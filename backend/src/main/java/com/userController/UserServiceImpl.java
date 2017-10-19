@@ -48,4 +48,5 @@ public class UserServiceImpl implements UserService {
 		List<User> userList = MongoConnection.dataStore.createQuery(User.class).field(ApplicationConstants.FIELD_COURSE_OFFERING).equal(subjectName).asList();
 		return userList;
 	}
+
 }
