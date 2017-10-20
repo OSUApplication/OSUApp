@@ -46,4 +46,9 @@ public class UserController {
 		return gson.toJson(userSerivce.getAllUsers(subjectName));
 	}
 	
+	@RequestMapping(value="/updateUser",method=RequestMethod.POST)
+	public void updateUser(@RequestBody User user) throws URISyntaxException{
+		 userSerivce.updateUser(user);
+	}
+	
 }

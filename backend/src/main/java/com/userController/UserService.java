@@ -16,4 +16,6 @@ public interface UserService {
 	ResponseEntity<?> addUser(User user) throws URISyntaxException;
 	
 	List<User> getAllUsers(String subjectName);
+	
+	ResponseEntity<?> updateUser(User user) throws URISyntaxException;
 }
