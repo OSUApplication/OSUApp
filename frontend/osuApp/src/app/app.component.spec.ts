@@ -5,7 +5,7 @@ import { FormsModule }   from '@angular/forms';
 import { Http } from '@angular/http';
 import { HttpModule } from '@angular/http';
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
-
+import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SearchTutorComponent } from './search-tutor/search-tutor.component';
 import { LoginComponent } from './login/login.component'
@@ -18,7 +18,9 @@ describe('AppComponent', () => {
         TutorRegistrationComponent,
         HomepageComponent,
         SearchTutorComponent,
-        LoginComponent
+        LoginComponent,
+        SignUpComponent
+
       ],
       imports: [ RouterTestingModule, FormsModule, HttpModule]
     }).compileComponents();

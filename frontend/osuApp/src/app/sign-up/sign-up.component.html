@@ -5,7 +5,7 @@
     
       <div class="form-group">
         <label for="exampleInputPassword1" style="float:left;">Enter Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Enter Name" [(ngModel)]='name' #fname="ngModel" (change)="log(fname)" name="name"  required >
+        <input type="text" class="form-control" id="name" placeholder="Enter Name" [(ngModel)]='name' #fname="ngModel"  name="name"  required >
         <div class="alert alert-danger" *ngIf="!fname.valid">Name must be entered</div>
       </div>
     
@@ -25,7 +25,7 @@
     
       <button type="back" class="btn btn-danger" (click)="back()">Back</button>
     
-      <button type="submit" class="btn btn-primary" (click) ="submit()" style="float:right;">Submit</button>
+      <button type="submit" class="btn btn-primary" (click) ="display()" style="float:right;">Submit</button>
     
     </form>
     </div>
