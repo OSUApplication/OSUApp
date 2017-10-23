@@ -3,6 +3,7 @@ package com.userController;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -35,15 +36,18 @@ public class UserControllerTest{
 	
 	List<User> tutorList = new ArrayList<User>();
 
-	@Test
-	public void getAllUsers() throws Exception {
+	@Before
+	public void initTest() {
 		User testTutor = new User();
 		testTutor.setName("Chris Rock");
 		tutorList.add(testTutor);
+	}
+	
+	@Test
+	public void getAllUsers() throws Exception {
 		Mockito.when(userService.getAllUser()).thenReturn(tutorList);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/api/getAllUsers").accept(MediaType.APPLICATION_JSON);
 		MvcResult testReuslt = this.mockMvc.perform(requestBuilder).andReturn();
-		System.out.println(testReuslt.getResponse().getContentAsString()+"aaaaaaaaaaaaaaaaaaaaaa");
 		String expected = "[{\"name\":\"Chris Rock\"}]";
 		JSONAssert.assertEquals(expected,testReuslt.getResponse().getContentAsString(),false);
 	}
