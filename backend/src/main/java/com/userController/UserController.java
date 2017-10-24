@@ -47,8 +47,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/updateUser",method=RequestMethod.POST)
-	public void updateUser(@RequestBody User user) throws URISyntaxException{
-		 userSerivce.updateUser(user);
+	public ResponseEntity<?> updateUser(@RequestBody User user) throws URISyntaxException{
+		 return userSerivce.updateUser(user);
 	}
 	
 }
