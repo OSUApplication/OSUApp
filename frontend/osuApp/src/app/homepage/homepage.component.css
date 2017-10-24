@@ -11,7 +11,12 @@
   margin-top: 2cm;
 
 }
+.sign_up_btn{
+  width: 50%;
+  height: 60px;
+  margin-top: 2cm;
 
+}
 .home{
   background: url(../../assets/Osu_logo.png) no-repeat;
   width: 1080px;

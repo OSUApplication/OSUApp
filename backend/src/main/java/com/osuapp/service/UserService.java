@@ -1,10 +1,12 @@
-package com.userController;
+package com.osuapp.service;
 
 import java.net.URISyntaxException;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+
+import com.osuapp.model.User;
 
 @Repository
 public interface UserService {
