@@ -7,7 +7,7 @@ import { JsonpModule } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
-
+import {DataOpService} from './data-op.service';
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SearchTutorComponent } from './search-tutor/search-tutor.component';
@@ -47,7 +47,7 @@ const appRoutes : Routes = [
     ToastModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [DataOpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
