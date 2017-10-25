@@ -7,6 +7,8 @@ import { HttpModule } from '@angular/http';
 import { Http,URLSearchParams, Headers } from '@angular/http';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { RouterModule,Router } from '@angular/router';
+import { DataOpService } from '../data-op.service';
+
 
 
 
@@ -18,7 +20,8 @@ describe('SignUpComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SignUpComponent ],
-      imports:[FormsModule, HttpModule, RouterTestingModule, ToastModule.forRoot()]
+      imports:[FormsModule, HttpModule, RouterTestingModule,ToastModule.forRoot()],
+      providers:[DataOpService]
     })
     .compileComponents();
   }));

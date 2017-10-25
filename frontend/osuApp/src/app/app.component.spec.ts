@@ -20,7 +20,6 @@ describe('AppComponent', () => {
         SearchTutorComponent,
         LoginComponent,
         SignUpComponent
-
       ],
       imports: [ RouterTestingModule, FormsModule, HttpModule]
     }).compileComponents();

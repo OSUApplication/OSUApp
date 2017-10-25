@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Tutor } from './tutor';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
-import {Jsonp} from '@angular/http';
 import { ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DataOpService} from '../data-op.service';
@@ -37,13 +36,10 @@ export class TutorRegistrationComponent implements OnInit {
    constructor(private router: Router,public toastr: ToastsManager, vcr: ViewContainerRef, private dataservice:DataOpService){
 
     this.toastr.setRootViewContainerRef(vcr);
-
-             
+    this.courseOffering= [];          
    }
    
    ngOnInit(){
-
-    this.dataservice.getAllUserData();
    }
 
     log(x){
@@ -61,12 +57,15 @@ export class TutorRegistrationComponent implements OnInit {
 
   
   display(){
-
-
+        var self =this;
         this.course.forEach((course)=>{
               this.courseOffering.push(course.cno + " " + course.cname);
         });
-
+        this.dataservice.setTutorCourseData(this).subscribe(function(resp){
+           if(resp.status == 201){
+                  self.showSuccess();
+              }
+        })
   }
 
   addCourseInfo(){

@@ -7,12 +7,15 @@ import { Http,URLSearchParams, Headers } from '@angular/http';
 import {ToastModule, ToastsManager} from 'ng2-toastr/ng2-toastr';
 import { RouterModule,Router } from '@angular/router';
 import { Component, ViewContainerRef, OnInit } from '@angular/core';
+import { DataOpService} from '../data-op.service';
+
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
+
 export class SignUpComponent implements OnInit {
   [x: string]: any;
 
@@ -26,7 +29,7 @@ export class SignUpComponent implements OnInit {
   
      result:Array<any> = [];
   
-     constructor(private router: Router, private http : Http,public toastr: ToastsManager, vcr: ViewContainerRef){
+     constructor(private router: Router, private http : Http,public toastr: ToastsManager, vcr: ViewContainerRef, private dataservice:DataOpService){
       
           this.toastr.setRootViewContainerRef(vcr);
       
@@ -39,36 +42,25 @@ export class SignUpComponent implements OnInit {
     var self  = this;
     let headers = new Headers();
 
-    headers.append('Access-Control-Allow-Origin','http://localhost:4200');
-    this.http.get('http://localhost:8084/api/getAllUsers',{ headers : headers}).map((response)=>response.json()).subscribe(
-        function(data){
-            this.result=data;
-            console.log(this.result);
-      }
-    )
+
   }
   showSuccess() {
    this.router.navigate(['']);
   }
 
   display(){
-    
+            
+            var self = this;
             let headers = new Headers();
             headers.append('Access-Control-Allow-Origin','http://localhost:4200');
             headers.append('Content-Type','application/json');
             headers.append('Access','application/json');
-    
-          
-            let postBody = JSON.stringify({"name" : this.name, "email" : this.email,});
-            this.http.post('http://localhost:8084/api/addUser',postBody, {
-            headers:headers
-            }).subscribe((data)=>{
-                console.log(data);
-                var data = data;
-                this.showSuccess();
-          
-            }
-          )
+  
+            this.dataservice.setRegistrationData(this).subscribe(function(resp){
+              if(resp.status == 201){
+                  self.showSuccess();
+              }
+             });
 
         }
 
