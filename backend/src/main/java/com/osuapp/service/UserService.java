@@ -11,13 +11,13 @@ import com.osuapp.model.User;
 @Repository
 public interface UserService {
 
-	List<User> getAllUser();
+	List<User> getAllUsers();
 	
 	User getUser(String emailID);
 	
 	ResponseEntity<?> addUser(User user) throws URISyntaxException;
 	
-	List<User> getAllUsers(String subjectName);
+	List<User> getAllTutorsForSubject(String subjectName);
 	
 	ResponseEntity<?> updateUser(User user) throws URISyntaxException;
 }

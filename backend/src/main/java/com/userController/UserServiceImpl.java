@@ -20,7 +20,7 @@ import com.osuapp.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	@Override
-	public List<User> getAllUser() {
+	public List<User> getAllUsers() {
 		Query<User> query = MongoConnection.dataStore.createQuery(User.class);
 		List<User> users = query.asList();
 		return users;
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getAllUsers(String subjectName) {
+	public List<User> getAllTutorsForSubject(String subjectName) {
 		List<User> userList = MongoConnection.dataStore.createQuery(User.class).field(ApplicationConstants.FIELD_COURSE_OFFERING).equal(subjectName).asList();
 		return userList;
 	}

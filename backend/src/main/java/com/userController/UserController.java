@@ -29,13 +29,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/getAllUsers",method=RequestMethod.GET)
-	public String getUsers() {
-		return gson.toJson(userSerivce.getAllUser());
+	public String getAllUsers() {
+		return gson.toJson(userSerivce.getAllUsers());
 	}
 	
 	@RequestMapping(value="/getUser/{email:.+}",method=RequestMethod.GET)
-	public User getUser(@PathVariable("email") String emailID) {
-		return userSerivce.getUser(emailID);
+	public String getUser(@PathVariable("email") String emailID) {
+		return gson.toJson(userSerivce.getUser(emailID));
 	}
 	
 	@RequestMapping(value="/addUser",method=RequestMethod.POST)
@@ -45,7 +45,7 @@ public class UserController {
 	
 	@RequestMapping(value="/getTutor/{subjectName}",method=RequestMethod.GET)
 	public String getTutors(@PathVariable("subjectName") String subjectName){
-		return gson.toJson(userSerivce.getAllUsers(subjectName));
+		return gson.toJson(userSerivce.getAllTutorsForSubject(subjectName));
 	}
 	
 	@RequestMapping(value="/updateUser",method=RequestMethod.POST)
