@@ -81,7 +81,6 @@ public class UserControllerTest{
 		Mockito.when(userService.getAllTutorsForSubject(Mockito.anyString())).thenReturn(tutorList);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(ApplicationConstants.GENERIC_TUTOR_FINDER_URL).accept(MediaType.APPLICATION_JSON);
 		MvcResult testResult = this.mockMvc.perform(requestBuilder).andReturn();
-		System.out.println(testResult.getResponse().getContentAsString());
 		JSONAssert.assertEquals(ApplicationConstants.EXPECTED_TEST_RESULT_LIST,testResult.getResponse().getContentAsString(),false);
 	}
 	
