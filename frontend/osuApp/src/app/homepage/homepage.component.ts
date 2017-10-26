@@ -6,18 +6,24 @@ import { RouterModule,Router } from '@angular/router';
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
+
 export class HomepageComponent implements OnInit {
 
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
+
   register_tutor(){
     this.router.navigate(['/tutor-registration']);
   }
 
   search_tutor(){
     this.router.navigate(['/search-tutor'])
+  }
+
+  sign_up(){
+    this.router.navigate(['/sign-up'])
   }
 
 }

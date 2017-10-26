@@ -1,33 +1,71 @@
 import { Component, OnInit } from '@angular/core';
 import { Tutor } from './tutor';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/map';
+import { ViewContainerRef } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { DataOpService} from '../data-op.service';
+
+
 
 @Component({
   selector: 'app-tutor-registration',
   templateUrl: './tutor-registration.component.html',
   styleUrls: ['./tutor-registration.component.css']
 })
+
+
 export class TutorRegistrationComponent implements OnInit {
 
    public model: Tutor;
 
-   name:string = "Shashank";
+   name:string = "";
+
+   email:string = '';
+
+   department:string = '';
 
    course:any[] = [{'id': 1,'cno':'','cname':''}];
 
+   courseOffering:any[] = [];
+
    id:number = 1;
 
-   constructor(private router: Router){
+   result:any = [];
 
+   constructor(private router: Router,public toastr: ToastsManager, vcr: ViewContainerRef, private dataservice:DataOpService){
+
+    this.toastr.setRootViewContainerRef(vcr);
+    this.courseOffering= [];          
    }
-
+   
    ngOnInit(){
-
    }
 
+    log(x){
+      console.log(x);
+    }
 
-  display(name){
-  			console.log("cousre offered are",this.course);
+    showSuccess() {
+        this.toastr.success('Tutor Added !', 'Success!');
+      }
+
+    showFailure(){
+        this.toastr.error("Tutor not Added, Something went wrong ");
+    }
+
+
+  
+  display(){
+        var self =this;
+        this.course.forEach((course)=>{
+              this.courseOffering.push(course.cno + " " + course.cname);
+        });
+        this.dataservice.setTutorCourseData(this).subscribe(function(resp){
+           if(resp.status == 201){
+                  self.showSuccess();
+              }
+        })
   }
 
   addCourseInfo(){
@@ -43,7 +81,6 @@ export class TutorRegistrationComponent implements OnInit {
         index = 0;
     }
     this.course.splice(index,1);
-
   }
 
 

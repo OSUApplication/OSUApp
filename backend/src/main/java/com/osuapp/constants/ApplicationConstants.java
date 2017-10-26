@@ -14,4 +14,23 @@ public class ApplicationConstants {
 	
 	//API Address Constants 
 	public static String GET_USER_END_POINT = "/api/getUser/";
+	public static String GET_ALL_USERS = "/api/getAllUsers";
+	public static String GET_USER = "/api/getUser/{email:.+}";
+	public static String ADD_USER = "/api/addUser";
+	public static String GET_TUTOR = "/api/getTutor/{subjectName}";
+	public static String UPDATE_USER = "/api/updateUser";
+	
+	//Front-End localhost constant
+	public static String FRONT_END_LOCALHOST = "http://localhost:4200";
+	
+	//constants for the unit test cases
+	public static String GENERIC_USERNAME = "Chris Rock";
+	public static String GENERIC_EMAIL = "rockc@oregonstate.edu";
+	public static String GENERIC_COURSE_OFFERING = "CS540 DBMS";
+	public static String POST_CONTENT = "{\"name\":\"Chris Rock\"}";
+	public static String EXPECTED_TEST_RESULT_LIST = "[{\"name\":\"Chris Rock\"}]";
+	public static String EXPECTED_TEST_RESULT_OBJECT = "{\"name\":\"Chris Rock\",\"email\":\"rockc@oregonstate.edu\"}";
+	public static String EXPECTED_TEST_RESULT_LOCATION = "/api/getUser/rockc@oregonstate.edu";
+	public static String GENERIC_TUTOR_URL = "/api/getUser/rockc@oregonstate.edu";
+	public static String GENERIC_TUTOR_FINDER_URL = "/api/getTutor/CS540 DBMS";
 }
