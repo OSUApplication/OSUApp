@@ -8,7 +8,9 @@ import { TutorRegistrationComponent } from './tutor-registration/tutor-registrat
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SearchTutorComponent } from './search-tutor/search-tutor.component';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
