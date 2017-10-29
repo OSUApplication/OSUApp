@@ -1,0 +1,16 @@
+.profile-pic {
+    width: 200px;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: auto;
+}
+
+table, th, td {
+    border: 5px solid white;
+}
+
+p {
+  text-align: center;
+}
