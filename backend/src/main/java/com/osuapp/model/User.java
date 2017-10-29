@@ -15,6 +15,9 @@ public class User {
 	
 	@Property("department")
 	public String department;
+
+	@Property("password")
+	public String password;
 	
 	@Property("email")
 	public String email;
@@ -45,6 +48,14 @@ public class User {
 
 	public void setDepartment(String department) {
 		this.department = department;
+	}
+
+	public String getPass() {
+		return password;
+	}
+
+	public void setPass(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {

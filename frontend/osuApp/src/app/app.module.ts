@@ -32,10 +32,10 @@ const appRoutes : Routes = [
   },
   {
     path:'contact-us', component:ContactUsComponent
-  }
+  },
   {
     path: 'sign-up', component:SignUpComponent
-  },
+  }
 ]
 
 @NgModule({

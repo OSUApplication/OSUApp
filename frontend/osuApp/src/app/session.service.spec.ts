@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { HttpModule } from '@angular/http';
 
 import { SessionService } from './session.service';
 
 describe('SessionService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SessionService]
+      providers: [SessionService],
+      imports: [HttpModule]
     });
   });
 

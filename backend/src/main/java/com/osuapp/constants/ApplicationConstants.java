@@ -33,4 +33,6 @@ public class ApplicationConstants {
 	public static String EXPECTED_TEST_RESULT_LOCATION = "/api/getUser/rockc@oregonstate.edu";
 	public static String GENERIC_TUTOR_URL = "/api/getUser/rockc@oregonstate.edu";
 	public static String GENERIC_TUTOR_FINDER_URL = "/api/getTutor/CS540 DBMS";
+	public static String GENERIC_PASSWORD = "1234567";
+
 }
