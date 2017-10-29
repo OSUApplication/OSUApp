@@ -4,6 +4,8 @@ import 'rxjs/add/operator/map';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ViewContainerRef } from '@angular/core';
 import {DataOpService} from './data-op.service';
+import { SessionService } from './session.service';
+
 
 @Component({
   selector: 'app-root',
@@ -12,11 +14,12 @@ import {DataOpService} from './data-op.service';
 })
 export class AppComponent  {
   title = 'app';
-  constructor(private http: Http){
+  constructor(private http: Http, private session:SessionService){
   		
   }
   
   ngOnInit() {
    
+ 
   }
 }
