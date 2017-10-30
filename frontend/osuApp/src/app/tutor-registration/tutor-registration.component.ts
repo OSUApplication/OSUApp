@@ -47,7 +47,10 @@ export class TutorRegistrationComponent implements OnInit {
     }
 
     showSuccess() {
+        var self = this
         this.toastr.success('Tutor Added !', 'Success!');
+        setTimeout(function(){self.back();},3000);
+
       }
 
     showFailure(){
@@ -62,7 +65,7 @@ export class TutorRegistrationComponent implements OnInit {
               this.courseOffering.push(course.cno + " " + course.cname);
         });
         this.dataservice.setTutorCourseData(this).subscribe(function(resp){
-           if(resp.status == 201){
+           if(resp.status == 202){
                   self.showSuccess();
               }
         })

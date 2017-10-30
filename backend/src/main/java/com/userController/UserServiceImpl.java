@@ -1,4 +1,6 @@
 package com.userController;
+import org.mongodb.morphia.Datastore;
+
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -11,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.mongodb.BasicDBObject;
 import com.osuapp.constants.ApplicationConstants;
 import com.osuapp.constants.MongoConnection;
 import com.osuapp.model.User;
@@ -55,11 +58,40 @@ public class UserServiceImpl implements UserService {
 	public ResponseEntity<?> updateUser(User user) throws URISyntaxException
 	{
 		Query<User> query = MongoConnection.dataStore.createQuery(User.class).field("email").equal(user.email);
-		UpdateOperations<User> operations = MongoConnection.dataStore.createUpdateOperations(User.class).set("name", "update user works!!");
-	    UpdateResults updateResults = MongoConnection.dataStore.update(query, operations);
+		UpdateOperations<User> updatefields = checkFields(user);
+				
+	    UpdateResults updateResults = MongoConnection.dataStore.update(query, updatefields);
 	    if(updateResults.getUpdatedExisting()==true) 
 			return ResponseEntity.status(HttpStatus.ACCEPTED).location(new URI(ApplicationConstants.GET_USER_END_POINT + user.email)).build();
 	    else 
 			return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).location(new URI(ApplicationConstants.GET_USER_END_POINT + user.email)).build();
+	}
+	
+
+	public UpdateOperations<User> checkFields(User user) {
+		
+		
+		Datastore ds = MongoConnection.dataStore;
+		UpdateOperations<User> updatefields = ds.createUpdateOperations(User.class);
+		
+		if(user.getName()!=null) {
+			updatefields.set("name", user.getName());
+		}
+		if(user.getEmail()!=null) {
+			updatefields.set("email", user.getEmail());
+		}
+		if(user.getPass()!=null) {
+			updatefields.set("password", user.getPass());
+		}
+		if(user.getDepartment() != null) {
+			updatefields.set("department", user.getDepartment());
+		}
+		if(user.getCourseSeeking()!=null) {
+			updatefields.set("courseSeeking",user.getCourseSeeking());
+		}
+		if(user.getCourseOffering()!=null) {
+			updatefields.set("courseOffering",user.getCourseOffering());
+		}
+		return updatefields;
 	}
 }

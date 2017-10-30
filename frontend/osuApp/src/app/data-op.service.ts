@@ -29,7 +29,7 @@ export class DataOpService {
     this.headers.append('Access','application/json');
   
     let postBody = JSON.stringify({"name" : body.name, "email" : body.email, "department" : "cs","tutorAs":"true","courseOffering":body.courseOffering});
-        return this.http.post('http://localhost:8084/api/addUser',postBody, {
+        return this.http.post('http://localhost:8084/api/updateUser',postBody, {
         headers:this.headers
         });
 
@@ -41,6 +41,7 @@ export class DataOpService {
     this.headers.append('Access','application/json');
 
     let postBody = JSON.stringify({"name" : body.name, "email" : body.email, "password":body.password});
+    
     return this.http.post('http://localhost:8084/api/addUser',postBody, {
             headers:this.headers
             })
