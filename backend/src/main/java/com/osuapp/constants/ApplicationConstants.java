@@ -27,12 +27,15 @@ public class ApplicationConstants {
 	public static String GENERIC_USERNAME = "Chris Rock";
 	public static String GENERIC_EMAIL = "rockc@oregonstate.edu";
 	public static String GENERIC_COURSE_OFFERING = "CS540 DBMS";
+	public static String GENERIC_DEPARTMENT_NAME = "CS";
 	public static String POST_CONTENT = "{\"name\":\"Chris Rock\"}";
 	public static String EXPECTED_TEST_RESULT_LIST = "[{\"name\":\"Chris Rock\"}]";
 	public static String EXPECTED_TEST_RESULT_OBJECT = "{\"name\":\"Chris Rock\",\"email\":\"rockc@oregonstate.edu\"}";
+	public static String EXPECTED_TEST_COURSE_RESULT = "{\"departmentName\":\"CS\",\"courseList\":[\"CS540 DBMS\"]}";
 	public static String EXPECTED_TEST_RESULT_LOCATION = "/api/getUser/rockc@oregonstate.edu";
 	public static String GENERIC_TUTOR_URL = "/api/getUser/rockc@oregonstate.edu";
 	public static String GENERIC_TUTOR_FINDER_URL = "/api/getTutor/CS540 DBMS";
+	public static String GENERIC_GET_ALL_COURSES_URL = "/api/CS/getAllCourses";
 	public static String GENERIC_PASSWORD = "1234567";
 
 }
