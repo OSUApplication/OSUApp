@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { Http,URLSearchParams, Headers } from '@angular/http';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { RouterModule,Router } from '@angular/router';
+import { DataOpService } from '../data-op.service';
 
 describe('TutorRegistrationComponent', () => {
   let component: TutorRegistrationComponent;
@@ -15,7 +16,9 @@ describe('TutorRegistrationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TutorRegistrationComponent ],
-      imports:[FormsModule, HttpModule, RouterTestingModule, ToastModule.forRoot()]
+      imports:[FormsModule, HttpModule, RouterTestingModule, ToastModule.forRoot()],
+      providers:[DataOpService]
+
     })
     .compileComponents();
   }));

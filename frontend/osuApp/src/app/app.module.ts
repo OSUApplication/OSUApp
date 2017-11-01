@@ -7,11 +7,15 @@ import { JsonpModule } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import {DataOpService} from './data-op.service';
+import { SessionService } from './session.service';
 
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SearchTutorComponent } from './search-tutor/search-tutor.component';
 import { LoginComponent } from './login/login.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 import { SignUpComponent } from './sign-up/sign-up.component'
 
 const appRoutes : Routes = [
@@ -22,11 +26,18 @@ const appRoutes : Routes = [
     path: 'tutor-registration', component: TutorRegistrationComponent
   },
   {
-    path: 'search-tutor', component:SearchTutorComponent
+
+    path:'search-tutor', component:SearchTutorComponent
+  },
+  {
+    path:'about-us', component:AboutUsComponent
+  },
+  {
+    path:'contact-us', component:ContactUsComponent
   },
   {
     path: 'sign-up', component:SignUpComponent
-  },
+  }
 ]
 
 @NgModule({
@@ -36,6 +47,8 @@ const appRoutes : Routes = [
     HomepageComponent,
     SearchTutorComponent,
     LoginComponent,
+    AboutUsComponent,
+    ContactUsComponent,
     SignUpComponent
   ],
   imports: [
@@ -47,7 +60,7 @@ const appRoutes : Routes = [
     ToastModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [DataOpService,SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

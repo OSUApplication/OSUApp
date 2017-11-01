@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Tutor } from './tutor';
 import { Router } from '@angular/router';
-import { Http,URLSearchParams, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Jsonp} from '@angular/http';
 import { ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { DataOpService} from '../data-op.service';
 
-
-  
 
 
 @Component({
@@ -36,25 +33,13 @@ export class TutorRegistrationComponent implements OnInit {
 
    result:any = [];
 
-   constructor(private router: Router, private http : Http,public toastr: ToastsManager, vcr: ViewContainerRef){
+   constructor(private router: Router,public toastr: ToastsManager, vcr: ViewContainerRef, private dataservice:DataOpService){
 
     this.toastr.setRootViewContainerRef(vcr);
-
-             
+    this.courseOffering= [];          
    }
    
    ngOnInit(){
-
-    var self  = this;
-    let headers = new Headers();
-
-    headers.append('Access-Control-Allow-Origin','http://localhost:4200');
-    this.http.get('http://localhost:8084/api/getAllUsers',{ headers : headers}).map((response)=>response.json()).subscribe(
-        function(data){
-            this.result=data;
-            console.log(this.result);
-        }
-      )
    }
 
     log(x){
@@ -62,38 +47,28 @@ export class TutorRegistrationComponent implements OnInit {
     }
 
     showSuccess() {
+        var self = this
         this.toastr.success('Tutor Added !', 'Success!');
+        setTimeout(function(){self.back();},3000);
+
       }
 
     showFailure(){
         this.toastr.error("Tutor not Added, Something went wrong ");
     }
+
+
   
   display(){
-
-
+        var self =this;
         this.course.forEach((course)=>{
               this.courseOffering.push(course.cno + " " + course.cname);
         });
-
-        let headers = new Headers();
-        headers.append('Access-Control-Allow-Origin','http://localhost:4200');
-        headers.append('Content-Type','application/json');
-        headers.append('Access','application/json');
-
-        
-        let postBody = JSON.stringify({"name" : this.name, "email" : this.email, "department" : "cs","tutorAs":"true","courseOffering":this.courseOffering});
-        this.http.post('http://localhost:8084/api/addUser',postBody, {
-        headers:headers
-        }).subscribe((data)=>{
-            console.log(data);
-            var data = data;
-            this.showSuccess();
-        }
-      )
-
-
-
+        this.dataservice.setTutorCourseData(this).subscribe(function(resp){
+           if(resp.status == 202){
+                  self.showSuccess();
+              }
+        })
   }
 
   addCourseInfo(){

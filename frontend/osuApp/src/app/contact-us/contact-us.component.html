@@ -1,0 +1,54 @@
+<div class="container">
+  <h1 class="col-md-8 col-md-offset-2">Contact Us</h1>
+  <br>
+  <div class= "form-group">
+    <table class="col-md-8 col-md-offset-2">
+      <tr>
+        <td>
+          <input
+            type="text"
+            id="firstname"
+            class="form-control"
+            cols="20"
+            placeholder="*First Name"
+            [(ngModel)]="firstname">
+        </td>
+        <td>
+          <input
+            type="text"
+            id="lastname"
+            class="form-control"
+            cols="20"
+            placeholder="*Last Name"
+            [(ngModel)]="lastname">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="form-group">
+            <label class="sr-only" for="feedback_text">Feedback</label>
+            <textarea
+              id="feedback_text"
+              cols="40"
+              rows="10"
+              class="form-control"
+              placeholder="*How may I help you?"
+              [(ngModel)]="feedback">
+            </textarea>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click) ="submit()"
+            style="float:right;">
+            Submit
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
