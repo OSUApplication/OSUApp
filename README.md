@@ -20,10 +20,12 @@ db.tutor.insert (
 
 Json Format for the Course Object:
 ```json
-{
-    "CS":["CS515 Algorithms","CS517 Theory of Computation","CS519 Master Level Algorithms"],
-    "ECE":["ECE516 Electronic Materials and Device", "ECE522 CMOS Integrated Circuit","ECE533 Power Systems"]
-}
+db.course.insert(
+   {
+      "name" : "CS"
+      "courseList" : ["CS515 Algorithms","CS517 Theory of Computation","CS519 Master Level Algorithms"]
+   }
+)
 ```
 
 # Run Development server
