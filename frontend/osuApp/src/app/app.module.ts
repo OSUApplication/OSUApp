@@ -20,13 +20,15 @@ import { SignUpComponent } from './sign-up/sign-up.component'
 
 const appRoutes : Routes = [
   {
-    path: '', component: HomepageComponent
+    path: 'home', component: HomepageComponent
+  },
+  {
+    path: '', redirectTo:'/home',pathMatch:'full'
   },
   {
     path: 'tutor-registration', component: TutorRegistrationComponent
   },
   {
-
     path:'search-tutor', component:SearchTutorComponent
   },
   {
@@ -37,6 +39,8 @@ const appRoutes : Routes = [
   },
   {
     path: 'sign-up', component:SignUpComponent
+  },
+  {  path: 'login',  component:LoginComponent
   }
 ]
 
@@ -63,4 +67,6 @@ const appRoutes : Routes = [
   providers: [DataOpService,SessionService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+ }

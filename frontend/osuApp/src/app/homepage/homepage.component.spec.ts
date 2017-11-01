@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule }   from '@angular/forms';
 import { HomepageComponent } from './homepage.component';
 import { Router } from '@angular/router';
+import { SessionService } from '../session.service';
+import { HttpModule } from '@angular/http';
 
 
 describe('HomepageComponent', () => {
@@ -12,7 +14,8 @@ describe('HomepageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HomepageComponent ],
-      imports: [RouterTestingModule,FormsModule]
+      imports: [RouterTestingModule,FormsModule,HttpModule],
+      providers:[SessionService]
 
     })
     .compileComponents();

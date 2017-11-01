@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-search-tutor',
@@ -9,10 +10,13 @@ import { Router } from '@angular/router';
 export class SearchTutorComponent implements OnInit {
   subjects:string[]
 
-  constructor(private router: Router){}
-
+  constructor(private router: Router, private session:SessionService){}
+  loggedin:boolean;
   ngOnInit() {
-    this.subjects =["ECE","CS","Civil","Mechanical"]
+       if(this.session.getSession()){
+      this.loggedin=true;
+    }
+    this.subjects =["ECE","CS","Civil","Mechanical"];
   }
 
   back(){

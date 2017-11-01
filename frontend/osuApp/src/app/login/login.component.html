@@ -1,3 +1,19 @@
+<nav class="navbar navbar-inverse bg-inverse">
+  <!-- Navbar content -->
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/home">TutorNation</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/search-tutor">Search Tutor</a></li>
+
+      <li><a routerLink="/about-us">About Us</a></li>
+      <li><a routerLink="/contact-us">Contact Us</a></li>
+      <li *ngIf="!loggedin"><a routerLink="/sign-up">Sign Up</a></li>
+      <li><a routerLink="/login" routerLinkActive="active">Log In</a></li>
+    </ul>
+  </div>
+</nav>
 <div>
   Enter your username or email:
 <input type="text" id="username">
@@ -5,9 +21,4 @@
 <div>
   <input type="password" id="password">
 </div>
-<div>
-  <button id="login_button">Log in</button>
-</div>
-<div>
-  <button id="create_account_button">Sign up</button>
-</div>
+<button (click)="login()">Login</button>
