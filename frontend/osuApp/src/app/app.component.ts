@@ -5,6 +5,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ViewContainerRef } from '@angular/core';
 import {DataOpService} from './data-op.service';
 import { SessionService } from './session.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -14,12 +16,18 @@ import { SessionService } from './session.service';
 })
 export class AppComponent  {
   title = 'app';
-  constructor(private http: Http, private session:SessionService){
+  loggedin:boolean; 
+
+  constructor(private http: Http,private router: Router, private session:SessionService){
   		
   }
   
   ngOnInit() {
-   
- 
-  }
+    console.log("logged value is",this.loggedin);
+     if(this.session.getSession()){
+      this.loggedin=true;
+    }
+     }
+
+
 }

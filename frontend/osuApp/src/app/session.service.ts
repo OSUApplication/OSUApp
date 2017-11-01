@@ -11,7 +11,7 @@ export class SessionService {
   constructor(private http: Http) { 
  	  }
 
-  getSession(){
+  getSession():any[]{
   	var self = this;
   	return SessionService.currentUser;
   }
@@ -35,6 +35,12 @@ export class SessionService {
       );
   
 
+  }
+
+  deleteSession(){
+      if(SessionService.currentUser){
+       SessionService.currentUser = [];
+     }
   }
 
   setHeaders(){

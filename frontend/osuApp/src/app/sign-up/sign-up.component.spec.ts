@@ -8,6 +8,7 @@ import { Http,URLSearchParams, Headers } from '@angular/http';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { RouterModule,Router } from '@angular/router';
 import { DataOpService } from '../data-op.service';
+import { SessionService } from '../session.service';
 
 
 
@@ -21,7 +22,7 @@ describe('SignUpComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SignUpComponent ],
       imports:[FormsModule, HttpModule, RouterTestingModule,ToastModule.forRoot()],
-      providers:[DataOpService]
+      providers:[DataOpService,SessionService]
     })
     .compileComponents();
   }));
