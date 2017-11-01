@@ -22,7 +22,7 @@ Json Format for the Course Object:
 ```json
 db.course.insert(
    {
-      "name" : "CS"
+      "name" : "CS",
       "courseList" : ["CS515 Algorithms","CS517 Theory of Computation","CS519 Master Level Algorithms"]
    }
 )
