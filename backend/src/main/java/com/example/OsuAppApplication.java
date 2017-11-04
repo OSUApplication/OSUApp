@@ -25,6 +25,7 @@ public class OsuAppApplication {
 				registry.addMapping(ApplicationConstants.GET_USER).allowedOrigins(ApplicationConstants.FRONT_END_LOCALHOST);
 				registry.addMapping(ApplicationConstants.ADD_USER).allowedOrigins(ApplicationConstants.FRONT_END_LOCALHOST);
 				registry.addMapping(ApplicationConstants.GET_TUTOR).allowedOrigins(ApplicationConstants.FRONT_END_LOCALHOST);
+				registry.addMapping(ApplicationConstants.GET_ALL_COURSES_BY_DEPTARTMENT).allowedOrigins(ApplicationConstants.FRONT_END_LOCALHOST);
 			}
 		};
 	}
