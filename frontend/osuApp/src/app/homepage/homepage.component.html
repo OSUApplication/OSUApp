@@ -24,18 +24,49 @@
     <h1>TutorNation</h1>
     <h3>-As A Student As A Tutor-</h3>
   </div>
-  <div class="log-in-panel">
-    <h2>Log In</h2>
-    <div class="log-in">
-      <div>
-        <input type="text" id="username" placeholder="Username">
+
+  <div class="log-in-panel" id="f1_container">
+    <div id="f1_card" class="shadow">
+      <div class="front face">
+        <h2>Log In</h2>
+        <div class="log-in">
+          <div>
+            <input type="text" id="username" placeholder="Username">
+          </div>
+          <div>
+            <input type="password" id="password" placeholder="Password">
+          </div>
+        </div>
+        <div class="log-button-group" align="center">
+          <button class="btn btn-primary" (click)="login()">Login</button>
+          <button class="btn btn-primary" (click)="flip()">Doesn't have an account?</button>
+        </div>
       </div>
-      <div>
-        <input type="password" id="password" placeholder="Password">
+      <div class="back face center">
+        <h2>Sign Up</h2>
+        <form name="login-form">
+          <div class="form-group">
+            <input type="text" class="form-control" id="name" style="width:300px;" placeholder="Enter Your Name" [(ngModel)]='name' #fname="ngModel" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <input type="email" class="form-control" id="email" style="width:300px;" aria-describedby="emailHelp" placeholder="Email Address" [(ngModel)]='email' #em="ngModel" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <input type="password" required class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]='password' #pword="ngModel" name="password">
+            <div class="alert alert-danger" *ngIf="!pword.valid&&pword.touched">Password must be entered</div>
+          </div>
+          <div class="log-button-group" align="center">
+            <button type="back" class="btn btn-primary" (click)="flip()">I have account</button>
+            <button type="submit" class="btn btn-primary" (click) ="display()">Submit</button>
+          </div>
+        </form>
       </div>
-      <button class="btn btn-primary login-btn" (click)="login()">Login</button>
     </div>
   </div>
+
+  <div class="scroll-down"></div>
 </div>
 
 <div class="area">
@@ -63,9 +94,9 @@
           <th></th>
         </tr>
         <tr>
-          <th><a routerLink="/search-tutor" style="font-size: 14px;"><span class="glyphicon glyphicon-play"></span>Search Tutor      </a></th>
-          <th><a routerLink="/about-us" style="font-size: 14px;"><span class="glyphicon glyphicon-play"></span>About Us  </a></th>
-          <th><a routerLink="/contact-us" style="font-size: 14px;"><span class="glyphicon glyphicon-play"></span>Contact Us  </a></th>
+          <th><a routerLink="/search-tutor" style="font-size: 14px;"><span class="glyphicon glyphicon-play"></span>Search Tutor</a></th>
+          <th><a routerLink="/about-us" style="font-size: 14px;"><span class="glyphicon glyphicon-play"></span>About Us</a></th>
+          <th><a routerLink="/contact-us" style="font-size: 14px;"><span class="glyphicon glyphicon-play"></span>Contact Us</a></th>
           <th><a routerLink="/sign-up" style="font-size: 14px;"><span class="glyphicon glyphicon-play"></span>Sign Up</a></th>
         </tr>
       </table>
