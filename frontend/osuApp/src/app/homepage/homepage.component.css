@@ -71,14 +71,44 @@ div.area p{
 
 div.name {
   position: absolute;
-  top: 50%;
+  top: 65%;
   left: 50%;
   margin-top: -75px;
-  margin-left: -200px;
+  margin-left: -450px;
   width: 400px;
-  height: 150px;
+  height: 250px;
   background-color: #000000;
   opacity:0.6;
+}
+
+div.log-in-panel {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  margin-top: -75px;
+  margin-left: -50px;
+  width: 450px;
+  height: 249px;
+  background-color: #000000;
+  opacity:1;
+  font-family: 'Athiti';
+  color: #ffffff;
+  text-align: center;
+}
+
+div.log-in {
+  position: absolute;
+  top: 35%;
+  left: 20%;
+  color: #3e80d1;
+  font-size: 20px;
+  font-family: 'Athiti';
+}
+
+.login-btn {
+  margin-top: 10px;
+  color: #ffffff;
+  font-size: 18px;
 }
 
 div.name h1 {
@@ -87,6 +117,20 @@ div.name h1 {
   font-family: 'Kalam', cursive;
   font-size: 45px;
   font-weight: bold;
+  margin-top: 2cm;
+}
+
+div.name h3 {
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Kalam', cursive;
+  font-size: 30px;
+}
+
+.logo {
+  position: absolute;
+  margin-left: 550px;
+  height: 50%;
 }
 
 div.register-space {
