@@ -11,9 +11,9 @@ export class SessionService {
   constructor(private http: Http) { 
  	  }
 
-  getSession():any[]{
+  getSession(){
   	var self = this;
-  	return SessionService.currentUser;
+  	return localStorage.getItem("session");
   }
 
   setSession(){
@@ -30,7 +30,7 @@ export class SessionService {
 
   	return this.http.get('http://localhost:8084/api/getUser/'+email,{headers: this.headers}).map((response)=>response.json()).toPromise().then(
         function(data){
-            SessionService.currentUser=data;
+            localStorage.setItem("session",data);
         }
       );
   
@@ -40,7 +40,8 @@ export class SessionService {
   deleteSession(){
       if(SessionService.currentUser){
        SessionService.currentUser = [];
-     }
+       localStorage.setItem("session","");
+     }  
   }
 
   setHeaders(){

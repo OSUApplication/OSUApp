@@ -23,10 +23,7 @@ export class AppComponent  {
   }
   
   ngOnInit() {
-    console.log("logged value is",this.loggedin);
-     if(this.session.getSession()){
-      this.loggedin=true;
-    }
+    
      }
 
 

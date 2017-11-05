@@ -14,11 +14,25 @@
     </ul>
   </div>
 </nav>
-<div>
-  Enter your username or email:
-<input type="text" id="username">
+
+
+<div class="col-md-6" style="margin-left: 25%;margin-top: 10%">
+<div class="panel panel-default">
+<div class="panel-heading">Login</div>
+<div class="panel-body">
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input [(ngModel)]="email" name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input [(ngModel)]="password" name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+ 
+  <button (click)="login()" type="submit" class="btn btn-primary">Login</button>
+</form>
 </div>
-<div>
-  <input type="password" id="password">
 </div>
-<button (click)="login()">Login</button>
+</div>

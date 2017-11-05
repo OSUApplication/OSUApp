@@ -31,4 +31,10 @@ export class HomepageComponent implements OnInit {
     this.router.navigate(['/sign-up'])
   }
 
+  logout(){
+    console.log("entered logout");
+    this.session.deleteSession();
+    this.loggedin=false;
+  }
+
 }

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import com.osuapp.constants.ApplicationConstants;
 
-@SpringBootApplication(scanBasePackages = {"com.healthcontroller","com.userController","com.courseController"})
+@SpringBootApplication(scanBasePackages = {"com.healthcontroller","com.userController","com.courseController","com.email"})
 public class OsuAppApplication {
 
 	public static void main(String[] args) {

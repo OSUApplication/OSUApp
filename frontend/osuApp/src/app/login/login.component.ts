@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
   login(){
      var self = this;
      this.session.setSession().then(function(){
-     console.log(self.session.getSession());
      self.router.navigate(['home']);
     });
   }

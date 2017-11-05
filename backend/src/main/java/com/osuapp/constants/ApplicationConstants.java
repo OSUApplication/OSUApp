@@ -28,6 +28,7 @@ public class ApplicationConstants {
 	public static String GENERIC_EMAIL = "rockc@oregonstate.edu";
 	public static String GENERIC_COURSE_OFFERING = "CS540 DBMS";
 	public static String GENERIC_DEPARTMENT_NAME = "CS";
+	
 	public static String POST_CONTENT = "{\"name\":\"Chris Rock\"}";
 	public static String EXPECTED_TEST_RESULT_LIST = "[{\"name\":\"Chris Rock\"}]";
 	public static String EXPECTED_TEST_RESULT_OBJECT = "{\"name\":\"Chris Rock\",\"email\":\"rockc@oregonstate.edu\"}";
