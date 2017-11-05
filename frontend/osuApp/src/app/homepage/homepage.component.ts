@@ -31,4 +31,12 @@ export class HomepageComponent implements OnInit {
     this.router.navigate(['/sign-up'])
   }
 
+  login(){
+     var self = this;
+     this.session.setSession().then(function(){
+     console.log(self.session.getSession());
+     self.router.navigate(['home']);
+    });
+  }
+
 }
