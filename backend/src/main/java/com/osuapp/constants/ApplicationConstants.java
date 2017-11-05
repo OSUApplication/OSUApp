@@ -19,6 +19,7 @@ public class ApplicationConstants {
 	public static String ADD_USER = "/api/addUser";
 	public static String GET_TUTOR = "/api/getTutor/{subjectName}";
 	public static String UPDATE_USER = "/api/updateUser";
+	public static String GET_ALL_COURSES_BY_DEPTARTMENT = "/api/{departmentName}/getAllCourses";
 	
 	//Front-End localhost constant
 	public static String FRONT_END_LOCALHOST = "http://localhost:4200";

@@ -1,7 +1,7 @@
 .first_btn {
     width: 50%;
     height: 60px;
-    margin-top: 3cm;
+    margin-top: 2cm;
     font-size: 20px;
 }
 
@@ -84,25 +84,68 @@ div.name {
 div.name h1 {
   text-align: center;
   color: #ffffff;
-  font-family: 'Athiti';
+  font-family: 'Kalam', cursive;
   font-size: 45px;
+  font-weight: bold;
 }
 
 div.register-space {
   position: absolute;
-  top: 150%;
+  top: 135%;
   left: 50%;
   margin-top: -75px;
-  margin-left: -300px;
-  width: 600px;
+  margin-left: -250px;
+  width: 500px;
   height: 500px;
-  background-color: #000000;
+  background-color: #ffffff;
   opacity:0.6;
 }
 
 div.register-space h1 {
   text-align: center;
-  color: #ffffff;
-  font-family: 'Athiti';
+  color: #000000;
+  font-family: 'Kalam', cursive;
   font-size: 40px;
+}
+
+div.footer {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 200%;
+  height: 80px;
+  background-color: #000000;
+  opacity: 0.8;
+}
+
+div.info {
+  margin-top: 10px;
+  height: 65px;
+  float: right;
+}
+
+img {
+  height: 60%;
+}
+
+div.info p {
+  font-family: 'Athiti';
+  font-size: 16px;
+}
+
+div.navigate {
+  height: 65px;
+  margin-left: 10px;
+  margin-top: 10px;
+  float: left;
+  font-family: 'Kalam', cursive;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+table, th, td {
+    font-size: 18px;
+    border-collapse: separate;
+    border-spacing: 5px;
 }
