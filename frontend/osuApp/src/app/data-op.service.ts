@@ -5,20 +5,22 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class DataOpService {
-  
+
   headers:Headers;
-  
-  constructor(private http: Http) {
-   }
+  tutors : String[];
+  private myvalue;
+
+  constructor(private http: Http) { }
 
   getAllUserData(){
- 	this.setHeaders();
-    this.http.get('http://localhost:8084/api/getAllUsers',{ headers : this.headers}).map((response)=>response.json()).subscribe(
-        function(data){
-            this.result=data;
-            console.log(this.result);
-        }
-      )
+     	this.setHeaders();
+        return this.http.get('http://localhost:8084/api/getAllUsers',{ headers : this.headers}).map((response)=>response.json()).subscribe(
+            function(data){
+                this.myvalue = data
+            }
+          )
+
+
   }
 
   setTutorCourseData(body){
@@ -27,7 +29,7 @@ export class DataOpService {
 
     this.headers.append('Content-Type','application/json');
     this.headers.append('Access','application/json');
-  
+
     let postBody = JSON.stringify({"name" : body.name, "email" : body.email, "department" : "cs","tutorAs":"true","courseOffering":body.courseOffering});
         return this.http.post('http://localhost:8084/api/addUser',postBody, {
         headers:this.headers

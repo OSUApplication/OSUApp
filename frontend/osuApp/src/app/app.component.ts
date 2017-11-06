@@ -13,10 +13,9 @@ import {DataOpService} from './data-op.service';
 export class AppComponent  {
   title = 'app';
   constructor(private http: Http){
-  		
+
   }
-  
+
   ngOnInit() {
-   
-  }
+    }
 }
