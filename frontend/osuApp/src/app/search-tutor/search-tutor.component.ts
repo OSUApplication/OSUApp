@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataOpService } from "../data-op.service"
+import { SessionService } from '../session.service';
+import { FilterPipe }from '../filter.pipe';
 
 @Component({
   selector: 'app-search-tutor',
@@ -9,23 +10,17 @@ import { DataOpService } from "../data-op.service"
 })
 export class SearchTutorComponent implements OnInit {
   subjects:string[]
-  //private tutors
+  tutors:string[]
 
-  constructor(private router: Router, private service:DataOpService){
-    //this.tutors=[]
-  }
 
+  constructor(private router: Router, private session:SessionService){}
+  loggedin:boolean;
   ngOnInit() {
-
-    this.subjects =["ECE","CS","Civil","Mechanical"]
-    //this.tutors=[]
-     var tutors = this.service.getAllUserData();
-    //this.tutors=["shashank","billy"]
-    //  for (let i in tutors){
-    //    let j=tutors[i]
-    //    console.log(j)
-    //  }
-    console.log(tutors);
+       if(this.session.getSession()){
+      this.loggedin=true;
+    }
+    this.subjects =["ECE","CS","Civil","Mechanical"];
+    this.tutors=["Shashank","billy","prathveer"];
   }
 
 

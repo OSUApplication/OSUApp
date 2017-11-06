@@ -3,7 +3,7 @@
 Build System  : Gradle  
 Web FrameWork : Spring Boot  
 
-Json Format for database updated:
+Json Format for Tutor Object:
 ```json
 db.tutor.insert (
    {
@@ -14,6 +14,16 @@ db.tutor.insert (
       "tutorAs" : "true",
       "course_seeking" : [ "CS540 DBMS" ],
       "course_offering" : ["CS519 Algorithm", "CS 515 Algoritm"]
+   }
+)
+```
+
+Json Format for the Course Object:
+```json
+db.course.insert(
+   {
+      "name" : "CS",
+      "courseList" : ["CS515 Algorithms","CS517 Theory of Computation","CS519 Master Level Algorithms"]
    }
 )
 ```

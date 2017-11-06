@@ -8,6 +8,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {DataOpService} from './data-op.service';
+import { SessionService } from './session.service';
+import { FilterPipe} from './filter.pipe';
+
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SearchTutorComponent } from './search-tutor/search-tutor.component';
@@ -18,13 +21,15 @@ import { SignUpComponent } from './sign-up/sign-up.component'
 
 const appRoutes : Routes = [
   {
-    path: '', component: HomepageComponent
+    path: 'home', component: HomepageComponent
+  },
+  {
+    path: '', redirectTo:'/home',pathMatch:'full'
   },
   {
     path: 'tutor-registration', component: TutorRegistrationComponent
   },
   {
-
     path:'search-tutor', component:SearchTutorComponent
   },
   {
@@ -35,6 +40,8 @@ const appRoutes : Routes = [
   },
   {
     path: 'sign-up', component:SignUpComponent
+  },
+  {  path: 'login',  component:LoginComponent
   }
 ]
 
@@ -47,7 +54,8 @@ const appRoutes : Routes = [
     LoginComponent,
     AboutUsComponent,
     ContactUsComponent,
-    SignUpComponent
+    SignUpComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -58,7 +66,9 @@ const appRoutes : Routes = [
     ToastModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [DataOpService],
+  providers: [DataOpService,SessionService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+ }

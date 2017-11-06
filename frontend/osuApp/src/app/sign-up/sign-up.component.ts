@@ -55,7 +55,7 @@ export class SignUpComponent implements OnInit {
             headers.append('Access-Control-Allow-Origin','http://localhost:4200');
             headers.append('Content-Type','application/json');
             headers.append('Access','application/json');
-  
+    
             this.dataservice.setRegistrationData(this).subscribe(function(resp){
               if(resp.status == 201){
                   self.showSuccess();

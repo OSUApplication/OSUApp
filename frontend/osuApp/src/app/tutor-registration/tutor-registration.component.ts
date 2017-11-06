@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import { ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DataOpService} from '../data-op.service';
+import { SessionService } from '../session.service';
 
 
 
@@ -33,13 +34,18 @@ export class TutorRegistrationComponent implements OnInit {
 
    result:any = [];
 
-   constructor(private router: Router,public toastr: ToastsManager, vcr: ViewContainerRef, private dataservice:DataOpService){
+   loggedin:boolean;
+   constructor(private router: Router,public toastr: ToastsManager, private session: SessionService,vcr: ViewContainerRef, private dataservice:DataOpService){
+
 
     this.toastr.setRootViewContainerRef(vcr);
     this.courseOffering= [];          
    }
    
    ngOnInit(){
+        if(this.session.getSession()){
+      this.loggedin=true;
+    }
    }
 
     log(x){
@@ -47,7 +53,10 @@ export class TutorRegistrationComponent implements OnInit {
     }
 
     showSuccess() {
+        var self = this
         this.toastr.success('Tutor Added !', 'Success!');
+        setTimeout(function(){self.back();},3000);
+
       }
 
     showFailure(){
@@ -62,7 +71,7 @@ export class TutorRegistrationComponent implements OnInit {
               this.courseOffering.push(course.cno + " " + course.cname);
         });
         this.dataservice.setTutorCourseData(this).subscribe(function(resp){
-           if(resp.status == 201){
+           if(resp.status == 202){
                   self.showSuccess();
               }
         })
@@ -87,4 +96,6 @@ export class TutorRegistrationComponent implements OnInit {
   back(){
     this.router.navigate(['/']);
   }
+
+  
 }
