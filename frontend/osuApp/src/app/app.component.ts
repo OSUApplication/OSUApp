@@ -12,14 +12,15 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+
 })
 export class AppComponent  {
   title = 'app';
   loggedin:boolean;
 
-  constructor(private http: Http,private router: Router, private session:SessionService){
-
+  constructor(private http: Http,private router: Router, private session:SessionService,private source:DataOpService){
+      
   }
 
   ngOnInit() {

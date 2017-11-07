@@ -19,7 +19,31 @@
       <h2>Available Tutors</h2>
 
     </div>
-    <li *ngFor="let i of tutors | filter : searchText" name="tutors_list"> {{i}}</li>
+
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Email</th>
+          <th>CourseOffering</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let i of tutors | filter : searchText" name="tutors_list">
+          <td>{{i.name}}</td>
+          <td>{{i.department}}</td>
+          <td>{{i.email}}</td>
+          <td>{{i.courseOffering}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
     <button type="back" class="btn btn-danger" (click)="back()">Back</button>
     <button class="btn btn-primary" style="float:right;" (click)="submit()">submit</button>
 

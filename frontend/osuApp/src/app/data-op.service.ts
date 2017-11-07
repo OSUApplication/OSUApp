@@ -7,19 +7,14 @@ import 'rxjs/add/operator/toPromise';
 export class DataOpService {
 
   headers:Headers;
-  tutors : String[];
-  private myvalue;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+
+    }
 
   getAllUserData(){
      	this.setHeaders();
-        return this.http.get('http://localhost:8084/api/getAllUsers',{ headers : this.headers}).map((response)=>response.json()).subscribe(
-            function(data){
-                this.myvalue = data
-            }
-          )
-
+        return this.http.get('http://localhost:8084/api/getAllUsers',{ headers : this.headers}).map((response)=>response.json())
 
   }
 
@@ -43,7 +38,7 @@ export class DataOpService {
     this.headers.append('Access','application/json');
 
     let postBody = JSON.stringify({"name" : body.name, "email" : body.email, "password":body.password});
-    
+
     return this.http.post('http://localhost:8084/api/addUser',postBody, {
             headers:this.headers
             })
