@@ -1,4 +1,4 @@
-package com.userController;
+package com.osuapp.controllers.userController;
 import org.mongodb.morphia.Datastore;
 
 
@@ -9,11 +9,12 @@ import java.util.List;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
 import org.mongodb.morphia.query.UpdateResults;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.mongodb.BasicDBObject;
 import com.osuapp.constants.ApplicationConstants;
 import com.osuapp.constants.MongoConnection;
 import com.osuapp.model.User;
@@ -21,6 +22,8 @@ import com.osuapp.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Override
 	public List<User> getAllUsers() {

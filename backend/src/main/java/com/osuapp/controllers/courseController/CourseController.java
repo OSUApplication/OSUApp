@@ -1,4 +1,4 @@
-package com.courseController;
+package com.osuapp.controllers.courseController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

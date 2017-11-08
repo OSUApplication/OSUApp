@@ -1,4 +1,4 @@
-package com.userController;
+package com.osuapp.controllers.userController;
 
 import static org.junit.Assert.assertEquals;
 
@@ -26,7 +26,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.example.OsuAppApplication;
+import com.osuapp.OsuAppApplication;
 import com.osuapp.constants.ApplicationConstants;
 import com.osuapp.model.User;
 import com.osuapp.service.UserService;
