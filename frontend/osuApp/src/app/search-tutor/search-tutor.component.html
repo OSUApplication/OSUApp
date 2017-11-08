@@ -4,7 +4,7 @@
 
     <div class="form-group">
       <div class="dropdown">
-          <select placeholder="Department" class="btn dropdown-toggle" id="department_name_id" type="button" data-toggle="dropdown" (change)="dropdownValue($event.target.value)">
+          <select placeholder="Department" class="btn dropdown-toggle" id="department_name_id" type="button" data-toggle="dropdown"  (change)="dropdownValue($event.target.value)">
             <option value="Department_Placeholder"> Select a Department</option>
             <option id= "subject" [ngValue]=i *ngFor="let i of subjects"> {{i}}</option>
           </select>
@@ -12,7 +12,7 @@
     </div>
 
     <div class= "form-group">
-      <input type="textbox" class="form-control" placeholder="Search by Name or Subject" id="search_tutor_id" [(ngModel)]="searchText" name="search_textbox" required>
+      <input type="textbox" class="form-control" placeholder="Search by Name or Department or Email" id="search_tutor_id" [(ngModel)]="searchText" name="search_textbox" required>
     </div>
 
     <div>

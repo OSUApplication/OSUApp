@@ -13,6 +13,7 @@ export class SearchTutorComponent implements OnInit {
   tutors = [];
   data : any;
   department: any;
+  add_back_tutors=[]
 
   constructor(private router: Router, private session:SessionService, private datasource:DataOpService){
       this.datasource.getAllUserData().subscribe(posts => {this.data = posts; console.log(this.data);(this.data).forEach(variable => {
@@ -30,11 +31,9 @@ export class SearchTutorComponent implements OnInit {
   ngOnInit() {
        if(this.session.getSession()){
       this.loggedin=true;
-    }
+      }
     this.subjects =["ECE","CS","Civil","Mechanical"];
-    //this.tutors=["Shashank","billy","prathveer"]
-
-
+    return this.tutors;
   }
 
 
@@ -43,9 +42,12 @@ export class SearchTutorComponent implements OnInit {
   }
 
   dropdownValue(val: any) {
-    this.department = val
-
+    this.department = val.toLowerCase();
+    
   }
+
+
+
 
   submit(){
     console.log("Hello");
