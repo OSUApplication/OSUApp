@@ -56,7 +56,7 @@
           </div>
 
           <div class="form-group form-inline">
-            <input type="password" required class="form-control" id="exampleInputPassword1" style="width:300px;" placeholder="Password" [(ngModel)]='password' #pword="ngModel" name="password">
+            <input type="password" class="form-control" id="exampleInputPassword1" style="width:300px;" placeholder="Password" [(ngModel)]='password' #pword="ngModel" name="password" required>
             <span class="validation" *ngIf="!pword.valid&&pword.touched">Required</span>
           </div>
           <div class="log-button-group" align="center">
