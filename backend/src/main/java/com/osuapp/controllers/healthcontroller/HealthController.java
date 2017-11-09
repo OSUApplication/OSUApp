@@ -1,4 +1,4 @@
-package com.healthcontroller;
+package com.osuapp.controllers.healthcontroller;
 
 import org.json.JSONException;
 import org.json.JSONObject;

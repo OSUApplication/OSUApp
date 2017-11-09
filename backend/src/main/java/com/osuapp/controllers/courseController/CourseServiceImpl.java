@@ -1,4 +1,4 @@
-package com.courseController;
+package com.osuapp.controllers.courseController;
 
 import org.mongodb.morphia.query.Query;
 import org.springframework.stereotype.Service;

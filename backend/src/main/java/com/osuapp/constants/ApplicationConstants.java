@@ -22,7 +22,7 @@ public class ApplicationConstants {
 	public static String GET_ALL_COURSES_BY_DEPTARTMENT = "/api/{departmentName}/getAllCourses";
 	
 	//Front-End localhost constant
-	public static String FRONT_END_LOCALHOST = "http://localhost:4200";
+	public static String FRONT_END_LOCALHOST = "http://localhost:8084";
 	
 	//constants for the unit test cases
 	public static String GENERIC_USERNAME = "Chris Rock";

@@ -1,8 +1,7 @@
-package com.userController;
+package com.osuapp.controllers.userController;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -12,7 +11,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.example.OsuAppApplication;
+import com.osuapp.OsuAppApplication;
 import com.osuapp.constants.ApplicationConstants;
 
 @RunWith(SpringRunner.class)

@@ -1,4 +1,4 @@
-package com.courseController;
+package com.osuapp.controllers.courseController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.example.OsuAppApplication;
+import com.osuapp.OsuAppApplication;
 import com.osuapp.constants.ApplicationConstants;
 import com.osuapp.model.Course;
 import com.osuapp.service.CourseService;

@@ -1,4 +1,4 @@
-package com.userController;
+package com.osuapp.controllers.userController;
 
 import java.net.URISyntaxException;
 
@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import com.google.gson.Gson;
 import com.osuapp.model.User;
 import com.osuapp.service.UserService;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/api")
 public class UserController {
 	
@@ -28,7 +26,7 @@ public class UserController {
 		this.userSerivce = userSerivce;
 	}
 
-	@RequestMapping(value="/getAllUsers",method=RequestMethod.GET)
+	@RequestMapping(value="/getAllUsers/",method=RequestMethod.GET)
 	public String getAllUsers() {
 		return gson.toJson(userSerivce.getAllUsers());
 	}
