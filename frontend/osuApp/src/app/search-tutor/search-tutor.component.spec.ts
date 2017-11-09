@@ -5,6 +5,8 @@ import { SearchTutorComponent } from './search-tutor.component';
 import { HttpModule } from '@angular/http';
 import { Router } from '@angular/router';
 import { SessionService } from '../session.service';
+import {DataOpService} from '../data-op.service';
+import {FilterPipe} from '../filter.pipe'
 
 
 describe('SearchTutorComponent', () => {
@@ -13,9 +15,9 @@ describe('SearchTutorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchTutorComponent ],
+      declarations: [ SearchTutorComponent, FilterPipe],
       imports: [RouterTestingModule,FormsModule,HttpModule],
-      providers:[SessionService]
+      providers:[SessionService, DataOpService]
 
     })
     .compileComponents();

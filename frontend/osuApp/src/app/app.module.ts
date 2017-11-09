@@ -64,7 +64,7 @@ const appRoutes : Routes = [
     JsonpModule,
     HttpModule,
     ToastModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [DataOpService,SessionService],
   bootstrap: [AppComponent]
