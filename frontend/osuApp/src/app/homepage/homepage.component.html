@@ -43,19 +43,21 @@
         </div>
       </div>
       <div class="back face center">
-        <h2>Sign Up</h2>
-        <form name="login-form">
-          <div class="form-group">
-            <input type="text" class="form-control" id="name" style="width:300px;" placeholder="Enter Your Name" [(ngModel)]='name' #fname="ngModel" name="name" required>
+        <h2 style="top=-20px">Sign Up</h2>
+        <form class="log-in">
+          <div class="form-group form-inline">
+            <input type="text" class="form-control" id="name" style="width:300px;" placeholder="Enter Your Name" [(ngModel)]='name' #fname="ngModel" name="name">
+            <span class="validation" *ngIf="!fname.valid&&fname.touched">Required</span>
           </div>
 
-          <div class="form-group">
+          <div class="form-group form-inline">
             <input type="email" class="form-control" id="email" style="width:300px;" aria-describedby="emailHelp" placeholder="Email Address" [(ngModel)]='email' #em="ngModel" name="email" required>
+            <span class="validation" *ngIf="!em.valid&&em.touched">Required</span>
           </div>
 
-          <div class="form-group">
-            <input type="password" required class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]='password' #pword="ngModel" name="password">
-            <div class="alert alert-danger" *ngIf="!pword.valid&&pword.touched">Password must be entered</div>
+          <div class="form-group form-inline">
+            <input type="password" required class="form-control" id="exampleInputPassword1" style="width:300px;" placeholder="Password" [(ngModel)]='password' #pword="ngModel" name="password">
+            <span class="validation" *ngIf="!pword.valid&&pword.touched">Required</span>
           </div>
           <div class="log-button-group" align="center">
             <button type="back" class="btn btn-primary" (click)="flip()">I have account</button>
@@ -79,8 +81,7 @@
     <h1>Register Now</h1>
     <div class="button-group" align="center">
       <button class="btn btn-primary first_btn" (click)=register_tutor()>Register As A Tutor</button>
-      <button class="btn btn-primary following_btn" (click)=register_tutor() >Search For A Tutor</button>
-      <button class="btn btn-warning following_btn" (click)=register_tutor() *ngIf="!loggedin">Sign Up</button>
+      <button class="btn btn-primary following_btn" (click)=search_tutor()>Search For A Tutor</button>
     </div>
   </div>
 

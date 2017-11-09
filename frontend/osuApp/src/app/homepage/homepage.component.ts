@@ -41,16 +41,13 @@ export class HomepageComponent implements OnInit {
     }
   }
 
+
   register_tutor(){
     this.router.navigate(['/tutor-registration']);
   }
 
   search_tutor(){
     this.router.navigate(['/search-tutor'])
-  }
-
-  sign_up(){
-    this.router.navigate(['/sign-up'])
   }
 
   // login functions

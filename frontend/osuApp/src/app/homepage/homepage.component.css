@@ -105,6 +105,18 @@ div.log-in {
   font-family: 'Athiti';
 }
 
+.login-form {
+  color: #3e80d1;
+  font-size: 14px;
+  font-family: 'Athiti';
+}
+
+.validation {
+  font-size: 14px;
+  font-family: 'Athiti';
+  color: red;
+  font-weight: bold;
+}
 .log-button-group {
   position: absolute;
   top: 75%;
@@ -276,13 +288,4 @@ div.scroll-down {
   padding: 10px;
   text-align: center;
   background-color: #000000;
-}
-
-/* Error messages */
-.help-block {
-  font-size: 14px;
-}
-
-.help-block.help-block-invalid {
-  color: red;
 }
