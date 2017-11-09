@@ -17,32 +17,24 @@
 
 <div class="container">
   <h1>Registration Form</h1>
-
-  <form>
-
-      <div class="form-group">
-        <label for="exampleInputPassword1" style="float:left;">Enter Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Enter Name" [(ngModel)]='name' #fname="ngModel"  name="name"  required >
-        <div class="alert alert-danger" *ngIf="!fname.valid">Name must be entered</div>
+    <form name="login-form">
+      <div class="form-group form-inline">
+        <input type="text" class="form-control" id="name" style="width:300px;" placeholder="Enter Your Name" [(ngModel)]='name' #fname="ngModel" name="name" required>
+        <span class="validation" *ngIf="!fname.valid&&fname.touched">Required</span>
       </div>
 
-      <div class="form-group">
-        <label for="exampleInputEmail1" style="float: left">Email address</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]='email' #em="ngModel" name="email" required>
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        <div class="alert alert-danger" *ngIf="!em.valid && em.touched">Email must be entered</div>
+      <div class="form-group form-inline">
+        <input type="email" class="form-control" id="email" style="width:300px;" aria-describedby="emailHelp" placeholder="Email Address" [(ngModel)]='email' #em="ngModel" name="email" required>
+        <div class="validation" *ngIf="!em.valid&&em.touched">Required</div>
       </div>
 
-      <div class="form-group">
-        <label for="exampleInputPassword1" style="float:left;">Password</label>
+      <div class="form-group form-inline">
         <input type="password" required class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]='password' #pword="ngModel" name="password">
-      <div class="alert alert-danger" *ngIf="!pword.valid&&pword.touched">Password must be entered</div>
-
+        <div class="alert alert-danger" *ngIf="!pword.valid&&pword.touched">Password must be entered</div>
       </div>
-
-      <button type="back" class="btn btn-danger" (click)="back()">Back</button>
-
-      <button type="submit" class="btn btn-primary" (click) ="display()" style="float:right;">Submit</button>
-
+      <div class="log-button-group" align="center">
+        <button type="back" class="btn btn-primary" (click)="flip()">I have account</button>
+        <button type="submit" class="btn btn-primary" (click) ="display()">Submit</button>
+      </div>
     </form>
-    </div>
+  </div>
