@@ -2,79 +2,18 @@
   <!-- Navbar content -->
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" routerLink="/home" >TutorNation</a>
+      <a class="navbar-brand" routerLink="/home">TutorNation</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a routerLink="/search-tutor">Search Tutor</a></li>
+
       <li><a routerLink="/about-us">About Us</a></li>
       <li><a routerLink="/contact-us">Contact Us</a></li>
       <li *ngIf="!loggedin"><a routerLink="/sign-up">Sign Up</a></li>
-      <li *ngIf="!loggedin"><a routerLink="/login">Log In</a></li>
-      <li *ngIf="loggedin"><a>Logged In</a></li>
-      <li *ngIf="loggedin"><a>Log Out</a></li>
-
+      <li><a routerLink="/login" routerLinkActive="active">Log In</a></li>
     </ul>
   </div>
 </nav>
-
-
-<div class="parallax-1">
-  <img class="logo" src="../../assets/logo.png">
-  <div class="name page-header">
-    <h1>TutorNation</h1>
-    <h3>-As A Student As A Tutor-</h3>
-  </div>
-
-  <div class="log-in-panel" id="f1_container">
-    <div id="f1_card" class="shadow">
-      <div class="front face">
-        <h2>Log In</h2>
-        <div class="log-in">
-          <div>
-            <input type="text" id="username" placeholder="Username">
-          </div>
-          <div>
-            <input type="password" id="password" placeholder="Password">
-          </div>
-        </div>
-        <div class="log-button-group" align="center">
-          <button class="btn btn-primary" (click)="login()">Login</button>
-          <button class="btn btn-primary" (click)="flip()">Doesn't have an account?</button>
-        </div>
-      </div>
-      <div class="back face center">
-        <h2 style="top=-20px">Sign Up</h2>
-        <form class="log-in">
-          <div class="form-group form-inline">
-            <input type="text" class="form-control" id="name" style="width:300px;" placeholder="Enter Your Name" [(ngModel)]='name' #fname="ngModel" name="name">
-            <span class="validation" *ngIf="!fname.valid&&fname.touched">Required</span>
-          </div>
-
-          <div class="form-group form-inline">
-            <input type="email" class="form-control" id="email" style="width:300px;" aria-describedby="emailHelp" placeholder="Email Address" [(ngModel)]='email' #em="ngModel" name="email" required>
-            <span class="validation" *ngIf="!em.valid&&em.touched">Required</span>
-          </div>
-
-          <div class="form-group form-inline">
-            <input type="password" required class="form-control" id="exampleInputPassword1" style="width:300px;" placeholder="Password" [(ngModel)]='password' #pword="ngModel" name="password">
-            <span class="validation" *ngIf="!pword.valid&&pword.touched">Required</span>
-          </div>
-          <div class="log-button-group" align="center">
-            <button type="back" class="btn btn-primary" (click)="flip()">I have account</button>
-            <button type="submit" class="btn btn-primary" (click) ="display()">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div class="scroll-down"></div>
-</div>
-
-<div class="area">
-  <h1>Why TutorNation</h1>
-  <p>qwertjfboeuba, pcche neonc eijcnlaoc. ondeoinsoeun ifns cujdooline.</p>
-</div>
 
 <div class="parallax-2">
   <div class="register-space page-header">
