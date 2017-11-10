@@ -1,4 +1,4 @@
-package com.osuapp.controllers.userController;
+package com.osuapp.service;
 import org.mongodb.morphia.Datastore;
 
 

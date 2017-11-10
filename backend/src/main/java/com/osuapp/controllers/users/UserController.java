@@ -1,4 +1,4 @@
-package com.osuapp.controllers.userController;
+package com.osuapp.controllers.users;
 
 import java.net.URISyntaxException;
 
@@ -26,7 +26,7 @@ public class UserController {
 		this.userSerivce = userSerivce;
 	}
 
-	@RequestMapping(value="/getAllUsers/",method=RequestMethod.GET)
+	@RequestMapping(value="/getAllUsers",method=RequestMethod.GET)
 	public String getAllUsers() {
 		return gson.toJson(userSerivce.getAllUsers());
 	}

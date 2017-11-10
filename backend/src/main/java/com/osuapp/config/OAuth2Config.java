@@ -25,8 +25,6 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Qualifier("authenticationService")
     private UserDetailsService userDetailsService;
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -41,7 +39,6 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer configurer) throws Exception {
-        log.warn("************* Configure **************");
         configurer.authenticationManager(authenticationManager);
         configurer.userDetailsService(userDetailsService);
     }

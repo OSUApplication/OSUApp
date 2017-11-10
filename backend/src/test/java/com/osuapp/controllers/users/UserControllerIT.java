@@ -1,4 +1,4 @@
-package com.osuapp.controllers.userController;
+package com.osuapp.controllers.users;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

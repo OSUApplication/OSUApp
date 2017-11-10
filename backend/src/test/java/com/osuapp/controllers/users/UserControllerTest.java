@@ -1,4 +1,4 @@
-package com.osuapp.controllers.userController;
+package com.osuapp.controllers.users;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,6 +11,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.skyscreamer.jsonassert.JSONAssert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -44,7 +46,10 @@ public class UserControllerTest{
 	//mocking the User Service
 	@MockBean
 	private UserService userService;
-	 
+
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+
 	private static List<User> tutorList = new ArrayList<User>();
 	private static List<String> courseOfferring = new ArrayList<>();
 	private static User testTutor = new User();
@@ -105,8 +110,8 @@ public class UserControllerTest{
 				.content(ApplicationConstants.POST_CONTENT)
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult testResult = this.mockMvc.perform(requestBuilder).andReturn();
-		MockHttpServletResponse testResposne = testResult.getResponse();
-		assertEquals(HttpStatus.NOT_IMPLEMENTED.value(),testResposne.getStatus());
+		MockHttpServletResponse testResponse = testResult.getResponse();
+		assertEquals(HttpStatus.NOT_IMPLEMENTED.value(),testResponse.getStatus());
 	}
 	
 	@Test

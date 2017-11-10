@@ -1,4 +1,4 @@
-package com.example;
+package com;
 
 import com.osuapp.OsuAppApplication;
 import org.junit.Test;

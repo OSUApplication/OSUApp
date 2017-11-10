@@ -51,6 +51,7 @@ public class CourseControllerTest {
 		Mockito.when(courseService.getAllCourses(Mockito.anyString())).thenReturn(testCourse);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(ApplicationConstants.GENERIC_GET_ALL_COURSES_URL).accept(MediaType.APPLICATION_JSON);
 		MvcResult testResult = this.mockMvc.perform(requestBuilder).andReturn();
+
 		JSONAssert.assertEquals(ApplicationConstants.EXPECTED_TEST_COURSE_RESULT, testResult.getResponse().getContentAsString(), false);
 	}
 }
