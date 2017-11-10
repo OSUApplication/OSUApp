@@ -1,4 +1,4 @@
-package com.courseController;
+package com.osuapp.controllers.courseController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.example.OsuAppApplication;
+import com.osuapp.OsuAppApplication;
 import com.osuapp.constants.ApplicationConstants;
 import com.osuapp.model.Course;
 import com.osuapp.service.CourseService;
@@ -51,6 +51,7 @@ public class CourseControllerTest {
 		Mockito.when(courseService.getAllCourses(Mockito.anyString())).thenReturn(testCourse);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(ApplicationConstants.GENERIC_GET_ALL_COURSES_URL).accept(MediaType.APPLICATION_JSON);
 		MvcResult testResult = this.mockMvc.perform(requestBuilder).andReturn();
+
 		JSONAssert.assertEquals(ApplicationConstants.EXPECTED_TEST_COURSE_RESULT, testResult.getResponse().getContentAsString(), false);
 	}
 }
