@@ -8,6 +8,11 @@ import { ToastModule, ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Component, ViewContainerRef, OnInit } from '@angular/core';
 import { DataOpService} from '../data-op.service';
 import { SessionService } from '../session.service';
+import { forwardRef, Inject, Injector, EventEmitter, Input, Output} from '@angular/core';
+
+
+import 'rxjs/add/operator/catch';
+
 
 @Component({
   selector: 'app-login',
@@ -30,18 +35,33 @@ export class LoginComponent implements OnInit {
   tokenUrl:string = "http://localhost:8084/osu/oauth/token?grant_type=password";
   username:string;
   password:string;
+  @Input() logpage: boolean;
+  @Output() onLogPage = new EventEmitter<boolean>();
 
   constructor(
+    public injector:Injector,
     private router: Router,
     private session: SessionService,
     private http : Http,
     public toastr: ToastsManager,
     vcr: ViewContainerRef,
-    private dataservice:DataOpService) { }
+    private dataservice:DataOpService,
+    ) { 
+
+        this.toastr.setRootViewContainerRef(vcr);
+
+
+    }
 
   ngOnInit() {
+
+     console.log("logpage is ",this.logpage);
+     this.onLogPage.emit(true);
     let headers = new Headers();
-    if(this.session.getSession()){
+
+    if(localStorage.getItem("user")){
+      console.log(localStorage.getItem("user"));
+      this.back();
       this.loggedin=true;
     }
   }
@@ -61,11 +81,26 @@ export class LoginComponent implements OnInit {
      var self = this;
      this.createLoginBody();
 
-     this.getToken().subscribe(function(resp){
-       this.result = resp;
-       this.result = JSON.parse(this.result._body);
-       self.session.setSession(this.result);
-     })
+     this.getToken().subscribe(data => {
+       var result = JSON.parse(JSON.stringify(data["_body"]));
+ 
+       self.session.setSession(result,self.loginbody.name).then(function(data){
+         if(data){
+             self.showSuccess();
+          }
+         else{
+             self.showFailure();
+         }
+
+       });
+
+
+     },
+     error => {
+         self.showFailure();
+     });
+
+   
   }
 
   signup(){
@@ -75,6 +110,9 @@ export class LoginComponent implements OnInit {
     this.dataservice.setRegistrationData(this.body).subscribe(function(resp){
       if(resp.status == 201){
           self.showSuccess();
+      }
+      else{
+          console.log("Invalid user");  
       }
      });
  
@@ -88,7 +126,16 @@ export class LoginComponent implements OnInit {
   }
 
   showSuccess() {
-   this.router.navigate(['']);
+   var self = this
+   this.toastr.success('Tutor Added !', 'Success!');
+   setTimeout(function(){self.back();},3000);
+   
+  }
+
+  showFailure(){
+   this.toastr.error("Invalid Credentials, Please Log in Again");
+   console.log("Invalid User Credentials");
+   this.tokenUrl= "http://localhost:8084/osu/oauth/token?grant_type=password";
   }
 
   createSignBody(){
@@ -104,11 +151,17 @@ export class LoginComponent implements OnInit {
   }
 
    getToken(){  
+      var self = this;
       let username: string = this.loginbody.name;
       let password: string = this.loginbody.password;
       this.tokenUrl = this.tokenUrl+"&username="+username+"&password="+password;
+      console.log("token url is",this.tokenUrl);
       let headers: Headers = new Headers({"Authorization":"Basic YWNtZTpzZWNyZXQ="});
       return this.http.post(this.tokenUrl, {}, {headers: headers});
-/*       return this.http.post('http://localhost:8084/osu/oauth/token?grant_type=password&username=test@oregonstate.edu&password=password',{ headers:{"Authorization":"Basic YWNtZTpzZWNyZXQ="}});
-*/  }
+  
+}
+
+  back(){
+    this.router.navigate(['/home']);
+  }
 }

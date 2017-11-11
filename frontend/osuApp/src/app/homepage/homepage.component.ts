@@ -56,6 +56,12 @@ export class HomepageComponent implements OnInit {
    
   }
 
+  logout(){
+    localStorage.removeItem("user");
+    console.log("localstorage is",localStorage.getItem("user"));
+    this.router.navigate(['']);
+  }
+
   // animations
 
   flip(){

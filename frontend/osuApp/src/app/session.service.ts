@@ -8,22 +8,24 @@ export class SessionService {
   class:string = "SessionService";
   headers:Headers;
 
+
   constructor(private http: HttpClient) { 
  	  }
 
-  getSession():any[]{
-  	var self = this;
-  	return SessionService.currentUser;
+  getSession():any{
+    if(localStorage.getItem("user"))
+  	return localStorage.getItem("user");
+    else
+    return null;
   }
 
 
  
-  setSession(token){
+  setSession(token,uemail){
   	
     console.log("entered set session",token);
   	var self = this;
-  	var email = 'test@oregonstate.edu';
-  	this.setHeaders();
+  	var email = uemail;
 
     var headers = new HttpHeaders();
     headers.set("Authorization","Bearer "+token);
@@ -34,11 +36,13 @@ export class SessionService {
     var config = {headers:headers};
   	return this.http.get('http://localhost:8084/osu/api/getUser/'+email,config).toPromise().then(
         function(data){
-          console.log("data is",data);
-            this.data = data;
-            this.data = JSON.parse(this.data);
-            localStorage.setItem(this.data.name,this.token);
-            console.log(localStorage.getItem(this.data.name));
+            var session = {};
+            var result = JSON.parse(JSON.stringify(data));
+            session["user"] = result["name"];
+            session["email"] = email;
+            session["access_token"]= token["access_token"];
+            localStorage.setItem("user",JSON.stringify(session));
+            return 1;
         }
       );
 
@@ -54,6 +58,5 @@ export class SessionService {
   setHeaders(){
     this.headers = new Headers();
   }
-
   
 }
