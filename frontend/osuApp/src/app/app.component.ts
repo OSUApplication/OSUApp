@@ -37,6 +37,7 @@ export class AppComponent  {
      }
 
   logout(){
+    console.log("entered logout");  
     localStorage.removeItem("user");
     console.log("localstorage is",localStorage.getItem("user"));
     this.router.navigate(['']);
