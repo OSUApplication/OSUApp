@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   signbody:any = {"name":"","email":"","password":""};
   loginbody:any={"email":"","password":""};
   tokenUrl:string = "http://localhost:8084/osu/oauth/token?grant_type=password";
-  username:string;
+  email:string;
   password:string;
   @Input() logpage: boolean;
   @Output() onLogPage = new EventEmitter<boolean>();
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     public toastr: ToastsManager,
     vcr: ViewContainerRef,
     private dataservice:DataOpService,
-    ) { 
+    ) {
 
         this.toastr.setRootViewContainerRef(vcr);
 
@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
 
      this.getToken().subscribe(data => {
        var result = JSON.parse(JSON.stringify(data["_body"]));
- 
+
        self.session.setSession(result,self.loginbody.name).then(function(data){
          if(data){
              self.showSuccess();
@@ -100,23 +100,19 @@ export class LoginComponent implements OnInit {
          self.showFailure();
      });
 
-   
   }
 
-  signup(){
-    var self = this;
-    this.createSignBody();
-    console.log("body is ",this.body);
-    this.dataservice.setRegistrationData(this.body).subscribe(function(resp){
-      if(resp.status == 201){
-          self.showSuccess();
-      }
-      else{
-          console.log("Invalid user");  
-      }
-     });
- 
+  signup() {
+      var self = this;
+
+      this.dataservice.signup(this.email, this.password).subscribe(function(resp){
+          if(resp.status == 201){
+              self.toastr.success('Sign Up Completed', 'Success!');
+              self.flip();
+          }
+       });
   }
+
 
   // animations
 
@@ -149,7 +145,7 @@ export class LoginComponent implements OnInit {
     this.loginbody.password=this.lpass;
   }
 
-   getToken(){  
+   getToken(){
       var self = this;
       let username: string = this.loginbody.name;
       let password: string = this.loginbody.password;
@@ -157,7 +153,7 @@ export class LoginComponent implements OnInit {
       console.log("token url is",this.tokenUrl);
       let headers: Headers = new Headers({"Authorization":"Basic YWNtZTpzZWNyZXQ="});
       return this.http.post(this.tokenUrl, {}, {headers: headers});
-  
+
 }
 
   back(){
