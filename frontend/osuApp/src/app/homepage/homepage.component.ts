@@ -67,21 +67,7 @@ export class HomepageComponent implements OnInit {
     content.classList.toggle('flip');
   }
 
-  // Sign-up functions
 
-  display(){
-    var self = this;
-    let headers = new Headers();
-    headers.append('Access-Control-Allow-Origin','http://localhost:4200');
-    headers.append('Content-Type','application/json');
-    headers.append('Access','application/json');
-
-    this.dataservice.setRegistrationData(this).subscribe(function(resp){
-      if(resp.status == 201){
-          self.showSuccess();
-      }
-     });
-  }
 
   showSuccess() {
    this.router.navigate(['']);

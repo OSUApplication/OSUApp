@@ -8,7 +8,7 @@ export class SessionService {
   class:string = "SessionService";
   headers:Headers;
 
-  constructor(private http: Http) { 
+  constructor(private http: Http) {
  	  }
 
   getSession():any[]{
@@ -17,7 +17,7 @@ export class SessionService {
   }
 
   setSession(){
-  	
+
   	var self = this;
   	var email = 'patty@gmail.com';
   	this.setHeaders();
@@ -28,12 +28,12 @@ export class SessionService {
    		SessionService.currentUser = [];
    	}
 
-  	return this.http.get('http://localhost:8084/api/getUser/'+email,{headers: this.headers}).map((response)=>response.json()).toPromise().then(
+  	return this.http.get('http://localhost:8084/osu/api/getUser/'+email,{headers: this.headers}).map((response)=>response.json()).toPromise().then(
         function(data){
             SessionService.currentUser=data;
         }
       );
-  
+
 
   }
 
