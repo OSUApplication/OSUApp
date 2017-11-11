@@ -97,5 +97,10 @@ export class TutorRegistrationComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  logout(){
+    localStorage.removeItem("user");
+    console.log("localstorage is",localStorage.getItem("user"));
+    this.router.navigate(['']);
+  }
   
 }

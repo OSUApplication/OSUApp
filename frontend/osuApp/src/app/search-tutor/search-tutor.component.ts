@@ -47,4 +47,10 @@ export class SearchTutorComponent implements OnInit {
   submit(){
 
   }
+
+  logout(){
+    localStorage.removeItem("user");
+    console.log("localstorage is",localStorage.getItem("user"));
+    this.router.navigate(['']);
+  }
 }
