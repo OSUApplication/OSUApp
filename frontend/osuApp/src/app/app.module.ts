@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {DataOpService} from './data-op.service';
 import { SessionService } from './session.service';
+import { FilterPipe} from './filter.pipe';
 
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -54,7 +55,8 @@ const appRoutes : Routes = [
     LoginComponent,
     AboutUsComponent,
     ContactUsComponent,
-    SignUpComponent
+    SignUpComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,7 @@ const appRoutes : Routes = [
     HttpModule,
     HttpClientModule,
     ToastModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [DataOpService,SessionService],
   bootstrap: [AppComponent]

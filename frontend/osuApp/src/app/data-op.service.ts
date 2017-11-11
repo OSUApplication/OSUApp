@@ -8,7 +8,7 @@ export class DataOpService {
 
   headers:Headers;
 
-  
+
   constructor(private http: Http) {
   }
 
@@ -17,12 +17,9 @@ export class DataOpService {
     headers.append('Content-Type','application/json')
     headers.append('Authentication','Bearer f6b81340-e7b5-4075-8f16-ba244778cb62')
 
-	  this.http.get('http://localhost:8084/osu/api/getAllUsers',{ headers : headers}).map((response)=>response.json()).subscribe(
-      function(data){
-          this.result=data;
-          console.log(this.result);
-      }
-    )
+	  return this.http.get('http://localhost:8084/osu/api/getAllUsers',{ headers : headers}).map((response)=>response.json())
+
+    //return this.http.get('http://localhost:8084/api/getAllUsers',{ headers : this.headers}).map((response)=>response.json())
   }
 
   setTutorCourseData(body){
@@ -43,20 +40,20 @@ export class DataOpService {
     headers.append('Content-Type','application/json')
      return this.http.post('http://localhost:8084/osu/auth/signup',postBody,  {headers: headers})
   }
-  
+
   setRegistrationData(body){
     this.headers.append('Content-Type','application/json');
     this.headers.append('Access','application/json');
 
 
     let postBody = JSON.stringify({"name" : body.name, "email" : body.email, "password":body.password});
-    
+
     return this.http.post('http://localhost:8084/osu/api/addUser',postBody, {
             headers:this.headers
             })
   }
 
-   
+
 
 
 }

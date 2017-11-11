@@ -1,33 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '../session.service';
+import {DataOpService} from '../data-op.service';
+//import { FilterPipe} from '../filter.pipe';
 
 @Component({
   selector: 'app-search-tutor',
   templateUrl: './search-tutor.component.html',
-  styleUrls: ['./search-tutor.component.css']
+  styleUrls: ['./search-tutor.component.css'],
 })
-export class SearchTutorComponent implements OnInit {
-  subjects:string[]
 
-  constructor(private router: Router, private session:SessionService){}
+export class SearchTutorComponent implements OnInit {
+  tutors = [];
+  data : any;
+  department: any;
+
+  constructor(private router: Router, private session:SessionService, private datasource:DataOpService){
+    this.datasource.getAllUserData().subscribe(posts => {this.data = posts; (this.data).forEach(variable => {
+      if(variable.tutorAs == true ){
+        this.tutors.push(variable);
+      }
+      });
+
+      });
+    }
+
   loggedin:boolean;
+
+
   ngOnInit() {
        if(this.session.getSession()){
       this.loggedin=true;
-    }
-    this.subjects =["ECE","CS","Civil","Mechanical"];
+      }
+    return this.tutors;
   }
+
 
   back(){
     this.router.navigate(['/']);
   }
 
   dropdownValue(val: any) {
-    console.log(val);
+    this.department = val.toLowerCase();
   }
 
   submit(){
-    console.log("Hello");
+
   }
 }

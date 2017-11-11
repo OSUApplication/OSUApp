@@ -23,17 +23,42 @@
 
     <div class="form-group">
       <div class="dropdown">
-          <select placeholder="Department" class="btn dropdown-toggle" id="department_name_id" type="button" data-toggle="dropdown" (change)="dropdownValue($event.target.value)">
-            <option value="Department_Placeholder"> Select a Department</option>
-            <option id= "subject" [ngValue]=i *ngFor="let i of subjects"> {{i}}</option>
-          </select>
 
       </div>
     </div>
 
     <div class= "form-group">
-      <input type="textbox" class="form-control" placeholder="Search by Name or Subject" id="search_tutor_id" required>
+      <input type="textbox" class="form-control" placeholder="Search by Name or Department or Email" id="search_tutor_id" [(ngModel)]="searchText" name="search_textbox" required>
     </div>
+
+    <div>
+      <h2>Available Tutors</h2>
+
+    </div>
+
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Email</th>
+          <th>CourseOffering</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let i of tutors | filter : searchText" name="tutors_list">
+          <td>{{i.name}}</td>
+          <td>{{i.department}}</td>
+          <td>{{i.email}}</td>
+          <td>{{i.courseOffering}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
 
     <button type="back" class="btn btn-danger" (click)="back()">Back</button>
     <button class="btn btn-primary" style="float:right;" (click)="submit()">submit</button>

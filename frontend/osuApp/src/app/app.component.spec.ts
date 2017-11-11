@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { SessionService } from './session.service';
+import {DataOpService} from './data-op.service';
+import { FilterPipe} from './filter.pipe';
 
 
 describe('AppComponent', () => {
@@ -23,10 +25,11 @@ describe('AppComponent', () => {
         HomepageComponent,
         SearchTutorComponent,
         LoginComponent,
-        SignUpComponent
+        SignUpComponent,
+        FilterPipe
       ],
       imports: [ RouterTestingModule, FormsModule, HttpModule],
-      providers:[SessionService]
+      providers:[SessionService, DataOpService]
 
     }).compileComponents();
   }));

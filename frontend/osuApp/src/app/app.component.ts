@@ -12,11 +12,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+
 })
 export class AppComponent  {
   title = 'app';
-  public loggedin:boolean; 
+  public loggedin:boolean;
   public logpage:boolean=false;
 
   public onLogPage(val:boolean)
@@ -25,10 +26,10 @@ export class AppComponent  {
      console.log("logpage in app is",val);
   }
 
-  constructor(private http: Http,private router: Router, private session:SessionService){
-  		
+  constructor(private http: Http,private router: Router, private session:SessionService,private source:DataOpService){
+
   }
-  
+
   ngOnInit() {
 
      if(this.session.getSession()){
@@ -37,7 +38,7 @@ export class AppComponent  {
      }
 
   logout(){
-    console.log("entered logout");  
+    console.log("entered logout");
     localStorage.removeItem("user");
     console.log("localstorage is",localStorage.getItem("user"));
     this.router.navigate(['']);
