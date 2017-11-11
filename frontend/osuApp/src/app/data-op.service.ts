@@ -20,7 +20,6 @@ export class DataOpService {
 
 	  return this.http.get('http://localhost:8084/osu/api/getAllUsers',{ headers : headers}).map((response)=>response.json())
 
-    //return this.http.get('http://localhost:8084/api/getAllUsers',{ headers : this.headers}).map((response)=>response.json())
   }
 
   setTutorCourseData(body){
@@ -38,8 +37,8 @@ export class DataOpService {
 
     }
 
-  signup(email, password){
-    let postBody = JSON.stringify({"email": email, "password": password});
+  signup(email, password, name){
+    let postBody = JSON.stringify({"email": email, "password": password, "name": name});
     let headers = new Headers();
     headers.append('Content-Type','application/json')
      return this.http.post('http://localhost:8084/osu/auth/signup',postBody,  {headers: headers})

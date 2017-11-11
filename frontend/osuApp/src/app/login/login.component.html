@@ -39,6 +39,10 @@
         <h2 style="top=-20px">Sign Up</h2>
         <form class="log-in">
           <div class="form-group form-inline">
+            <input type="email" class="form-control" id="email" style="width:300px;" aria-describedby="name" placeholder="Name" [(ngModel)]='name' #em="ngModel" name="name" required>
+            <span class="validation" *ngIf="!em.valid&&em.touched">Required</span>
+          </div>
+          <div class="form-group form-inline">
             <input type="email" class="form-control" id="email" style="width:300px;" aria-describedby="emailHelp" placeholder="Email Address" [(ngModel)]='email' #em="ngModel" name="email" required>
             <span class="validation" *ngIf="!em.valid&&em.touched">Required</span>
           </div>

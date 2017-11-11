@@ -4,6 +4,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class SignUpViewModel {
 
+    public String name;
+
     public String email;
 
     public String password;

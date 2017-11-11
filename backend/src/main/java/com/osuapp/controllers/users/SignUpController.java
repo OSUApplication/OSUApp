@@ -29,6 +29,7 @@ public class SignUpController {
         }
 
         User user = new User();
+        user.name = viewModel.name;
         user.email = viewModel.email;
         user.password = viewModel.encryptedPassword();
 

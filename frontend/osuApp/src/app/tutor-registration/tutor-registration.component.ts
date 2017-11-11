@@ -39,9 +39,9 @@ export class TutorRegistrationComponent implements OnInit {
 
 
     this.toastr.setRootViewContainerRef(vcr);
-    this.courseOffering= [];          
+    this.courseOffering= [];
    }
-   
+
    ngOnInit(){
         if(this.session.getSession()){
       this.loggedin=true;
@@ -55,8 +55,7 @@ export class TutorRegistrationComponent implements OnInit {
     showSuccess() {
         var self = this
         this.toastr.success('Tutor Added !', 'Success!');
-        setTimeout(function(){self.back();},3000);
-
+        self.back();
       }
 
     showFailure(){
@@ -64,7 +63,7 @@ export class TutorRegistrationComponent implements OnInit {
     }
 
 
-  
+
   display(){
         var self =this;
         this.course.forEach((course)=>{
@@ -102,5 +101,5 @@ export class TutorRegistrationComponent implements OnInit {
     console.log("localstorage is",localStorage.getItem("user"));
     this.router.navigate(['']);
   }
-  
+
 }
