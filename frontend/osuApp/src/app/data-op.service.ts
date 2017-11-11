@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http,URLSearchParams, Headers } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
+import { SessionService } from './session.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class DataOpService {
   headers:Headers;
 
 
-  constructor(private http: Http) {
+  constructor(private http: Http,private session:SessionService) {
   }
 
   getAllUserData(){
@@ -26,9 +27,12 @@ export class DataOpService {
     var self = this
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-
-    let postBody = JSON.stringify({"name" : body.name, "email" : body.email, "department" : "cs","tutorAs":"true","courseOffering":body.courseOffering});
-    return this.http.post('http://localhost:8084/api/updateUser',postBody, {
+    var session = JSON.parse(this.session.getSession());
+    console.log("session",session);
+    body.email = session.email;
+    body.name = session.name;
+    let postBody = JSON.stringify({"name" : body.name, "email" : body.email, "department" : "cs","tutorAs":true,"courseOffering":body.courseOffering});
+    return this.http.post('http://localhost:8084/osu/api/updateUser',postBody, {
       headers:headers
     });
 

@@ -93,8 +93,9 @@ public class UserServiceImpl implements UserService {
 			updatefields.set("courseSeeking",user.getCourseSeeking());
 		}
 		if(user.getCourseOffering()!=null) {
-			updatefields.set("courseOffering",user.getCourseOffering());
+			updatefields.push("courseOffering",user.getCourseOffering());
 		}
+		updatefields.set("tutorAs", true);
 		return updatefields;
 	}
 }
