@@ -23,6 +23,13 @@ export class LoginComponent implements OnInit {
   course:any[] = [{'id': 1,'cno':'','cname':''}];
   id:number = 1;
   result:Array<any> = [];
+  luser:string;
+  lpass:string;
+  signbody:any = {"name":"","email":"","password":""};
+  loginbody:any={"email":"","password":""};
+  tokenUrl:string = "http://localhost:8084/osu/oauth/token?grant_type=password";
+  username:string;
+  password:string;
 
   constructor(
     private router: Router,
@@ -52,10 +59,25 @@ export class LoginComponent implements OnInit {
 
   login(){
      var self = this;
-     this.session.setSession().then(function(){
-     console.log(self.session.getSession());
-     self.router.navigate(['home']);
-    });
+     this.createLoginBody();
+
+     this.getToken().subscribe(function(resp){
+       this.result = resp;
+       this.result = JSON.parse(this.result._body);
+       self.session.setSession(this.result);
+     })
+  }
+
+  signup(){
+    var self = this;
+    this.createSignBody();
+    console.log("body is ",this.body);
+    this.dataservice.setRegistrationData(this.body).subscribe(function(resp){
+      if(resp.status == 201){
+          self.showSuccess();
+      }
+     });
+ 
   }
 
   // animations
@@ -69,5 +91,24 @@ export class LoginComponent implements OnInit {
    this.router.navigate(['']);
   }
 
+  createSignBody(){
+    this.signbody.name=this.name;
+    this.signbody.email=this.email;
+    this.signbody.password=this.password;
 
+  }
+
+  createLoginBody(){
+    this.loginbody.name=this.luser;
+    this.loginbody.password=this.lpass;
+  }
+
+   getToken(){  
+      let username: string = this.loginbody.name;
+      let password: string = this.loginbody.password;
+      this.tokenUrl = this.tokenUrl+"&username="+username+"&password="+password;
+      let headers: Headers = new Headers({"Authorization":"Basic YWNtZTpzZWNyZXQ="});
+      return this.http.post(this.tokenUrl, {}, {headers: headers});
+/*       return this.http.post('http://localhost:8084/osu/oauth/token?grant_type=password&username=test@oregonstate.edu&password=password',{ headers:{"Authorization":"Basic YWNtZTpzZWNyZXQ="}});
+*/  }
 }

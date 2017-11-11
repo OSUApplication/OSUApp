@@ -53,11 +53,7 @@ export class HomepageComponent implements OnInit {
   // login functions
 
   login(){
-     var self = this;
-     this.session.setSession().then(function(){
-     console.log(self.session.getSession());
-     self.router.navigate(['home']);
-    });
+   
   }
 
   // animations

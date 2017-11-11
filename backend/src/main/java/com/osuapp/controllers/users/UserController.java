@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.google.gson.Gson;
 import com.osuapp.model.User;
 import com.osuapp.service.UserService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -31,6 +33,7 @@ public class UserController {
 		return gson.toJson(userSerivce.getAllUsers());
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/getUser/{email:.+}",method=RequestMethod.GET)
 	public String getUser(@PathVariable("email") String emailID) {
 		return gson.toJson(userSerivce.getUser(emailID));

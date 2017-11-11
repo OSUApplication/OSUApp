@@ -8,6 +8,7 @@ export class DataOpService {
 
   headers:Headers;
 
+  
   constructor(private http: Http) {
   }
 
@@ -40,8 +41,22 @@ export class DataOpService {
     let postBody = JSON.stringify({"email": email, "password": password});
     let headers = new Headers();
     headers.append('Content-Type','application/json')
-
-    return this.http.post('http://localhost:8084/osu/auth/signup',postBody,  {headers: headers})
+     return this.http.post('http://localhost:8084/osu/auth/signup',postBody,  {headers: headers})
   }
+  
+  setRegistrationData(body){
+    this.headers.append('Content-Type','application/json');
+    this.headers.append('Access','application/json');
+
+
+    let postBody = JSON.stringify({"name" : body.name, "email" : body.email, "password":body.password});
+    
+    return this.http.post('http://localhost:8084/osu/api/addUser',postBody, {
+            headers:this.headers
+            })
+  }
+
+   
+
 
 }
