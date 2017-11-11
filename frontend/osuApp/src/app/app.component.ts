@@ -17,18 +17,32 @@ import { Router } from '@angular/router';
 })
 export class AppComponent  {
   title = 'app';
-  loggedin:boolean;
+  public loggedin:boolean;
+  public logpage:boolean=false;
+
+  public onLogPage(val:boolean)
+  {
+     this.logpage = val;
+     console.log("logpage in app is",val);
+  }
 
   constructor(private http: Http,private router: Router, private session:SessionService,private source:DataOpService){
-      
+
   }
 
   ngOnInit() {
-    console.log("logged value is",this.loggedin);
+
      if(this.session.getSession()){
       this.loggedin=true;
     }
      }
+
+  logout(){
+    console.log("entered logout");
+    localStorage.removeItem("user");
+    console.log("localstorage is",localStorage.getItem("user"));
+    this.router.navigate(['']);
+  }
 
 
 }

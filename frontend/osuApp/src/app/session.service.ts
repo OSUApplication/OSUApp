@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http,URLSearchParams, Headers } from '@angular/http';
-
+import { Http,URLSearchParams, Headers, RequestOptions} from '@angular/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class SessionService {
 
@@ -8,32 +8,44 @@ export class SessionService {
   class:string = "SessionService";
   headers:Headers;
 
-  constructor(private http: Http) { 
+
+  constructor(private http: HttpClient) { 
  	  }
 
-  getSession():any[]{
-  	var self = this;
-  	return SessionService.currentUser;
+  getSession():any{
+    if(localStorage.getItem("user"))
+  	return localStorage.getItem("user");
+    else
+    return null;
   }
 
-  setSession(){
+
+ 
+  setSession(token,uemail){
   	
+    console.log("entered set session",token);
   	var self = this;
-  	var email = 'patty@gmail.com';
-  	this.setHeaders();
+  	var email = uemail;
 
-   	this.headers.append('Access-Control-Allow-Origin','http://localhost:4200');
-
+    var headers = new HttpHeaders();
+    headers.set("Authorization","Bearer "+token);
    	if(SessionService.currentUser){
    		SessionService.currentUser = [];
    	}
 
-  	return this.http.get('http://localhost:8084/api/getUser/'+email,{headers: this.headers}).map((response)=>response.json()).toPromise().then(
+    var config = {headers:headers};
+  	return this.http.get('http://localhost:8084/osu/api/getUser/'+email,config).toPromise().then(
         function(data){
-            SessionService.currentUser=data;
+            var session = {};
+            var result = JSON.parse(JSON.stringify(data));
+            session["user"] = result["name"];
+            session["email"] = email;
+            session["access_token"]= token["access_token"];
+            localStorage.setItem("user",JSON.stringify(session));
+            return 1;
         }
       );
-  
+
 
   }
 
@@ -46,4 +58,5 @@ export class SessionService {
   setHeaders(){
     this.headers = new Headers();
   }
+  
 }

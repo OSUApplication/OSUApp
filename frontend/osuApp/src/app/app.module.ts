@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { JsonpModule } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -24,7 +25,7 @@ const appRoutes : Routes = [
     path: 'home', component: HomepageComponent
   },
   {
-    path: '', redirectTo:'/home',pathMatch:'full'
+    path: '', redirectTo:'/login',pathMatch:'full'
   },
   {
     path: 'tutor-registration', component: TutorRegistrationComponent
@@ -63,6 +64,7 @@ const appRoutes : Routes = [
     FormsModule,
     JsonpModule,
     HttpModule,
+    HttpClientModule,
     ToastModule.forRoot(),
     RouterModule.forRoot(appRoutes),
   ],

@@ -16,14 +16,17 @@ export class SearchTutorComponent implements OnInit {
   department: any;
 
   constructor(private router: Router, private session:SessionService, private datasource:DataOpService){
-      this.datasource.getAllUserData().subscribe(posts => {this.data = posts;(this.data).forEach(variable => {
-        if(variable.tutorAs == true ){
-          this.tutors.push(variable);
-        }
+    this.datasource.getAllUserData().subscribe(posts => {this.data = posts; (this.data).forEach(variable => {
+      if(variable.tutorAs == true ){
+        this.tutors.push(variable);
+      }
       });
-    });
-  }
+
+      });
+    }
+
   loggedin:boolean;
+
 
   ngOnInit() {
        if(this.session.getSession()){

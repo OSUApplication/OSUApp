@@ -53,11 +53,13 @@ export class HomepageComponent implements OnInit {
   // login functions
 
   login(){
-     var self = this;
-     this.session.setSession().then(function(){
-     console.log(self.session.getSession());
-     self.router.navigate(['home']);
-    });
+   
+  }
+
+  logout(){
+    localStorage.removeItem("user");
+    console.log("localstorage is",localStorage.getItem("user"));
+    this.router.navigate(['']);
   }
 
   // animations
@@ -67,21 +69,7 @@ export class HomepageComponent implements OnInit {
     content.classList.toggle('flip');
   }
 
-  // Sign-up functions
 
-  display(){
-    var self = this;
-    let headers = new Headers();
-    headers.append('Access-Control-Allow-Origin','http://localhost:4200');
-    headers.append('Content-Type','application/json');
-    headers.append('Access','application/json');
-
-    this.dataservice.setRegistrationData(this).subscribe(function(resp){
-      if(resp.status == 201){
-          self.showSuccess();
-      }
-     });
-  }
 
   showSuccess() {
    this.router.navigate(['']);

@@ -1,22 +1,3 @@
-<nav class="navbar navbar-inverse bg-inverse">
-  <!-- Navbar content -->
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" routerLink="/home" >TutorNation</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a routerLink="/search-tutor">Search Tutor</a></li>
-      <li><a routerLink="/about-us">About Us</a></li>
-      <li><a routerLink="/contact-us">Contact Us</a></li>
-      <li *ngIf="!loggedin"><a routerLink="/sign-up">Sign Up</a></li>
-      <li *ngIf="!loggedin"><a routerLink="/login">Log In</a></li>
-      <li *ngIf="loggedin"><a>Logged In</a></li>
-      <li *ngIf="loggedin"><a>Log Out</a></li>
-
-    </ul>
-  </div>
-</nav>
-
 
 <div class="parallax-1">
   <img class="logo" src="../../assets/logo.png">
@@ -31,15 +12,15 @@
         <h2>Log In</h2>
         <div class="log-in">
           <div>
-            <input type="text" id="username" placeholder="Username">
+            <input type="text" id="username" [(ngModel)]='luser' name="luser" placeholder="Username">
           </div>
           <div>
-            <input type="password" id="password" placeholder="Password">
+            <input type="password" id="password" name="lpass" [(ngModel)]='lpass' placeholder="Password">
           </div>
         </div>
         <div class="log-button-group" align="center">
           <button class="btn btn-primary" (click)="login()">Login</button>
-          <button class="btn btn-primary" (click)="flip()">Doesn't have an account?</button>
+          <button class="btn btn-primary" (click)="flip()">Don't have an account?</button>
         </div>
       </div>
       <div class="back face center">
@@ -61,7 +42,7 @@
           </div>
           <div class="log-button-group" align="center">
             <button type="back" class="btn btn-primary" (click)="flip()">I have account</button>
-            <button type="submit" class="btn btn-primary" (click) ="display()">Submit</button>
+            <button type="submit" class="btn btn-primary" (click) ="signup()">Submit</button>
           </div>
         </form>
       </div>

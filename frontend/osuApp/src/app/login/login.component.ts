@@ -8,6 +8,11 @@ import { ToastModule, ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Component, ViewContainerRef, OnInit } from '@angular/core';
 import { DataOpService} from '../data-op.service';
 import { SessionService } from '../session.service';
+import { forwardRef, Inject, Injector, EventEmitter, Input, Output} from '@angular/core';
+
+
+import 'rxjs/add/operator/catch';
+
 
 @Component({
   selector: 'app-login',
@@ -23,18 +28,40 @@ export class LoginComponent implements OnInit {
   course:any[] = [{'id': 1,'cno':'','cname':''}];
   id:number = 1;
   result:Array<any> = [];
+  luser:string;
+  lpass:string;
+  signbody:any = {"name":"","email":"","password":""};
+  loginbody:any={"email":"","password":""};
+  tokenUrl:string = "http://localhost:8084/osu/oauth/token?grant_type=password";
+  username:string;
+  password:string;
+  @Input() logpage: boolean;
+  @Output() onLogPage = new EventEmitter<boolean>();
 
   constructor(
+    public injector:Injector,
     private router: Router,
     private session: SessionService,
     private http : Http,
     public toastr: ToastsManager,
     vcr: ViewContainerRef,
-    private dataservice:DataOpService) { }
+    private dataservice:DataOpService,
+    ) { 
+
+        this.toastr.setRootViewContainerRef(vcr);
+
+
+    }
 
   ngOnInit() {
+
+     console.log("logpage is ",this.logpage);
+     this.onLogPage.emit(true);
     let headers = new Headers();
-    if(this.session.getSession()){
+
+    if(localStorage.getItem("user")){
+      console.log(localStorage.getItem("user"));
+      this.back();
       this.loggedin=true;
     }
   }
@@ -52,10 +79,43 @@ export class LoginComponent implements OnInit {
 
   login(){
      var self = this;
-     this.session.setSession().then(function(){
-     console.log(self.session.getSession());
-     self.router.navigate(['home']);
-    });
+     this.createLoginBody();
+
+     this.getToken().subscribe(data => {
+       var result = JSON.parse(JSON.stringify(data["_body"]));
+ 
+       self.session.setSession(result,self.loginbody.name).then(function(data){
+         if(data){
+             self.showSuccess();
+          }
+         else{
+             self.showFailure();
+         }
+
+       });
+
+
+     },
+     error => {
+         self.showFailure();
+     });
+
+   
+  }
+
+  signup(){
+    var self = this;
+    this.createSignBody();
+    console.log("body is ",this.body);
+    this.dataservice.setRegistrationData(this.body).subscribe(function(resp){
+      if(resp.status == 201){
+          self.showSuccess();
+      }
+      else{
+          console.log("Invalid user");  
+      }
+     });
+ 
   }
 
   // animations
@@ -65,78 +125,43 @@ export class LoginComponent implements OnInit {
     content.classList.toggle('flip');
   }
 
-  // Sign-up functions
-
-  display(){
-    var self = this;
-    let headers = new Headers();
-    headers.append('Access-Control-Allow-Origin','http://localhost:4200');
-    headers.append('Content-Type','application/json');
-    headers.append('Access','application/json');
-
-    this.dataservice.setRegistrationData(this).subscribe(function(resp){
-      if(resp.status == 201){
-          self.showSuccess();
-      }
-     });
-  }
-
   showSuccess() {
-   this.router.navigate(['']);
+   var self = this
+   this.toastr.success('Tutor Added !', 'Success!');
+   setTimeout(function(){self.back();},3000);
+   
   }
 
+  showFailure(){
+   this.toastr.error("Invalid Credentials, Please Log in Again");
+   console.log("Invalid User Credentials");
+   this.tokenUrl= "http://localhost:8084/osu/oauth/token?grant_type=password";
+  }
 
+  createSignBody(){
+    this.signbody.name=this.name;
+    this.signbody.email=this.email;
+    this.signbody.password=this.password;
+
+  }
+
+  createLoginBody(){
+    this.loginbody.name=this.luser;
+    this.loginbody.password=this.lpass;
+  }
+
+   getToken(){  
+      var self = this;
+      let username: string = this.loginbody.name;
+      let password: string = this.loginbody.password;
+      this.tokenUrl = this.tokenUrl+"&username="+username+"&password="+password;
+      console.log("token url is",this.tokenUrl);
+      let headers: Headers = new Headers({"Authorization":"Basic YWNtZTpzZWNyZXQ="});
+      return this.http.post(this.tokenUrl, {}, {headers: headers});
+  
 }
 
-
-
-
-
-
-
-/*
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { SessionService } from '../session.service';
-import { Router } from '@angular/router';
-import { Http,URLSearchParams, Headers } from '@angular/http';
-import { ToastModule, ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { DataOpService} from '../data-op.service';
-import { FormsModule } from '@angular/forms';
-
-
-
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
-})
-export class LoginComponent implements OnInit {
-
-  loggedin:boolean;
-  [x: string]: any;
-  name:string = "";
-  course:any[] = [{'id': 1,'cno':'','cname':''}];
-  id:number = 1;
-  result:Array<any> = [];
-
-
-  constructor(
-    private router: Router,
-    private session: SessionService,
-    private http : Http,
-    public toastr: ToastsManager,
-    vcr: ViewContainerRef,
-    private dataservice:DataOpService) { }
-
-  ngOnInit() {
+  back(){
+    this.router.navigate(['/home']);
   }
-
-  login(){
-     var self = this;
-     this.session.setSession().then(function(){
-     console.log(self.session.getSession());
-     self.router.navigate(['home']);
-    });
-  }
-
-}*/
+}
