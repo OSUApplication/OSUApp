@@ -25,6 +25,7 @@ export class HomepageComponent implements OnInit {
   course:any[] = [{'id': 1,'cno':'','cname':''}];
   id:number = 1;
   result:Array<any> = [];
+  user:any;
 
   constructor(
     private router: Router,
@@ -36,8 +37,11 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit() {
     let headers = new Headers();
-    if(this.session.getSession()){
-      this.loggedin=true;
+    if(!this.session.getSession()){
+      this.router.navigate([""]);
+    }
+    else{
+      this.user = this.session.getSession();
     }
   }
 

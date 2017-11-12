@@ -24,14 +24,16 @@
         <h2>Log In</h2>
         <div class="log-in">
           <div>
-            <input type="text" id="username" [(ngModel)]='luser' name="luser" placeholder="Username">
+            <input type="text" id="username" [(ngModel)]='luser' #em1="ngModel" name="luser" placeholder="Email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+            <span class="validation" *ngIf="!em1.valid&&em1.touched">Invalid email</span>
           </div>
           <div>
-            <input type="password" id="password" name="lpass" [(ngModel)]='lpass' placeholder="Password">
+            <input type="password" id="password" name="lpass"  [(ngModel)]='lpass' placeholder="Password" required #pass1="ngModel">
+            <span class="validation" *ngIf="!pass1.valid&&pass1.touched">Required</span>
           </div>
         </div>
         <div class="log-button-group" align="center">
-          <button class="btn btn-primary" (click)="login()">Login</button>
+          <button [disabled]="!(em1.valid&&pass1.valid)"class="btn btn-primary" (click)="login()">Login</button>
           <button class="btn btn-primary" (click)="flip()">Don't have an account?</button>
         </div>
       </div>
@@ -39,12 +41,12 @@
         <h2 style="top=-20px">Sign Up</h2>
         <form class="log-in">
           <div class="form-group form-inline">
-            <input type="email" class="form-control" id="email" style="width:300px;" aria-describedby="name" placeholder="Name" [(ngModel)]='name' #em="ngModel" name="name" required>
-            <span class="validation" *ngIf="!em.valid&&em.touched">Required</span>
+            <input type="email" class="form-control" id="email" style="width:300px;" aria-describedby="name" placeholder="Name" [(ngModel)]='name' #uname="ngModel" name="name" required>
+            <span class="validation" *ngIf="!uname.valid&&uname.touched">Required</span>
           </div>
           <div class="form-group form-inline">
-            <input type="email" class="form-control" id="email" style="width:300px;" aria-describedby="emailHelp" placeholder="Email Address" [(ngModel)]='email' #em="ngModel" name="email" required>
-            <span class="validation" *ngIf="!em.valid&&em.touched">Required</span>
+            <input type="email" class="form-control" id="email" style="width:300px;" aria-describedby="emailHelp" placeholder="Email Address" [(ngModel)]='email' #em="ngModel" name="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" (change)="log(em)">
+            <span class="validation" *ngIf="!em.valid&&em.touched">Invalid email</span>
           </div>
 
           <div class="form-group form-inline">
@@ -53,7 +55,7 @@
           </div>
           <div class="log-button-group" align="center">
             <button type="back" class="btn btn-primary" (click)="flip()">I have account</button>
-            <button type="submit" class="btn btn-primary" (click) ="signup()">Submit</button>
+            <button [disabled]="!(em.valid&&pword.valid&&uname.valid)" type="submit" class="btn btn-primary" (click) ="signup()">Submit</button>
           </div>
         </form>
       </div>

@@ -26,7 +26,7 @@ export class TutorRegistrationComponent implements OnInit {
 
    department:string = '';
 
-   course:any[] = [{'id': 1,'cno':'','cname':''}];
+   course:any[] = [{'id': 1,'cno':'','cname':'','dept':''}];
 
    courseOffering:any[] = [];
 
@@ -55,7 +55,7 @@ export class TutorRegistrationComponent implements OnInit {
     showSuccess() {
         var self = this
         this.toastr.success('Tutor Added !', 'Success!');
-        self.back();
+        setTimeout(function(){self.back()},1000);
       }
 
     showFailure(){
@@ -69,6 +69,7 @@ export class TutorRegistrationComponent implements OnInit {
         this.course.forEach((course)=>{
               this.courseOffering.push(course.cno + " " + course.cname);
         });
+        console.log(this.course);
         this.dataservice.setTutorCourseData(this).subscribe(function(resp){
            if(resp.status == 202){
                   self.showSuccess();

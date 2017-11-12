@@ -26,11 +26,11 @@ export class DataOpService {
     var self = this
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    var session = JSON.parse(this.session.getSession());
+    var session = this.session.getSession();
     console.log("session",session);
     body.email = session.email;
     body.name = session.name;
-    let postBody = JSON.stringify({"name" : body.name, "email" : body.email, "department" : "cs","tutorAs":true,"courseOffering":body.courseOffering});
+    let postBody = JSON.stringify({"name" : body.name, "email" : body.email, "department" :body.dept,"tutorAs":true,"courseOffering":body.courseOffering});
     return this.http.post('http://localhost:8084/osu/api/updateUser',postBody, {
       headers:headers
     });

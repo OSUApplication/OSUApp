@@ -124,7 +124,7 @@ export class LoginComponent implements OnInit {
   showSuccess() {
    var self = this
    this.toastr.success('Tutor Added !', 'Success!');
-   self.back();
+   setTimeout(function(){self.back();},1000);
   }
 
   showFailure(){
@@ -158,5 +158,8 @@ export class LoginComponent implements OnInit {
 
   back(){
     this.router.navigate(['/home']);
+  }
+  log(event){
+    console.log(event);
   }
 }

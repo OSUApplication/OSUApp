@@ -14,7 +14,7 @@ export class SessionService {
 
   getSession():any{
     if(localStorage.getItem("user"))
-  	return localStorage.getItem("user");
+  	return JSON.parse(localStorage.getItem("user"));
     else
     return null;
   }
@@ -38,10 +38,12 @@ export class SessionService {
         function(data){
             var session = {};
             var result = JSON.parse(JSON.stringify(data));
+            var utoken = JSON.parse(token);
             session["user"] = result["name"];
             session["email"] = email;
-            session["access_token"]= token["access_token"];
+            session["access_token"]= utoken.access_token;
             localStorage.setItem("user",JSON.stringify(session));
+            console.log(localStorage.getItem("user"));
             return 1;
         }
       );
