@@ -56,6 +56,20 @@ export class DataOpService {
             })
   }
 
+  getAllCoursesByDept(){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json')
+    headers.append('Authentication','Bearer f6b81340-e7b5-4075-8f16-ba244778cb62')
+    return this.http.get("http://localhost:8084/osu/api/CS/getAllCourses",{headers:headers}).map((response)=>response.json())
+  }
+
+  getCourses(){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json')
+    headers.append('Authentication','Bearer f6b81340-e7b5-4075-8f16-ba244778cb62')
+    return this.http.get("http://localhost:8084/osu/api/getCourses",{headers:headers}).map((response)=>response.json());
+  }
+
 
 
 

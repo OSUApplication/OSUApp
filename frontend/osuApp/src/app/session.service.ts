@@ -42,6 +42,7 @@ export class SessionService {
             session["user"] = result["name"];
             session["email"] = email;
             session["access_token"]= utoken.access_token;
+            session["is_tutor"] = result.tutorAs;
             localStorage.setItem("user",JSON.stringify(session));
             console.log(localStorage.getItem("user"));
             return 1;

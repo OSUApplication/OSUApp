@@ -11,6 +11,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {DataOpService} from './data-op.service';
 import { SessionService } from './session.service';
 import { FilterPipe} from './filter.pipe';
+import { RegFilterPipe} from './regSelectFilter.pipe';
 
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -18,6 +19,7 @@ import { SearchTutorComponent } from './search-tutor/search-tutor.component';
 import { LoginComponent } from './login/login.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ManageTutorComponent } from './manage-tutor/manage-tutor.component';
 
 const appRoutes : Routes = [
   {
@@ -39,6 +41,9 @@ const appRoutes : Routes = [
     path:'contact-us', component:ContactUsComponent
   },
   {  path: 'login',  component:LoginComponent
+  },
+  {
+    path:'manageTutor',component:ManageTutorComponent
   }
 ]
 
@@ -51,7 +56,9 @@ const appRoutes : Routes = [
     LoginComponent,
     AboutUsComponent,
     ContactUsComponent,
-    FilterPipe
+    FilterPipe,
+    RegFilterPipe,
+    ManageTutorComponent
   ],
   imports: [
     BrowserModule,

@@ -35,9 +35,24 @@ public class User implements UserDetails {
 	
 	@Property("course_offering")
 	public List<String> courseOffering;
+	
+	@Property("timeSlots")
+	public List<String> timeSlots;
 
 	public String getName() {
 		return name;
+	}
+
+	public List<String> getTimeSlots() {
+		return timeSlots;
+	}
+
+	public void setTimeSlots(List<String> timeSlots) {
+		this.timeSlots = timeSlots;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setName(String name) {

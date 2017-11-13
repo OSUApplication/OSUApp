@@ -1,5 +1,9 @@
 package com.osuapp.controllers.courseController;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.mongodb.morphia.query.Query;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,14 @@ public class CourseServiceImpl implements CourseService {
 	public Course getAllCourses(String departmentName) {
 		Query<Course> courseQuery = MongoConnection.dataStore.createQuery(Course.class).field(ApplicationConstants.FIELD_NAME).equal(departmentName);
 		return courseQuery.get();
+	}
+
+	@Override
+	public List<Course> getCourses() {
+		// TODO Auto-generated method stub
+		
+		List<Course> courseQuery = MongoConnection.dataStore.createQuery(Course.class).asList();
+		return courseQuery;
 	}
 
 	

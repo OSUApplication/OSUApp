@@ -28,4 +28,9 @@ public class CourseController {
 	public String getAllCourses(@PathVariable("departmentName") String departmentName) {
 		return gson.toJson(courseService.getAllCourses(departmentName));
 	}
+	
+	@RequestMapping("/getCourses")
+	public String getCourses() {
+		return gson.toJson(courseService.getCourses());
+	}
 }

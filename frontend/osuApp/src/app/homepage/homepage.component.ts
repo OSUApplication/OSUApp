@@ -42,6 +42,7 @@ export class HomepageComponent implements OnInit {
     }
     else{
       this.user = this.session.getSession();
+      console.log(this.user.is_tutor);
     }
   }
 
@@ -52,6 +53,10 @@ export class HomepageComponent implements OnInit {
 
   search_tutor(){
     this.router.navigate(['/search-tutor'])
+  }
+
+  manage_tutor(){
+    this.router.navigate(['/manageTutor']);
   }
 
   // login functions

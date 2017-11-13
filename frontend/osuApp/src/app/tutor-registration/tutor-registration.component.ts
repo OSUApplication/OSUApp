@@ -6,6 +6,7 @@ import { ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DataOpService} from '../data-op.service';
 import { SessionService } from '../session.service';
+import { RegFilterPipe } from '../regSelectFilter.pipe';
 
 
 
@@ -26,7 +27,7 @@ export class TutorRegistrationComponent implements OnInit {
 
    department:string = '';
 
-   course:any[] = [{'id': 1,'cno':'','cname':'','dept':''}];
+   course:any[] = [{'id': 1,'course':'','active':true,'block':true}]
 
    courseOffering:any[] = [];
 
@@ -34,18 +35,29 @@ export class TutorRegistrationComponent implements OnInit {
 
    result:any = [];
 
+   courseData:any;
+
+   courseNumber:any=[];
+
+   courseName:any=[];
+
+   confirmedCourses:any=[];
+
    loggedin:boolean;
    constructor(private router: Router,public toastr: ToastsManager, private session: SessionService,vcr: ViewContainerRef, private dataservice:DataOpService){
 
 
     this.toastr.setRootViewContainerRef(vcr);
     this.courseOffering= [];
+
+    var self = this;
+    this.dataservice.getCourses().subscribe(function(data){
+      self.splitCourseData(data);
+       });
    }
 
    ngOnInit(){
-        if(this.session.getSession()){
-      this.loggedin=true;
-    }
+  
    }
 
     log(x){
@@ -66,10 +78,7 @@ export class TutorRegistrationComponent implements OnInit {
 
   display(){
         var self =this;
-        this.course.forEach((course)=>{
-              this.courseOffering.push(course.cno + " " + course.cname);
-        });
-        console.log(this.course);
+        this.courseOffering = this.confirmedCourses;
         this.dataservice.setTutorCourseData(this).subscribe(function(resp){
            if(resp.status == 202){
                   self.showSuccess();
@@ -78,19 +87,41 @@ export class TutorRegistrationComponent implements OnInit {
   }
 
   addCourseInfo(){
-    this.course.push({'id': this.id+1, 'cno':'','cname':''});
+
+    this.course.push({'id': this.id+1,'course':'','active':true,'block':true});
     this.id += 1;
 
   }
 
+  checkCourse(data){
+    console.log("course is",data);
+  }
+
+  disableSelect(data){
+    this.confirmedCourses.push(this.course[data-1].course);
+    this.course[data-1].active=false;
+  }
+
+  activateSelect(data){
+    this.confirmedCourses.splice(this.course.indexOf(data),1);
+    this.course[data-1].active=true;
+
+  }
+
+  disableBlock(data){
+    this.course[data-1].block=false;
+  }
+
   deleteCourseInfo(id){
     var target = this.course.indexOf(id);
-    var index = target;
+    var index = target;  
     if(index < 1){
         index = 0;
     }
+    this.id -= 1;
     this.course.splice(index,1);
-  }
+    this.course[target-1].block=true;
+    }
 
 
   back(){
@@ -103,4 +134,12 @@ export class TutorRegistrationComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  splitCourseData(data){
+      for(var d in data){
+          for(var list in data[d].courseList){
+              this.courseName.push(data[d].courseList[list]);
+          }      
+      }
+  }
 }
+
