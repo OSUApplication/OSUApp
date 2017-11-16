@@ -38,7 +38,6 @@
         <thead>
         <tr>
           <th>Name</th>
-          <th>Department</th>
           <th>Email</th>
           <th>CourseOffering</th>
         </tr>
@@ -47,7 +46,6 @@
         <tbody>
         <tr *ngFor="let i of tutors | filter:searchText" name="tutors_list">
           <td>{{i.name}}</td>
-          <td>{{i.department}}</td>
           <td>{{i.email}}</td>
           <td>{{i.courseOffering}}</td>
         </tr>

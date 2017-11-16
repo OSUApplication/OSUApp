@@ -98,4 +98,12 @@ public class UserServiceImpl implements UserService {
 		updatefields.set("tutorAs", true);
 		return updatefields;
 	}
-}
+
+	@Override
+	public List<String> getCourseOfferings(String email) {
+		// TODO Auto-generated method stub
+		Query<User> User = MongoConnection.dataStore.createQuery(User.class).field(ApplicationConstants.FIELD_EMAIL).equal(email);
+		User user = User.get();
+		return user.getCourseOffering();
+	}
+}	

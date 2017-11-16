@@ -20,4 +20,6 @@ public interface UserService {
 	List<User> getAllTutorsForSubject(String subjectName);
 	
 	ResponseEntity<?> updateUser(User user) throws URISyntaxException;
+	
+	List<String> getCourseOfferings(String emailID);
 }

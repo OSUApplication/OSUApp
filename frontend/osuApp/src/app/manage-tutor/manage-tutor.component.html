@@ -1,3 +1,54 @@
-<p>
-  manage-tutor works!
-</p>
+<nav class="navbar navbar-inverse bg-inverse">
+  <!-- Navbar content -->
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/home">TutorNation</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/about-us">About Us</a></li>
+      <li><a routerLink="/contact-us">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div class="jumbotron" style="text-align: center">
+    <h1>Welcome {{user.user}}</h1>
+    <p>You can manage your courses and information here.</p>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" style="text-align: center">
+      <form>
+       <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h1 class="panel-title">Manage Courses</h1>
+        </div>
+        <div class="panel-body">
+          <div *ngFor="let course of user.course_offerings" class="panel panel-default">
+                <div class="panel panel-info">
+                  <div class="panel-heading">
+
+                    <h3 class="panel-title">
+                      {{course}}
+                    </h3>
+                  </div>
+                </div>
+                <div class="panel-body" style="text-align: left">
+                  <button type="button" class="btn btn-primary">Manage Time Slots</button>
+               </div>
+              </div>
+            
+         </div>
+      </div>
+    </form>
+
+<!--       </div>
+    </div>
+  </div> -->
+
+  <div style="text-align: left">
+  <button type="back" class="btn btn-danger" (click)="back()">Back</button>
+  </div>
