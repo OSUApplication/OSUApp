@@ -19,8 +19,11 @@ public class TimeSlots {
 	@Property("date")
 	public String Date;
 	
-	@Property("time")
-	public String Time;
+	@Property("startTime")
+	public String startTime;
+	
+	@Property("endTime")
+	public String endTime;
 	
 	public String getId() {
 		return id;
@@ -50,11 +53,18 @@ public class TimeSlots {
 	public void setDate(String date) {
 		Date = date;
 	}
-	public String getTime() {
-		return Time;
+
+	public String getStartTime() {
+		return startTime;
 	}
-	public void setTime(String time) {
-		Time = time;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 	public boolean isConfirmed() {
 		return confirmed;

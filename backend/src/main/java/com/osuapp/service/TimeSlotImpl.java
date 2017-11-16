@@ -28,7 +28,6 @@ public class TimeSlotImpl implements TimeSlotService {
 		// TODO Auto-generated method stub
 		
 		 List<TimeSlots> timeslots = MongoConnection.dataStore.createQuery(TimeSlots.class).field("tId").equal(sid).asList(); 
-		 
 		 return timeslots;
 	}
 
@@ -99,9 +98,14 @@ public class TimeSlotImpl implements TimeSlotService {
 			updatefields.set("date", timeslot.getDate());
 		}
 		
-		if(timeslot.Time !=null) {
-			updatefields.set("time",timeslot.getTime());
+		if(timeslot.startTime !=null) {
+			updatefields.set("time",timeslot.getStartTime());
 		}
+
+		if(timeslot.endTime !=null) {
+			updatefields.set("time",timeslot.getEndTime());
+		}
+	
 	
 		return updatefields;
 	}

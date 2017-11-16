@@ -38,5 +38,15 @@ public class ApplicationConstants {
 	public static String GENERIC_TUTOR_FINDER_URL = "/osu/api/getTutor/CS540 DBMS";
 	public static String GENERIC_GET_ALL_COURSES_URL = "/osu/api/CS/getAllCourses";
 	public static String GENERIC_PASSWORD = "1234567";
+	public static String GENERIC_GET_TIMESLOT_URL = "/osu/api/getTimeSlot";
+	public static String GENERIC_GET_TIMESLOT_RESULT = "[{\"StudentId\":\"1000\",\"TutorId\":\"1000\",\"Date\":\"2-11-2012\",\"startTime\":\"5pm\",\"endTime\":\"7pm\",\"confirmed\":false}]";
+	public static String GENERIC_TIMESLOT_DATE = "2-11-2012";
+	public static String GENERIC_TIMESLOT_STDUENTID = "1000";
+	public static String GENERIC_TIMESLOT_TUTORID = "1000";
+	public static String GENERIC_TIMESLOT_STARTTIME = "5pm";
+	public static String GENERIC_TIMESLOT_ENDTIME = "7pm";
 
+
+
+	
 }
