@@ -21,6 +21,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.security.test.context.support.WithAnonymousUser;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -66,14 +68,17 @@ public class UserControllerTest{
 	}
 	
 	@Test
+	@WithMockUser("customTutor")
 	public void getAllUsers() throws Exception {
 		Mockito.when(userService.getAllUsers()).thenReturn(tutorList);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(ApplicationConstants.GET_ALL_USERS).accept(MediaType.APPLICATION_JSON);
 		MvcResult testReuslt = this.mockMvc.perform(requestBuilder).andReturn();
+		System.out.println(testReuslt.getResponse().getContentAsString()+"aaaaaaa");
 		JSONAssert.assertEquals(ApplicationConstants.EXPECTED_TEST_RESULT_LIST,testReuslt.getResponse().getContentAsString(),false);
 	}
 	
 	@Test
+	@WithMockUser("customTutor")
 	public void getUser() throws Exception {
 		Mockito.when(userService.getUser(Mockito.anyString())).thenReturn(testTutor);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(ApplicationConstants.GENERIC_TUTOR_URL).accept(MediaType.APPLICATION_JSON);
@@ -82,6 +87,7 @@ public class UserControllerTest{
 	}
 	
 	@Test
+	@WithMockUser("customTutor")
 	public void getTutor() throws Exception{
 		Mockito.when(userService.getAllTutorsForSubject(Mockito.anyString())).thenReturn(tutorList);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(ApplicationConstants.GENERIC_TUTOR_FINDER_URL).accept(MediaType.APPLICATION_JSON);
@@ -90,6 +96,7 @@ public class UserControllerTest{
 	}
 	
 	@Test
+	@WithMockUser("customTutor")
 	public void createdAddUser() throws Exception{
 		Mockito.when(userService.addUser(Mockito.any(User.class))).thenReturn(ResponseEntity.status(HttpStatus.CREATED).location(new URI(ApplicationConstants.GET_USER_END_POINT+testTutor.getEmail())).build());
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post(ApplicationConstants.ADD_USER)
@@ -103,6 +110,7 @@ public class UserControllerTest{
 	}
 	
 	@Test
+	@WithMockUser("customTutor")
 	public void notImplementedAddUser() throws Exception{
 		Mockito.when(userService.addUser(Mockito.any(User.class))).thenReturn(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post(ApplicationConstants.ADD_USER)
@@ -115,6 +123,7 @@ public class UserControllerTest{
 	}
 	
 	@Test
+	@WithMockUser("customTutor")
 	public void acceptUpdateUser() throws Exception{
 		Mockito.when(userService.updateUser(Mockito.any(User.class))).thenReturn(ResponseEntity.status(HttpStatus.ACCEPTED).location(new URI(ApplicationConstants.GET_USER_END_POINT+testTutor.getEmail())).build());
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post(ApplicationConstants.UPDATE_USER)
@@ -128,6 +137,7 @@ public class UserControllerTest{
 	}
 	
 	@Test
+	@WithMockUser("customTutor")
 	public void notImplementUpdateUser() throws Exception{
 		Mockito.when(userService.updateUser(Mockito.any(User.class))).thenReturn(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).location(new URI(ApplicationConstants.GET_USER_END_POINT+testTutor.getEmail())).build());
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post(ApplicationConstants.UPDATE_USER)
