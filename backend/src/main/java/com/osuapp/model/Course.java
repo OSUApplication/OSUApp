@@ -3,10 +3,22 @@ package com.osuapp.model;
 import java.util.List;
 
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 
 @Entity("course")
 public class Course {
+
+	@Id
+	public String id; 
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	@Property("name")
 	public String departmentName;

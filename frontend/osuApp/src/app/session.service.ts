@@ -40,6 +40,7 @@ export class SessionService {
             var result = JSON.parse(JSON.stringify(data));
             var utoken = JSON.parse(token);
             session["user"] = result["name"];
+            session["uid"] = result["id"];
             session["email"] = email;
             session["access_token"]= utoken.access_token;
             session["is_tutor"] = result.tutorAs;
