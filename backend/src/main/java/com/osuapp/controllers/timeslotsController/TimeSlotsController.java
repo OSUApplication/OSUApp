@@ -10,16 +10,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.osuapp.model.TimeSlots;
-import com.osuapp.service.TimeSlotImpl;
+import com.osuapp.service.TimeSlotService;
+import com.osuapp.service.UserService;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class TimeSlotsController {
 	
-	@Autowired
-	private TimeSlotImpl timeSlotService;
 	
+	TimeSlotService timeSlotService;
+	
+	@Autowired
+	public TimeSlotsController(TimeSlotService timeSlotSerivce) {
+		this.timeSlotService = timeSlotSerivce;
+	}
 	Gson gson = new Gson(); 
 	
 	@RequestMapping(value="/schedule/timeslot/getTimeSlotsForTutor/{id}",method=RequestMethod.GET)

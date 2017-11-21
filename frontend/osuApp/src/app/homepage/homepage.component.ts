@@ -42,7 +42,7 @@ export class HomepageComponent implements OnInit {
     }
     else{
       this.user = this.session.getSession();
-      console.log(this.user.is_tutor);
+      console.log(this.user);
     }
   }
 
@@ -56,7 +56,7 @@ export class HomepageComponent implements OnInit {
   }
 
   manage_tutor(){
-    this.router.navigate(['/manageTutor']);
+    this.router.navigate(['/manageTutor',this.user.uid,'none','tutor']);
   }
 
   // login functions

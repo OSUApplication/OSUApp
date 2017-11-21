@@ -18,35 +18,66 @@
 </div>
 
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-12" style="text-align: center">
-      <form>
+    <div *ngIf="istutor===true" class="col-md-4" style="text-align: center">
        <div class="panel panel-primary">
         <div class="panel-heading">
           <h1 class="panel-title">Manage Courses</h1>
         </div>
         <div class="panel-body">
-          <div *ngFor="let course of user.course_offerings" class="panel panel-default">
-                <div class="panel panel-info">
-                  <div class="panel-heading">
-
-                    <h3 class="panel-title">
-                      {{course}}
-                    </h3>
-                  </div>
+          <span *ngFor="let course of user.course_offerings" class="panel panel-default">
+            <div class="panel panel-info">
+                          {{course}}
                 </div>
-                <div class="panel-body" style="text-align: left">
-                  <button type="button" class="btn btn-primary">Manage Time Slots</button>
-               </div>
+             </span>
               </div>
             
          </div>
       </div>
-    </form>
 
+      <div *ngIf="istutor===true" class="col-md-4" style="text-align: center">
+       <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h1 class="panel-title">View Your Timeslots</h1>
+        </div>
+        <div class="panel-body">
+          <span *ngFor="let timeslot of stimeslot" class="panel panel-default">
+            <h4 style="text-align: left">Course - {{timeslot.course}}</h4>
+
+            <div class="panel panel-info">
+                       <h5> {{timeslot.startTime}} - {{timeslot.endTime}} </h5>
+                       <h5> Date : {{timeslot.Date}} </h5>
+            </div>
+             </span>
+              </div>
+            
+         </div>
+      </div>
+
+      <div *ngIf="istutor===false" class="col-md-4" style="text-align: center">
+       <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h1 class="panel-title">View Your Timeslots</h1>
+        </div>
+        <div class="panel-body">
+          <span *ngFor="let timeslot of ttimeslot" class="panel panel-default">
+            <h4 style="text-align: left">Course - {{timeslot.course}}</h4>
+
+            <div class="panel panel-info">
+                       <h5> {{timeslot.startTime}} - {{timeslot.endTime}} </h5>
+                       <h5> Date : {{timeslot.Date}} </h5>
+            </div>
+             </span>
+              </div>
+            
+         </div>
+      </div>
+  </div>
+</div>
 
 
   <div style="text-align: left">
   <button type="back" class="btn btn-danger" (click)="back()">Back</button>
   </div>
+

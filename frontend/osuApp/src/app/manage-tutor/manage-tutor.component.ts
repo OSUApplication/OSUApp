@@ -1,8 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy,
+  ViewChild,
+  TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '../session.service';
 import {DataOpService} from '../data-op.service';
 import {FilterPipe} from '../filter.pipe';
+import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  CalendarEvent,
+  CalendarEventAction,
+  CalendarEventTimesChangedEvent
+} from 'angular-calendar';
 
 @Component({
   selector: 'app-manage-tutor',
@@ -15,14 +24,42 @@ export class ManageTutorComponent implements OnInit {
   user:any;
   data : any;
   department: any;
+  sub:any;
+  id:any;
+  type:any;
+  istutor:boolean;
+  stimeslot:any;
+  ttimeslot:any;
 
-  constructor(private router: Router, private session:SessionService, private datasource:DataOpService){
+  constructor(private route: ActivatedRoute,private router: Router, private session:SessionService, private datasource:DataOpService){
        this.user=this.session.getSession();
 
        console.log(this.user);
      }
 
   ngOnInit() {
+      this.sub = this.route.params.subscribe(params => {
+       this.id = params['id'];
+       this.type = params['type']; 
+       
+       if(this.type=='student'){
+         this.istutor=false;
+         this.datasource.getTimeSlotForStudent(this.id).subscribe(data=>{
+           this.stimeslot = data;
+           console.log("student timeslots are ",data);
+         });
+       }
+       else{
+         this.istutor=true;
+         this.datasource.getTimeSlotForTutor(this.id).subscribe(data=>{
+           this.ttimeslot=data;
+         })
+       }
+
+       // (+) converts string 'id' to a number
+       // In a real app: dispatch action to load the details here.
+    });
+      console.log("this type is",this.istutor);
       var timesl = {"date":"","StudentId":"","TutorId":""};
   }
 
@@ -47,5 +84,6 @@ export class ManageTutorComponent implements OnInit {
   dropdownValue(val: any) {
     this.department = val.toLowerCase();
   }
+
 
 }

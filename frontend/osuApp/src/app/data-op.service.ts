@@ -78,7 +78,7 @@ export class DataOpService {
     headers.append('Content-Type','application/json')
     headers.append('Authentication','Bearer f6b81340-e7b5-4075-8f16-ba244778cb62')
 
-   return this.http.get("http://localhost:8084/osu/api/schedule/timeslot/getTimeSlotsForTutor/id",{headers:headers}).map((response)=>response.json());
+   return this.http.get("http://localhost:8084/osu/api/schedule/timeslot/getTimeSlotsForTutor/"+id,{headers:headers}).map((response)=>response.json());
 
   }
 
@@ -87,7 +87,7 @@ export class DataOpService {
     headers.append('Content-Type','application/json')
     headers.append('Authentication','Bearer f6b81340-e7b5-4075-8f16-ba244778cb62')
 
-   return this.http.get("http://localhost:8084/osu/api/schedule/timeslot/getTimeSlotsForStudent/id",{headers:headers}).map((response)=>response.json());
+   return this.http.get("http://localhost:8084/osu/api/schedule/timeslot/getTimeSlotsForStudent/"+id,{headers:headers}).map((response)=>response.json());
 
   }
 

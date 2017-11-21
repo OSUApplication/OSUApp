@@ -25,6 +25,15 @@ public class TimeSlots {
 	@Property("endTime")
 	public String endTime;
 	
+	@Property("course")
+	public String course;
+	
+	public String getCourse() {
+		return course;
+	}
+	public void setCourse(String course) {
+		this.course = course;
+	}
 	public String getId() {
 		return id;
 	}

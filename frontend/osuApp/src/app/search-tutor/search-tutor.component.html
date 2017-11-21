@@ -47,7 +47,10 @@
         <tr *ngFor="let i of tutors | filter:searchText" name="tutors_list">
           <td>{{i.name}}</td>
           <td>{{i.email}}</td>
-          <td>{{i.courseOffering}}</td>
+          <td >
+          <li *ngFor="let course of i.courseOffering"> <a  [routerLink]="['/manageTutor',i.id,course,'student']" routerLinkActive="active">{{course}}</a></li>
+          </td>
+
         </tr>
         </tbody>
       </table>
