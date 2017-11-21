@@ -11,25 +11,30 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.osuapp.model.TimeSlots;
 import com.osuapp.service.TimeSlotService;
+import com.osuapp.service.UserService;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class TimeSlotsController {
 	
+	
 	TimeSlotService timeSlotService;
+	
+	@Autowired
+	public TimeSlotsController(TimeSlotService timeSlotSerivce) {
+		this.timeSlotService = timeSlotSerivce;
+	}
 	Gson gson = new Gson(); 
 	
-	//dependency injection of user service 
-	@Autowired
-	public TimeSlotsController(TimeSlotService timeSlotService) {
-		super();
-		this.timeSlotService = timeSlotService;
-	}
-	
-	@RequestMapping(value="/schedule/timeslot/getTimeSlots/{id}",method=RequestMethod.GET)
-	public String getTimeSlots(@PathVariable("id") String id) {		
+	@RequestMapping(value="/schedule/timeslot/getTimeSlotsForTutor/{id}",method=RequestMethod.GET)
+	public String getTimeSlotsForTutor(@PathVariable("id") String id) {		
 		return gson.toJson(timeSlotService.getTimeSlotsForTutor(id));
+	}
+		
+	@RequestMapping(value="/schedule/timeslot/getTimeSlotsForStudent/{id}",method=RequestMethod.GET)
+	public String getTimeSlotsForStudent(@PathVariable("id") String id) {		
+		return gson.toJson(timeSlotService.getTimeSlotsForStudent(id));
 	}
 	
 	@RequestMapping(value="/schedule/timeslot/deleteTimeSlot/{id}",method=RequestMethod.DELETE)

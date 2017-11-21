@@ -21,12 +21,15 @@
       "styles": [
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css"
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
+        "../node_modules/angular-calendar/dist/css/angular-calendar.css"
+
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
-        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.js"
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.js",
+        "../node_modules/angular-calendar/umd/angular-calendar.js"
       ],
       "scripts":[],
       "environmentSource": "environments/environment.ts",

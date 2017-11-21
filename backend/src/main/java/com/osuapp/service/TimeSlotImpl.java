@@ -11,6 +11,7 @@ import org.mongodb.morphia.query.UpdateOperations;
 import org.mongodb.morphia.query.UpdateResults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.mongodb.DBCollection;
@@ -20,14 +21,14 @@ import com.osuapp.constants.MongoConnection;
 import com.osuapp.model.TimeSlots;
 import com.osuapp.model.User;
 
-@Service
+@Repository
 public class TimeSlotImpl implements TimeSlotService {
 
 	@Override
-	public List<TimeSlots> getTimeSlotsForTutor(String sid) {
+	public List<TimeSlots> getTimeSlotsForTutor(String tid) {
 		// TODO Auto-generated method stub
 		
-		 List<TimeSlots> timeslots = MongoConnection.dataStore.createQuery(TimeSlots.class).field("tId").equal(sid).asList(); 
+		 List<TimeSlots> timeslots = MongoConnection.dataStore.createQuery(TimeSlots.class).field("tId").equal(tid).asList(); 
 		 return timeslots;
 	}
 
@@ -37,6 +38,7 @@ public class TimeSlotImpl implements TimeSlotService {
 		 List<TimeSlots> timeslots = MongoConnection.dataStore.createQuery(TimeSlots.class).field("sId").equal(sid).asList(); 
 		 return timeslots;
 	}
+	
 	
 	@Override
 	public boolean deleteTimeSlot(String slotId) {

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity("tutor")
 public class User implements UserDetails {
 	
+	@Id
+	public String id;
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	@Property("name")
 	public String name; 
 	

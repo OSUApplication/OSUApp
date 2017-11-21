@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.osuapp.model.TimeSlots;
 
-@Repository
+@Service
 public interface TimeSlotService {
 	
 	public List<TimeSlots> getTimeSlotsForStudent(String sid);

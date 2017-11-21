@@ -124,7 +124,7 @@ export class LoginComponent implements OnInit {
   showSuccess() {
    var self = this
    this.toastr.success('Logged In !');
-   setTimeout(function(){self.back();},1000);
+   self.back();
   }
 
   showFailure(){
