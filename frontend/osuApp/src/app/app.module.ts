@@ -12,7 +12,6 @@ import {DataOpService} from './data-op.service';
 import { SessionService } from './session.service';
 import { FilterPipe} from './filter.pipe';
 import { RegFilterPipe} from './regSelectFilter.pipe';
-import { CalendarModule } from 'angular-calendar';
 
 
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
@@ -67,7 +66,7 @@ const appRoutes : Routes = [
     ManageTutorComponent,
     StudentCalendarComponent
   ],
-  
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -77,7 +76,6 @@ const appRoutes : Routes = [
     HttpClientModule,
     ToastModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    CalendarModule.forRoot(),
   ],
 
   providers: [DataOpService,SessionService],
