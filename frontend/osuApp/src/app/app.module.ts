@@ -12,7 +12,8 @@ import {DataOpService} from './data-op.service';
 import { SessionService } from './session.service';
 import { FilterPipe} from './filter.pipe';
 import { RegFilterPipe} from './regSelectFilter.pipe';
-
+import {DayPilotModule} from "daypilot-pro-angular";
+import {DataService} from './student-calendar/data.service';
 
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -76,9 +77,10 @@ const appRoutes : Routes = [
     HttpClientModule,
     ToastModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    DayPilotModule
   ],
 
-  providers: [DataOpService,SessionService],
+  providers: [DataOpService,SessionService,DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
