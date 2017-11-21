@@ -22,7 +22,6 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ManageTutorComponent } from './manage-tutor/manage-tutor.component';
 import { CalendarModule } from 'angular-calendar';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarTestComponent } from './calendar-test/calendar-test.component';
 
 const appRoutes : Routes = [
   {
@@ -50,9 +49,6 @@ const appRoutes : Routes = [
   },
   {
     path:'manageTutor/:id/:course/:type',component:ManageTutorComponent
-  },
-  {
-    path:'cal',component:CalendarTestComponent
   }
 
 ]
@@ -69,7 +65,6 @@ const appRoutes : Routes = [
     FilterPipe,
     RegFilterPipe,
     ManageTutorComponent,
-    CalendarTestComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +76,6 @@ const appRoutes : Routes = [
     ToastModule.forRoot(),
     NgbModalModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    CalendarModule.forRoot()
   ],
   providers: [DataOpService,SessionService],
   bootstrap: [AppComponent]
