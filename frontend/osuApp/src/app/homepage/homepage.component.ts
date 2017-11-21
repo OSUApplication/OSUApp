@@ -59,10 +59,14 @@ export class HomepageComponent implements OnInit {
     this.router.navigate(['/manageTutor']);
   }
 
+  check_calendar(){
+    this.router.navigate(['/student-calendar'])
+  }
+
   // login functions
 
   login(){
-   
+
   }
 
   logout(){

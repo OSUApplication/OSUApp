@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ManageTutorComponent } from './manage-tutor/manage-tutor.component';
+import { StudentCalendarComponent } from './student-calendar/student-calendar.component';
 
 const appRoutes : Routes = [
   {
@@ -44,6 +45,9 @@ const appRoutes : Routes = [
   },
   {
     path:'manageTutor',component:ManageTutorComponent
+  },
+  {
+    path:'student-calendar',component:StudentCalendarComponent
   }
 ]
 
@@ -58,7 +62,8 @@ const appRoutes : Routes = [
     ContactUsComponent,
     FilterPipe,
     RegFilterPipe,
-    ManageTutorComponent
+    ManageTutorComponent,
+    StudentCalendarComponent
   ],
   imports: [
     BrowserModule,

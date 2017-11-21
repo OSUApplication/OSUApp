@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
+    "angular-calendar": "^0.22.0",
     "angular4-notify": "^1.2.0",
     "core-js": "^2.4.1",
     "ng2-toastr": "^4.1.2",
