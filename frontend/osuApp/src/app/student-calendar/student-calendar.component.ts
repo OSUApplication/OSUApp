@@ -2,6 +2,7 @@
 import {Component, ViewChild, AfterViewInit} from "@angular/core";
 import {DayPilotCalendarComponent} from "daypilot-pro-angular";
 import {DataService} from "./data.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-calendar',
@@ -21,7 +22,7 @@ export class StudentCalendarComponent implements AfterViewInit {
 
   events: any[] = [];
 
-  constructor(private ds: DataService) {
+  constructor(private ds: DataService, private router: Router) {
   }
 
   ngAfterViewInit(): void {
@@ -31,5 +32,9 @@ export class StudentCalendarComponent implements AfterViewInit {
       this.events = result;
     });
   }
+
+    back(){
+      this.router.navigate(['/']);
+    }
 
 }
