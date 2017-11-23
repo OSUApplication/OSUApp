@@ -1,5 +1,4 @@
-<nav class="navbar navbar-inverse bg-inverse">
-  <!-- Navbar content -->
+<!-- <nav class="navbar navbar-inverse bg-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" routerLink="/home">TutorNation</a>
@@ -11,62 +10,74 @@
     </ul>
   </div>
 </nav>
+ -->
 
-<div id="baseForm" class="container">
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+
+  <a class="navbar-brand" routerLink="/home">TutorNation</a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/search-tutor">Search Tutor</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about-us">About Us</a>
+      </li>
+     
+    </ul>
+</nav> 
+
+
+
+<div id="baseForm" class="container" style="padding-top: 5%;">
     <h1>Tutor Registration Form</h1>
 
   <form>
 
-<div class="panel panel-info">
-<div class="panel-heading">
 <h4>Register Courses</h4>
-  <pre  *ngIf="confirmedCourses.length==0">Please Register a Course before proceeding</pre>
+  <p  *ngIf="confirmedCourses.length==0">Please Register a Course before proceeding</p>
 
-</div>
 
      <span *ngFor="let person of course; let i = index">
 
-      <div class="form-group">
-
-
-        <div class="panel-body">
-       <!-- <label for="cousesofferingno" style="float:left;">Course Number</label>
-
-       <input type="text" required class="form-control" id="courseno" placeholder="Enter Course Number" [(ngModel)]='person.cno' #courseno="ngModel" name="cno{{i}}"/>
-
-      <div class="alert alert-danger" *ngIf="!courseno.valid&&courseno.touched">Course Number must be entered</div> -->
-
-   <!--    <label for="cousesofferingname" style="float:left;">Course Name</label>
-       <input type="text" required class="form-control" id="coursename" placeholder="Enter Course Name" [(ngModel)]='person.cname' #cname="ngModel" name="cname{{i}}">
-      <div class="alert alert-danger" *ngIf="!cname.valid&&cname.touched">Course Name must be entered</div> -->
-
+   <div class="card">
+    <div class="card-body">
+      <div class="bg-primary text-white">
+      <h5 class="card-title">New Course</h5>
+      </div>    
     <div class="form-group">
       <div class="container">
         <div class="row">
         <div class="col-md-10">
-      <label for="sel1">Select Course</label>
+      <h6>Select Course</h6>
       <select [disabled]="!person.active==true" class="form-control" id="sel1" [(ngModel)]="person.course" name="select{{i}}" (change)="checkCourse(person)" >
         <option>Select Course</option>
         <option *ngFor="let dept of courseName | myfilter:confirmedCourses" >{{dept}}</option>
       </select>
     </div>
-    <div class="col-md-1">
-    <button [disabled]="!person.active==true" (click)="disableSelect(person.id)"><span style="color:green" class="glyphicon glyphicon-ok"></span></button>
+
+    <div class="col-md-2">
+     <a class="btn" disabled="!person.active==true" (click)="disableSelect(person.id)"><i class="fa fa-check-square fa-lg" style="color: green" aria-hidden="true"></i>
+    </a>
+
+    <a class="btn" disabled="person.active==true" (click)="activateSelect(person.id)"><i class="fa fa-pencil-square-o fa-lg" style="color:orange" aria-hidden="true"></i>
+    </a>
+
     </div>
-      <button [disabled]="person.active==true" (click)="activateSelect(person.id)"><span style="color:orange" class="glyphicon glyphicon-edit"></span></button>
+      </div>
+
+      <button *ngIf="person.active==false&&person.block==true" style="float:right" class="btn btn-primary btn-sm" (click) = "addCourseInfo()" (click)="disableBlock(person.id)"> Add Another Course</button>
+
+     <button class="btn btn-danger btn-sm" *ngIf="person.active==true&&person.id!==1" style="float:right" (click) ="deleteCourseInfo(person)">Delete</button>
+  </div>
   </div>
   </div>
   </div>
 
 
-  <button *ngIf="person.active==false&&person.block==true" style="float:right" class="btn btn-primary" (click) = "addCourseInfo()" (click)="disableBlock(person.id)"> Add Another Course</button>
-  <button class="btn btn-danger" *ngIf="person.active==true&&person.id!==1" style="float:right" (click) ="deleteCourseInfo(person)">Delete</button>
-      </div>
-      </div>
+  
 
 <hr>
 </span>
-</div>
 
   <button type="back" class="btn btn-danger" (click)="back()">Back</button>
 

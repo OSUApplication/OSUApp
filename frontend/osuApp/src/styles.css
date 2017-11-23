@@ -1,14 +1,9 @@
 body, html {
     height: 100%;
 }
-body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 62.5%;
-  line-height: 1;
-  color: #585858;
-  padding-bottom: 55px;
-}
 
 
 img { border: 0; max-width: 100%; }
 
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.css";

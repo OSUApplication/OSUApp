@@ -67,7 +67,8 @@ export class TutorRegistrationComponent implements OnInit {
     showSuccess() {
         var self = this
         this.toastr.success('Tutor Added !', 'Success!');
-        setTimeout(function(){self.back()},1000);
+        setTimeout(function(){self.router.navigate(['manageTutor']);
+},1000);
       }
 
     showFailure(){
