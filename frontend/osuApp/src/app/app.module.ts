@@ -12,7 +12,7 @@ import {DataOpService} from './data-op.service';
 import { SessionService } from './session.service';
 import { FilterPipe} from './filter.pipe';
 import { RegFilterPipe} from './regSelectFilter.pipe';
-
+import {CalendarTestComponent} from './calendar-test/calendar-test.component';
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SearchTutorComponent } from './search-tutor/search-tutor.component';
@@ -22,8 +22,10 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ManageTutorComponent } from './manage-tutor/manage-tutor.component';
 import { CalendarModule } from 'angular-calendar';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarTestComponent } from './calendar-test/calendar-test.component';
-
+import {
+  NgbDatepickerModule,
+  NgbTimepickerModule
+} from '@ng-bootstrap/ng-bootstrap';
 const appRoutes : Routes = [
   {
     path: 'home', component: HomepageComponent
@@ -51,9 +53,10 @@ const appRoutes : Routes = [
   {
     path:'manageTutor/:id/:course/:type',component:ManageTutorComponent
   },
-  {
-    path:'cal',component:CalendarTestComponent
+   {
+    path:'cal/:type', component:CalendarTestComponent
   }
+
 
 ]
 
@@ -64,12 +67,12 @@ const appRoutes : Routes = [
     HomepageComponent,
     SearchTutorComponent,
     LoginComponent,
+    CalendarTestComponent,
     AboutUsComponent,
     ContactUsComponent,
     FilterPipe,
     RegFilterPipe,
     ManageTutorComponent,
-    CalendarTestComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,9 @@ const appRoutes : Routes = [
     ToastModule.forRoot(),
     NgbModalModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    NgbDatepickerModule.forRoot(),
+    NgbTimepickerModule.forRoot()
   ],
   providers: [DataOpService,SessionService],
   bootstrap: [AppComponent]

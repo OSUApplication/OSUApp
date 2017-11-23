@@ -25,6 +25,7 @@
     "angular-calendar": "^0.21.3",
     "angular4-notify": "^1.2.0",
     "core-js": "^2.4.1",
+    "font-awesome": "^4.7.0",
     "ng2-toastr": "^4.1.2",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"

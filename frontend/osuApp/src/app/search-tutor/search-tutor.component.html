@@ -1,23 +1,20 @@
-<nav class="navbar navbar-inverse bg-inverse">
-  <!-- Navbar content -->
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" routerLink="/home">TutorNation</a>
-    </div>
-    <ul class="nav navbar-nav">
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
 
-      <li><a routerLink="/about-us">About Us</a></li>
-      <li><a routerLink="/contact-us">Contact Us</a></li>
+  <a class="navbar-brand" routerLink="/home">TutorNation</a>
+    <ul class="navbar-nav">
      
- 
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about-us">About Us</a>
+      </li>
 
+       <li class="nav-item">
+        <a class="nav-link" routerLink="/contact-us">Contact Us</a>
+      </li>
+     
     </ul>
-  </div>
-</nav>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
+</nav> 
+<div class="container" style="padding-top: 5%">
+ 
   <h1>Search for a Tutor</h1>
   <form>
     <div class="form-group">
@@ -34,7 +31,7 @@
     </div>
 
 
-      <table class="table table-striped table-bordered table-responsive">
+      <table class="table table-striped">
         <thead>
         <tr>
           <th>Name</th>
@@ -60,5 +57,4 @@
 
   </form>
 </div>
-</div>
-</div>
+

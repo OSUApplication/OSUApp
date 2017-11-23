@@ -26,10 +26,11 @@
 
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
         "../node_modules/ng2-toastr/bundles/ng2-toastr.min.js",
-        "../node_modules/angular-calendar/umd/angular-calendar.js"
+        "../node_modules/angular-calendar/umd/angular-calendar.js",
+         "../node_modules/jquery/dist/jquery.min.js",
+         "../node_modules/tether/dist/js/tether.min.js"
       ],
       "scripts":[],
       "environmentSource": "environments/environment.ts",
