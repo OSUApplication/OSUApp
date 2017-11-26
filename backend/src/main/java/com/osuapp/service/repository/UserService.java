@@ -1,4 +1,4 @@
-package com.osuapp.service;
+package com.osuapp.service.repository;
 
 import java.net.URISyntaxException;
 import java.util.List;

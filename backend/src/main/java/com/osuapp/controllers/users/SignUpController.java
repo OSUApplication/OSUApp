@@ -1,7 +1,7 @@
 package com.osuapp.controllers.users;
 
 import com.osuapp.model.User;
-import com.osuapp.service.UserService;
+import com.osuapp.service.repository.UserService;
 import com.osuapp.viewmodels.SignUpViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import com.osuapp.constants.ApplicationConstants;
 import com.osuapp.constants.MongoConnection;
 import com.osuapp.model.User;
-import com.osuapp.service.UserService;
+import com.osuapp.service.repository.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

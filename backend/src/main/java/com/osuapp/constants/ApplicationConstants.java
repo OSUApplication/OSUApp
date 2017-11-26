@@ -12,7 +12,9 @@ public class ApplicationConstants {
 	public static String FIELD_NAME = "name";
 	public static String FIELD_COURSE_OFFERING = "course_offering";
 	
-	//API Address Constants 
+	//API Address Constants
+	public static String SCHEDULE_AVAILABILITY_END_POINT = "/api/schedule/availability";
+	public static String SCHEDULE_AVAILABILITY_PATTERN_END_POINT = "/api/schedule/pattern";
 	public static String GET_USER_END_POINT = "/api/getUser/";
 	public static String GET_ALL_USERS = "/api/getAllUsers";
 	public static String GET_USER = "/api/getUser/{email:.+}";
@@ -20,7 +22,7 @@ public class ApplicationConstants {
 	public static String GET_TUTOR = "/api/getTutor/{subjectName}";
 	public static String UPDATE_USER = "/api/updateUser";
 	public static String GET_ALL_COURSES_BY_DEPTARTMENT = "/api/{departmentName}/getAllCourses";
-	
+
 	//Front-End localhost constant
 	public static String FRONT_END_LOCALHOST = "http://localhost:8084";
 	

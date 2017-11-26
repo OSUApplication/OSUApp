@@ -1,11 +1,9 @@
-package com.osuapp.service;
+package com.osuapp.service.repository;
 
-import java.util.List;
-
+import com.osuapp.model.Course;
 import org.springframework.stereotype.Repository;
 
-import com.google.gson.JsonElement;
-import com.osuapp.model.Course;
+import java.util.List;
 
 @Repository
 public interface CourseService {

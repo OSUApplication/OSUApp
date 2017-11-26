@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.osuapp.model.User;
-import com.osuapp.service.UserService;
+import com.osuapp.service.repository.UserService;
 
 @CrossOrigin
 @RestController

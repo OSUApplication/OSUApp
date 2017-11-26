@@ -33,7 +33,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.osuapp.OsuAppApplication;
 import com.osuapp.constants.ApplicationConstants;
 import com.osuapp.model.User;
-import com.osuapp.service.UserService;
+import com.osuapp.service.repository.UserService;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = OsuAppApplication.class)

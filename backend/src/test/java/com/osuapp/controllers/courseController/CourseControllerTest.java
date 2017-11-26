@@ -33,7 +33,7 @@ import com.google.gson.Gson;
 import com.osuapp.OsuAppApplication;
 import com.osuapp.constants.ApplicationConstants;
 import com.osuapp.model.Course;
-import com.osuapp.service.CourseService;
+import com.osuapp.service.repository.CourseService;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = OsuAppApplication.class)

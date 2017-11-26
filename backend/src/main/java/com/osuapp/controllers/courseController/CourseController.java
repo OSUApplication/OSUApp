@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.osuapp.service.CourseService;
+import com.osuapp.service.repository.CourseService;
 
 @RestController
 @CrossOrigin
