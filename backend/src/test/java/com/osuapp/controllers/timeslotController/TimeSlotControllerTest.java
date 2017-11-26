@@ -1,16 +1,13 @@
 package com.osuapp.controllers.timeslotController;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Before;
+import com.osuapp.OsuAppApplication;
+import com.osuapp.constants.ApplicationConstants;
+import com.osuapp.model.TimeSlots;
+import com.osuapp.service.TimeSlotService;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -23,12 +20,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.osuapp.OsuAppApplication;
-import com.osuapp.constants.ApplicationConstants;
-import com.osuapp.controllers.courseController.CourseController;
-import com.osuapp.model.TimeSlots;
-import com.osuapp.service.CourseService;
-import com.osuapp.service.TimeSlotService;
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = OsuAppApplication.class)
