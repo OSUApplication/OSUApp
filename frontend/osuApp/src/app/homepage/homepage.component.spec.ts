@@ -5,6 +5,7 @@ import { HomepageComponent } from './homepage.component';
 import { Router } from '@angular/router';
 import { SessionService } from '../session.service';
 import { HttpModule } from '@angular/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastModule, ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DataOpService } from '../data-op.service';
 
@@ -16,7 +17,7 @@ describe('HomepageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HomepageComponent ],
-      imports: [RouterTestingModule,FormsModule,HttpModule,ToastModule.forRoot()],
+      imports: [RouterTestingModule,FormsModule, HttpModule, HttpClientTestingModule, ToastModule.forRoot()],
       providers:[SessionService,DataOpService]
 
     })
@@ -24,8 +25,10 @@ describe('HomepageComponent', () => {
   }));
 
   beforeEach(() => {
+    localStorage.setItem("user", "{}");
     fixture = TestBed.createComponent(HomepageComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 

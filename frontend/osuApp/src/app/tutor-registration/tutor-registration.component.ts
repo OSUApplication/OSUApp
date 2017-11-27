@@ -53,11 +53,13 @@ export class TutorRegistrationComponent implements OnInit {
     var self = this;
     this.dataservice.getCourses().subscribe(function(data){
       self.splitCourseData(data);
-       });
+    }, function(error) {
+      console.log(error);
+    });
    }
 
    ngOnInit(){
-  
+
    }
 
     log(x){
@@ -115,7 +117,7 @@ export class TutorRegistrationComponent implements OnInit {
 
   deleteCourseInfo(id){
     var target = this.course.indexOf(id);
-    var index = target;  
+    var index = target;
     if(index < 1){
         index = 0;
     }
@@ -139,8 +141,7 @@ export class TutorRegistrationComponent implements OnInit {
       for(var d in data){
           for(var list in data[d].courseList){
               this.courseName.push(data[d].courseList[list]);
-          }      
+          }
       }
   }
 }
-

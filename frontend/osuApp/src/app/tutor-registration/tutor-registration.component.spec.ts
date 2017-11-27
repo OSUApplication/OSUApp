@@ -9,6 +9,8 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { RouterModule,Router } from '@angular/router';
 import { DataOpService } from '../data-op.service';
 import { SessionService } from '../session.service';
+import {RegFilterPipe} from '../regSelectFilter.pipe';
+import { HttpClientTestingModule,  HttpTestingController } from '@angular/common/http/testing';
 
 describe('TutorRegistrationComponent', () => {
   let component: TutorRegistrationComponent;
@@ -16,8 +18,8 @@ describe('TutorRegistrationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TutorRegistrationComponent ],
-      imports:[FormsModule, HttpModule, RouterTestingModule, ToastModule.forRoot()],
+      declarations: [ TutorRegistrationComponent, RegFilterPipe],
+      imports:[FormsModule, HttpModule, HttpClientTestingModule, RouterTestingModule, ToastModule.forRoot()],
       providers:[DataOpService,SessionService]
 
     })
@@ -31,6 +33,19 @@ describe('TutorRegistrationComponent', () => {
   });
 
   it('should create', () => {
+    const dataOpService = TestBed.get(DataOpService);
+    const http = TestBed.get(HttpTestingController);
+    // fake response
+    // const expectedCourse = [{ name: 'CS' }];
+    // //
+    // let actualUsers = [];
+    // dataOpService.getCourses().subscribe(users => {
+    //   actualUsers = users;
+    // });
+
+    // http.expectOne('http://localhost:8084/osu/api/getCourses').flush(expectedCourse);
+
+
     expect(component).toBeTruthy();
   });
 });

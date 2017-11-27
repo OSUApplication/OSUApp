@@ -4,8 +4,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule }   from '@angular/forms';
 import { Http } from '@angular/http';
 import { HttpModule } from '@angular/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SearchTutorComponent } from './search-tutor/search-tutor.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +14,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { SessionService } from './session.service';
 import {DataOpService} from './data-op.service';
 import { FilterPipe} from './filter.pipe';
+import {RegFilterPipe} from './regSelectFilter.pipe'
 
 
 describe('AppComponent', () => {
@@ -25,10 +26,10 @@ describe('AppComponent', () => {
         HomepageComponent,
         SearchTutorComponent,
         LoginComponent,
-        SignUpComponent,
-        FilterPipe
+        FilterPipe,
+        RegFilterPipe
       ],
-      imports: [ RouterTestingModule, FormsModule, HttpModule],
+      imports: [ RouterTestingModule, FormsModule, HttpModule, HttpClientTestingModule],
       providers:[SessionService, DataOpService]
 
     }).compileComponents();

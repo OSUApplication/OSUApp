@@ -5,6 +5,7 @@ import { ToastModule, ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { LoginComponent } from './login.component';
 import { SessionService } from '../session.service';
 import { HttpModule } from '@angular/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule }   from '@angular/forms';
 import { DataOpService } from '../data-op.service';
 
@@ -15,7 +16,7 @@ describe('LoginComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
-      imports:[RouterTestingModule,FormsModule,HttpModule,ToastModule.forRoot()],
+      imports:[RouterTestingModule,FormsModule,HttpModule, HttpClientTestingModule, ToastModule.forRoot()],
       providers:[SessionService,DataOpService]
     })
     .compileComponents();
