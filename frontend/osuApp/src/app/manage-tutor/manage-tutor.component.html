@@ -29,10 +29,11 @@
   <div class="row">   
     <div *ngIf="istutor===true" class="col-md-4" style="text-align: center">
    <div class="card">
-    <div class="card-body">
-      <div class="bg-primary text-white">
+     <div class="bg-primary text-white">
       <h5 class="card-title">Manage Courses</h5>
         </div>
+    <div class="card-body">
+     
         <div class="panel-body">
           <span *ngFor="let course of user.course_offerings" class="panel panel-default">
           <div class="card">
@@ -48,7 +49,7 @@
     </div>
 
 
-      <div *ngIf="istutor===true" class="col-md-4" style="text-align: center">
+<!--       <div *ngIf="istutor===false" class="col-md-4" style="text-align: center">
      <div class="card">
     <div class="card-body">
       <div class="bg-primary text-white">
@@ -68,45 +69,83 @@
             
          </div>
       </div>
-    </div>
-
-      <div *ngIf="istutor===false" class="col-md-4" style="text-align: center">
+    </div> -->
+ 
+      <div *ngIf="istutor===true" class="col-md-4" style="text-align: center">
        <div class="card">
-    <div class="card-body">
-      <div class="bg-primary text-white">
-      <h5 class="card-title">View TimeSlots</h5>
+         <div class="bg-primary text-white">
+         <h5 class="card-title">Requested TimeSlots</h5>
         </div>
-        <div class="panel-body">
-          <span *ngFor="let timeslot of ttimeslot" class="panel panel-default">
-            <h4 style="text-align: left">Course - {{timeslot.course}}</h4>
+    <div class="card-body">
+     
+          <span *ngFor="let timeslot of ttimeslot">
 
-             <div class="card">
+             <div class="card mb-3 text-center">
+              <div class="bg-warning text-white">
+               <h5 style="text-align: left">Course : {{timeslot.course}}</h5>
+                </div>
                      <div class="card-body">
-                       <h5> {{timeslot.startTime}} - {{timeslot.endTime}} </h5>
-                       <h5> Date : {{timeslot.Date}} </h5>
+                       <h6> {{timeslot.startTime}} - {{timeslot.endTime}} </h6>
+                       <h6> Date : {{timeslot.Date}} </h6>
                      </div>
               </div>
              </span>
-              </div>
             
          </div>
       </div>
-  </div>
+  </div> 
 
   <div class="col-md-4" *ngIf="istutor===true" >
     <div class="card">
+         <div class="bg-primary text-white">
+            <h5 class="card-title">Registered Available Slots <a  style="float:right" class="btn btn-success btn-sm" [routerLink]="['/cal','tutor']">
+  <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>Register Available Slots</a></h5>
+  </div>
        <div class="card-body">
-            <div class="bg-primary text-white">
-            <h5 class="card-title">View Registered Slots <a  style="float:right" class="btn btn-success btn-sm" [routerLink]="['/cal','tutor']">
-  <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Register Available Slots</a></h5>
-
-            </div>
+         
+   <span *ngFor="let slots of availability">
+                <div class="card">
+                     <div class="card-body">
+                      <div class="col-md-10">
+                       <h6> {{slots.startdate}}  - {{slots.enddate}}</h6>
+                     </div>
+                     </div>
+                   </div>
+             </span>
+ 
   </div>
 </div>
 
 </div>
 
+  <div class="col-md-8"  style="left:20%" *ngIf="istutor===false" >
+    <div class="card">
+       <div class="card-body">
+            <div class="bg-primary text-white">
+            <h5 class="card-title">Available Slots For Tutor</h5>
+  </div>
+   <span *ngFor="let slots of availability">
+                <div class="card">
+                     <div class="card-body">
+                      <div class="row">
+                      <div class="col-md-11">
+                       <h6> {{slots.startdate}}  - {{slots.enddate}}</h6>
+                       </div>
+                       <div class="col-md-1">
+                       <button class="btn btn-secondary" style="color: green" (click)  ="createTimeSlot(slots.startdate,slots.enddate)"><i class="fa fa-handshake-o" aria-hidden="true"></i></button>
+                      </div>
+                    </div>
+                     </div> 
+                   </div>
+             </span>
+ 
+  </div>
+</div>
 
+</div>
+</div>
+
+  
   <div style="text-align: left">
   <button type="back" class="btn btn-danger" (click)="back()">Back</button>
   </div>

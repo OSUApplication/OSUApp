@@ -20,7 +20,7 @@ import {
 })
 export class ManageTutorComponent implements OnInit {
 
-  timeslot:any = {"id":"","StudentId":"","TutorId":"","Date":"","startTime":"","endTime":"","confirmed":""};
+  timeslot:any = {"StudentId":"","TutorId":"","date":"","startTime":"","endTime":"","confirmed":""};
   user:any;
   data : any;
   department: any;
@@ -30,7 +30,8 @@ export class ManageTutorComponent implements OnInit {
   istutor:boolean;
   stimeslot:any;
   ttimeslot:any;
-
+  availability:any;
+  subj:any;
   constructor(private route: ActivatedRoute,private router: Router, private session:SessionService, private datasource:DataOpService){
        this.user=this.session.getSession();
 
@@ -41,6 +42,8 @@ export class ManageTutorComponent implements OnInit {
       this.sub = this.route.params.subscribe(params => {
        this.id = params['id'];
        this.type = params['type']; 
+       this.subj = decodeURI(params['course']);
+       console.log("subject is",this.subj);
        
        if(this.type=='student'){
          this.istutor=false;
@@ -53,11 +56,19 @@ export class ManageTutorComponent implements OnInit {
          this.istutor=true;
          this.datasource.getTimeSlotForTutor(this.id).subscribe(data=>{
            this.ttimeslot=data;
+           console.log("ttimeslot is",this.ttimeslot);  
          })
        }
 
        // (+) converts string 'id' to a number
        // In a real app: dispatch action to load the details here.
+    });
+      var self = this;
+     this.datasource.getTutorAvailableDates(this.id).subscribe(data=>{
+       console.log("data is ",data);
+      self.availability = data;
+      console.log("availability:",self.availability);
+
     });
       console.log("this type is",this.istutor);
       var timesl = {"date":"","StudentId":"","TutorId":""};
@@ -68,15 +79,20 @@ export class ManageTutorComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  creatTimeSlot(id:string,student:any,tutor:any,date:any,start:any,end:any,confirmed:any){
-    this.timeslot["id"]=id;
-    this.timeslot["student"]=student;
-    this.timeslot["tutor"]=tutor;
-    this.timeslot["date"]=date;
-    this.timeslot["endTime"] = end;
-    this.timeslot["confirmed"]=confirmed;
-    this.timeslot["startTime"]= start;
+  createTimeSlot(start:Date,end:Date,confirmed:any){
+    console.log(this.user);
+    var endtime = new Date(end);
+    var starttime= new Date(start);
 
+     this.timeslot["StudentId"]=this.user['uid'];
+    this.timeslot["TutorId"]=this.id;
+    this.timeslot["endTime"] = endtime.toLocaleTimeString();
+    this.timeslot["confirmed"]=false;
+    this.timeslot["startTime"]= starttime.toLocaleTimeString();
+    this.timeslot['date'] = starttime.toLocaleDateString();
+    this.timeslot['course'] = this.subj;
+
+    console.log("timeslot is",this.timeslot);
     this.datasource.createTimeSlot(this.timeslot);
 
   }

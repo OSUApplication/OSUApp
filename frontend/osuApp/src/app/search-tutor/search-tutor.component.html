@@ -45,7 +45,14 @@
           <td>{{i.name}}</td>
           <td>{{i.email}}</td>
           <td >
-          <li *ngFor="let course of i.courseOffering"> <a  [routerLink]="['/manageTutor',i.id,course,'student']" routerLinkActive="active">{{course}}</a></li>
+          <li class="list-group-item" *ngFor="let course of i.courseOffering"> 
+          <div class="col-md-10">
+          <h6>{{course}}</h6>
+          </div>
+
+          <a  class="btn btn-primary" [routerLink]="['/manageTutor',i.id,course,'student']" routerLinkActive="active"> Register
+          </a>
+          </li>
           </td>
 
         </tr>

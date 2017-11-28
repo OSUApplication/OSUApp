@@ -130,7 +130,7 @@ export class LoginComponent implements OnInit {
   showFailure(){
    this.toastr.error("Invalid Credentials, Please Log in Again");
    console.log("Invalid User Credentials");
-   this.tokenUrl= "http://localhost:8084/osu/oauth/token?grant_type=password";
+   this.tokenUrl= "http://localhost:8084/oauth/token?grant_type=password";
   }
 
   createSignBody(){

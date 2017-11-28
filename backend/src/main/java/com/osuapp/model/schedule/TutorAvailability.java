@@ -14,6 +14,12 @@ public class TutorAvailability {
 
     @Property("date")
     public Date date;
+    
+    @Property("startdate")
+    public Date startdate;
+    
+    @Property("enddate")
+    public Date enddate;
 
 
 }

@@ -24,4 +24,5 @@ public interface TutorScheduleService {
 
     List<AvailabilityDatePattern> getAvailablePatternsFor(String tutorId, Date startDate, Date endDate);
 
+    boolean deleteAvailability(String id, String startdate, String enddate); 
 }

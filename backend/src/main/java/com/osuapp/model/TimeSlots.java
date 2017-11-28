@@ -15,15 +15,15 @@ public class TimeSlots {
 	
 	@Property("tId")
 	public String TutorId;
-	
-	@Property("date")
-	public String Date;
-	
+
 	@Property("startTime")
 	public String startTime;
 	
 	@Property("endTime")
 	public String endTime;
+
+	@Property("date")
+	public String Date;
 	
 	@Property("course")
 	public String course;
@@ -56,6 +56,7 @@ public class TimeSlots {
 	public void setTutorId(String tutorId) {
 		TutorId = tutorId;
 	}
+	
 	public String getDate() {
 		return Date;
 	}

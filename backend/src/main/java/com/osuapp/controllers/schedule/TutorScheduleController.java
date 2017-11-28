@@ -45,6 +45,10 @@ public class TutorScheduleController {
         return tutorScheduleService.addTutorAvailability(tutorAvailability);
     }
 
+    @RequestMapping(value="/availability/delete/{id}/{startdate}/{enddate}", method=RequestMethod.DELETE)
+    public String deleteAvailability(@PathVariable("id") String id, @PathVariable("startdate") String startdate, @PathVariable("enddate") String enddate){
+    	return gson.toJson(tutorScheduleService.deleteAvailability(id, startdate, enddate));
+       	}
 
 
     @RequestMapping(value = "/pattern", method = RequestMethod.POST)

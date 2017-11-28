@@ -34,7 +34,7 @@ export class SessionService {
    	}
 
     var config = {headers:headers};
-  	return this.http.get('http://localhost:8084/osu/api/getUser/'+email,config).toPromise().then(
+  	return this.http.get('http://localhost:8084/api/getUser/'+email,config).toPromise().then(
         function(data){
             var session = {};
             var result = JSON.parse(JSON.stringify(data));

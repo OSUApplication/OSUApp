@@ -1,5 +1,6 @@
 package com.osuapp.service;
 
+import com.mongodb.WriteResult;
 import com.osuapp.constants.ApplicationConstants;
 import com.osuapp.constants.MongoConnection;
 import com.osuapp.model.schedule.AvailabilityDatePattern;
@@ -57,4 +58,15 @@ public class TutorScheduleServiceImpl implements TutorScheduleService {
         tutorAvailabilityQuery.criteria("startDate").greaterThanOrEq(startDate).add(tutorAvailabilityQuery.criteria("endDate").lessThanOrEq(endDate));
         return tutorAvailabilityQuery.asList();
     }
+
+	@Override
+	public boolean deleteAvailability(String id, String startdate, String enddate) {
+		// TODO Auto-generated method stub
+		
+		Date start = new Date(startdate);
+		Date end = new Date(enddate);
+		Query<TutorAvailability> tutorAvailabilityQuery = MongoConnection.dataStore.createQuery(TutorAvailability.class).field("tutorId").equal(id).field("startdate").equal(start).field("enddate").equal(end);
+		WriteResult deletedSlot = MongoConnection.dataStore.delete(tutorAvailabilityQuery);
+		return (deletedSlot.getN()>0)?true:false;
+	}
 }

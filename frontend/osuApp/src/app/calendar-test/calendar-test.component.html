@@ -178,7 +178,7 @@
 
 <table class="table table-bordered">
 
-  <thead>
+  <thead class="thead-inverse">
     <tr>
       <th>Date</th>
       <th>Start Time</th>
@@ -205,13 +205,8 @@
       <td>
         <button
           class="btn btn-danger btn-sm"
-          (click)="events.splice(index, 1); refresh.next()">
+          (click)="events.splice(index, 1);deleteTimeSlot(event); refresh.next()">
           Delete
-        </button>
-        <button
-          class="btn btn-success btn-sm"
-          (click)="confirmSlot">
-          Confirm
         </button>
       </td>   
     </tr>

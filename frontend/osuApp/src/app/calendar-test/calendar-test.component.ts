@@ -78,15 +78,24 @@ export class CalendarTestComponent implements OnInit {
 
   endTimeStruct: NgbTimeStruct;
 
+  id:any;
+
   modalDataNew:any;
 
   modalRef:any;
 
+  startdate:Date;
+  enddate:Date;
+
   date: Date;
+
+  initstartdate: Date;
+  initenddate:Date;
 
   sub:any;
   type:any;
 
+  sessiontutor:any;
   reqDate:Array<Date>;
 
   myRadio:string;
@@ -95,16 +104,36 @@ export class CalendarTestComponent implements OnInit {
     action: string;
     event: CalendarEvent;
   };
-  constructor(private modal: NgbModal,private route: ActivatedRoute) {}
+  constructor(private session: SessionService,private modal: NgbModal,private route: ActivatedRoute, private datasource:DataOpService) {}
 
  ngOnInit() {
    this.startTimeStruct = {hour:9, minute:0,second:0};
    this.endTimeStruct =   {hour:12, minute:0,second:0};
 
+   this.sessiontutor = this.session.getSession();
+   console.log(this.sessiontutor);
     this.sub = this.route.params.subscribe(params => {
       this.type = params['type'];
+      this.id = params['id'];
+      console.log("id is ",this.id);
+
     }
       )
+
+    var self = this;
+    this.datasource.getTutorAvailableDates(this.sessiontutor['uid']).subscribe(data=>{
+        data.forEach(function(date){
+             var st_date = new Date(date.startdate);
+             var end_date = new Date(date.enddate);
+            
+
+             self.initstartdate = new Date(st_date);
+             self.initenddate = new Date(end_date);
+             console.log("initdate is ",self.initenddate);
+
+             self.addInitEvent();
+        });
+    });
        }
        
   actions: CalendarEventAction[] = [
@@ -126,14 +155,13 @@ export class CalendarTestComponent implements OnInit {
   check(modalContent){
     
   
-        if(this.myRadio == "one"){
-          this.addEvent();
-        }
+/*        if(this.myRadio == "one"){
+*/          this.addEvent();
+        /*}
         else{
           this.addEventRepeat();
-        }
-       this.modalRef.close();
-     
+        }*/
+       this.modalRef.close();    
   }
   events: CalendarEvent[] = [
   ];
@@ -192,6 +220,21 @@ export class CalendarTestComponent implements OnInit {
     this.refresh.next();
   }
 
+  addInitEvent(){
+      this.events.push({
+      title: 'New event',
+      start: new Date(this.initstartdate),
+      end: new Date(this.initenddate),
+      color: colors.red,
+      draggable: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+    });
+    this.refresh.next();
+  }
+
   addEventRepeat():void{
 
 
@@ -199,27 +242,29 @@ export class CalendarTestComponent implements OnInit {
 
   addStartEventTime(date:Date){
 
-   var startdate = date;
+   this.startdate = date;
    console.log("start time struct is ",this.startTimeStruct.hour);
-   startdate.setHours(startdate.getHours()+this.startTimeStruct.hour);
-   startdate.setMinutes(startdate.getMinutes()+this.startTimeStruct.minute);
-   console.log("test is",startdate.getHours());
-   
-   return startdate;
+   this.startdate.setHours(this.startdate.getHours()+this.startTimeStruct.hour);
+   this.startdate.setMinutes(this.startdate.getMinutes()+this.startTimeStruct.minute);
+   return this.startdate;
   }
 
   addEndEventTime(date:Date){
-   var enddate = date;
-   enddate.setHours(enddate.getHours()+this.endTimeStruct.hour);
-   enddate.setMinutes(enddate.getMinutes()+this.endTimeStruct.minute);
-   return enddate;
+   this.enddate = date;
+   this.enddate.setHours(this.enddate.getHours()+this.endTimeStruct.hour);
+   this.enddate.setMinutes(this.enddate.getMinutes()+this.endTimeStruct.minute);
+
+   this.datasource.setTutorAvailableDate({tutorId:this.sessiontutor['uid'],startdate:this.startdate,enddate:this.enddate});
+   return this.enddate;
   }
 
+  deleteTimeSlot(event){
+    var startdate = new Date(event.start);
+    var enddate = new Date(event.end);
 
-
-
- 
-
+    this.datasource.deleteTutorAvailableDate(this.sessiontutor['uid'],startdate,enddate).subscribe(data =>
+      console.log(data));
+  }
   updateTime(): void {
     const newDate: Date = setHours(
       setMinutes(
