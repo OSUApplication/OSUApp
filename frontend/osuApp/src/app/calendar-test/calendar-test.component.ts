@@ -133,7 +133,7 @@ export class CalendarTestComponent implements OnInit {
 
              self.addInitEvent();
         });
-    });
+    }),function(){}
        }
        
   actions: CalendarEventAction[] = [
