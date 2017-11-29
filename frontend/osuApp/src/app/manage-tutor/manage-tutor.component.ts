@@ -44,23 +44,23 @@ export class ManageTutorComponent implements OnInit {
   ngOnInit() {
       this.sub = this.route.params.subscribe(params => {
        this.id = params['id'];
-       this.type = params['type']; 
+       this.type = params['type'];
        this.subj = decodeURI(params['course']);
        console.log("subject is",this.subj);
-       
+
        if(this.type=='student'){
          this.istutor=false;
          this.datasource.getTimeSlotForStudent(this.id).subscribe(data=>{
            this.stimeslot = data;
            console.log("student timeslots are ",data);
-         });
+         }, function (error) {});
        }
        else{
          this.istutor=true;
          this.datasource.getTimeSlotForTutor(this.id).subscribe(data=>{
            this.ttimeslot=data;
-           console.log("ttimeslot is",this.ttimeslot);  
-         })
+           console.log("ttimeslot is",this.ttimeslot);
+         }, function (error) {})
        }
 
        // (+) converts string 'id' to a number
@@ -71,8 +71,7 @@ export class ManageTutorComponent implements OnInit {
        console.log("data is ",data);
       self.availability = data;
       console.log("availability:",self.availability);
-
-    });
+    }, function (error) {});
       console.log("this type is",this.istutor);
       var timesl = {"date":"","StudentId":"","TutorId":""};
   }
