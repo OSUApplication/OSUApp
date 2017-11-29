@@ -1,6 +1,7 @@
 import { Component, OnInit,ChangeDetectionStrategy,
   ViewChild,
   TemplateRef } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Router } from '@angular/router';
 import { SessionService } from '../session.service';
 import {DataOpService} from '../data-op.service';
@@ -12,6 +13,7 @@ import {
   CalendarEventAction,
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
+import { ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-manage-tutor',
@@ -32,8 +34,9 @@ export class ManageTutorComponent implements OnInit {
   ttimeslot:any;
   availability:any;
   subj:any;
-  constructor(private route: ActivatedRoute,private router: Router, private session:SessionService, private datasource:DataOpService){
+  constructor(private route: ActivatedRoute,vcr: ViewContainerRef,public toastr: ToastsManager,private router: Router, private session:SessionService, private datasource:DataOpService){
        this.user=this.session.getSession();
+       this.toastr.setRootViewContainerRef(vcr);
 
        console.log(this.user);
      }
@@ -84,7 +87,7 @@ export class ManageTutorComponent implements OnInit {
     var endtime = new Date(end);
     var starttime= new Date(start);
 
-     this.timeslot["StudentId"]=this.user['uid'];
+    this.timeslot["StudentId"]=this.user['uid'];
     this.timeslot["TutorId"]=this.id;
     this.timeslot["endTime"] = endtime.toLocaleTimeString();
     this.timeslot["confirmed"]=false;
@@ -97,9 +100,46 @@ export class ManageTutorComponent implements OnInit {
 
   }
 
+  deleteTimeSlot(slot){
+    var startdate = new Date(slot.startdate);
+    var enddate = new Date(slot.enddate);
+    var self = this;
+    this.datasource.deleteTutorAvailableDate(this.id,startdate,enddate).subscribe(data =>
+     { if(data.status == 200){
+        self.showRequestSuccess();
+      }}
+      )
+  }
   dropdownValue(val: any) {
     this.department = val.toLowerCase();
   }
 
+  showRequestSuccess() {
+        var self = this
+        this.toastr.success('TimeSlot Requested !');
+        setTimeout(function(){location.reload();},1000);
+      }
+
+   showConfirmSuccess() {
+        var self = this
+        this.toastr.success('TimeSlot Confirmed !');
+        setTimeout(function(){location.reload();},1000);
+      }
+
+  confirmTimeSlot(timeslot){
+    var self = this;
+    this.datasource.confirmTimeSlot(timeslot.id).subscribe(data=>
+      {
+        if(data.statusCode=="ACCEPTED"){
+          self.showConfirmSuccess();
+        }
+      });
+  }
+
+  rejectTimeSlot(timeslot){
+    console.log(timeslot.id);
+    this.datasource.rejectTimeSlot(timeslot.id).subscribe(data=>
+      console.log(data));
+  }
 
 }

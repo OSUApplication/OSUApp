@@ -42,8 +42,7 @@ public class TimeSlotsController {
 	
 	@RequestMapping(value="/schedule/timeslot/createTimeSlot",method=RequestMethod.POST)
 	public String createTimeSlot(@RequestBody TimeSlots timeslot) {
-		return gson.toJson(timeSlotService.createTimeSlot(timeslot));
-		
+		return gson.toJson(timeSlotService.createTimeSlot(timeslot));	
 	}
 	
 	

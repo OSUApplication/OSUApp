@@ -107,8 +107,11 @@ public class TimeSlotImpl implements TimeSlotService {
 		if(timeslot.endTime !=null) {
 			updatefields.set("time",timeslot.getEndTime());
 		}
-	
-	
+		
+		if(timeslot.rejected == true) {
+			updatefields.set("rejected", true);
+		}
+		
 		return updatefields;
 	}
 

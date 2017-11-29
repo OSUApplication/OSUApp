@@ -111,7 +111,6 @@ export class CalendarTestComponent implements OnInit {
    this.endTimeStruct =   {hour:12, minute:0,second:0};
 
    this.sessiontutor = this.session.getSession();
-   console.log(this.sessiontutor);
     this.sub = this.route.params.subscribe(params => {
       this.type = params['type'];
       this.id = params['id'];

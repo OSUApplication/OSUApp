@@ -135,4 +135,25 @@ export class DataOpService {
     console.log("delete variables are ",id,start,end);
     return this.http.delete("http://localhost:8084/api/schedule/availability/delete/"+id+"/"+start+"/"+end);
  }
+
+ confirmTimeSlot(id){
+     let headers = new Headers();
+    headers.append('Content-Type','application/json')
+    headers.append('Authentication','Bearer f6b81340-e7b5-4075-8f16-ba244778cb62')
+
+    let postBody = JSON.stringify({"id":id,"confirmed":true});
+
+    return this.http.post("http://localhost:8084/api/schedule/timeslot/updateTimeSlot",postBody,{headers:headers}).map((response)=>response.json());
+ }
+
+ rejectTimeSlot(id){
+
+    let headers = new Headers();
+    headers.append('Content-Type','application/json')
+    headers.append('Authentication','Bearer f6b81340-e7b5-4075-8f16-ba244778cb62')
+
+    let postBody = JSON.stringify({"id":id,"rejected":true});
+
+    return this.http.post("http://localhost:8084/api/schedule/timeslot/updateTimeSlot",postBody,{headers:headers}).map((response)=>response.json());
+ }
 }

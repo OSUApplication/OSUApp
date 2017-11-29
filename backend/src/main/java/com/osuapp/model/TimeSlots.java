@@ -43,6 +43,8 @@ public class TimeSlots {
 	@Property("confirmed")
 	public boolean confirmed;
 	
+	@Property("rejected")
+	public boolean rejected;
 
 	public String getStudentId() {
 		return StudentId;
