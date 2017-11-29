@@ -15,7 +15,6 @@ import { Component, OnInit,ChangeDetectionStrategy,
   ViewChild,
   TemplateRef } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ActivatedRoute } from '@angular/router';
 
 describe('CalendarTestComponent', () => {
   let component: CalendarTestComponent;

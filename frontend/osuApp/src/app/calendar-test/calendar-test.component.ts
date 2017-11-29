@@ -66,7 +66,7 @@ export const colors: any = {
 export class CalendarTestComponent implements OnInit {
 
 
- 
+
 
  @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
@@ -125,7 +125,6 @@ export class CalendarTestComponent implements OnInit {
         data.forEach(function(date){
              var st_date = new Date(date.startdate);
              var end_date = new Date(date.enddate);
-            
 
              self.initstartdate = new Date(st_date);
              self.initenddate = new Date(end_date);
@@ -133,9 +132,9 @@ export class CalendarTestComponent implements OnInit {
 
              self.addInitEvent();
         });
-    }),function(){}
+    }, function(error) {});
        }
-       
+
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fa fa-fw fa-pencil"></i>',
@@ -153,15 +152,15 @@ export class CalendarTestComponent implements OnInit {
   refresh: Subject<any> = new Subject();
 
   check(modalContent){
-    
-  
+
+
 /*        if(this.myRadio == "one"){
 */          this.addEvent();
         /*}
         else{
           this.addEventRepeat();
         }*/
-       this.modalRef.close();    
+       this.modalRef.close();
   }
   events: CalendarEvent[] = [
   ];
@@ -199,7 +198,7 @@ export class CalendarTestComponent implements OnInit {
 
 
   handleDayEvent(action: string, date:Date): void {
-     var selected=  date.toDateString();  
+     var selected=  date.toDateString();
 
     this.modalDataNew = {action, selected};
     this.modalRef = this.modal.open(this.modalContent, { size: 'lg' });
