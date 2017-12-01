@@ -8,8 +8,8 @@
 
       <li><a routerLink="/about-us">About Us</a></li>
       <li><a routerLink="/contact-us">Contact Us</a></li>
-     
- 
+
+
 
     </ul>
   </div>
@@ -34,7 +34,7 @@
     </div>
 
 
-      <table class="table table-striped table-bordered table-responsive">
+      <table class="table table-striped table-bordered">
         <thead>
         <tr>
           <th>Name</th>
@@ -44,8 +44,8 @@
         </thead>
 
         <tbody>
-        <tr *ngFor="let i of tutors | filter:searchText" name="tutors_list">
-          <td>{{i.name}}</td>
+        <tr *ngFor="let i of tutors | filter:searchText" name="tutors_list" id="abc">
+          <td><button (click)="open(content,ngmodalpage)">{{i.name}}</button></td>
           <td>{{i.email}}</td>
           <td>{{i.courseOffering}}</td>
         </tr>
@@ -58,4 +58,11 @@
   </form>
 </div>
 </div>
+</div>
+
+
+<div>
+  <ng-template #ngmodalpage>
+    <app-profile></app-profile>
+  </ng-template>
 </div>

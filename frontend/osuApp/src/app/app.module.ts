@@ -14,6 +14,7 @@ import { FilterPipe} from './filter.pipe';
 import { RegFilterPipe} from './regSelectFilter.pipe';
 import {DayPilotModule} from "daypilot-pro-angular";
 import {DataService} from './student-calendar/data.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { TutorRegistrationComponent } from './tutor-registration/tutor-registration.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -23,6 +24,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ManageTutorComponent } from './manage-tutor/manage-tutor.component';
 import { StudentCalendarComponent } from './student-calendar/student-calendar.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes : Routes = [
   {
@@ -50,6 +52,9 @@ const appRoutes : Routes = [
   },
   {
     path:'student-calendar',component:StudentCalendarComponent
+  },
+  {
+    path:'profile',component:ProfileComponent
   }
 ]
 
@@ -65,7 +70,8 @@ const appRoutes : Routes = [
     FilterPipe,
     RegFilterPipe,
     ManageTutorComponent,
-    StudentCalendarComponent
+    StudentCalendarComponent,
+    ProfileComponent
   ],
 
   imports: [
@@ -77,9 +83,10 @@ const appRoutes : Routes = [
     HttpClientModule,
     ToastModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    DayPilotModule
+    DayPilotModule,
+    NgbModule.forRoot(),
   ],
-
+  exports:[ProfileComponent],
   providers: [DataOpService,SessionService,DataService],
   bootstrap: [AppComponent]
 })

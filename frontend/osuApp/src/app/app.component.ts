@@ -6,8 +6,8 @@ import { ViewContainerRef } from '@angular/core';
 import {DataOpService} from './data-op.service';
 import { SessionService } from './session.service';
 import { Router } from '@angular/router';
-
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
