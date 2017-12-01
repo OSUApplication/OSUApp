@@ -15,6 +15,7 @@ import { Component, OnInit,ChangeDetectionStrategy,
   ViewChild,
   TemplateRef } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 describe('CalendarTestComponent', () => {
   let component: CalendarTestComponent;
@@ -24,7 +25,7 @@ describe('CalendarTestComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CalendarTestComponent ],
       imports:[FormsModule, HttpModule, HttpClientTestingModule, RouterTestingModule,NgbModalModule.forRoot(),
-       NgbDatepickerModule.forRoot(),NgbTimepickerModule.forRoot(),CalendarModule.forRoot(),BrowserAnimationsModule],
+       NgbDatepickerModule.forRoot(),NgbTimepickerModule.forRoot(),CalendarModule.forRoot(),BrowserAnimationsModule,ToastModule.forRoot()],
       providers:[ DataOpService,SessionService]
     })
     .compileComponents();
