@@ -51,6 +51,9 @@ const appRoutes : Routes = [
     path:'manageTutor',component:ManageTutorComponent
   },
   {
+    path:'manageTutor/:id',component:ManageTutorComponent
+  },
+  {
     path:'manageTutor/:id/:course/:type',component:ManageTutorComponent
   },
    {

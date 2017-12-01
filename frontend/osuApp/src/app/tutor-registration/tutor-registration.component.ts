@@ -33,6 +33,8 @@ export class TutorRegistrationComponent implements OnInit {
 
    id:number = 1;
 
+   existingCourses:any;
+
    result:any = [];
 
    courseData:any;
@@ -43,6 +45,7 @@ export class TutorRegistrationComponent implements OnInit {
 
    confirmedCourses:any=[];
 
+   Usersession:any;
    loggedin:boolean;
    constructor(private router: Router,public toastr: ToastsManager, private session: SessionService,vcr: ViewContainerRef, private dataservice:DataOpService){
 
@@ -51,15 +54,36 @@ export class TutorRegistrationComponent implements OnInit {
     this.courseOffering= [];
 
     var self = this;
-    this.dataservice.getCourses().subscribe(function(data){
-      self.splitCourseData(data);
-    }, function(error) {
+
+    this.Usersession = this.session.getSession();
+
+    this.dataservice.getUser(self.Usersession['email']).toPromise().then(function(data){
+     self.existingCourses = data.courseOffering;
+      if(data.courseOffering == null){
+        self.existingCourses = [];
+      }
+        }).then(function(){
+       self.dataservice.getCourses().subscribe(function(data){
+            self.splitCourseData(data);
+          }, function(error) {
       console.log(error);
     });
-   }
+
+    });
+
+
+
+   
+
+
+  
+    }
 
    ngOnInit(){
 
+         var self = this;
+
+    
    }
 
     log(x){
@@ -68,13 +92,13 @@ export class TutorRegistrationComponent implements OnInit {
 
     showSuccess() {
         var self = this
-        this.toastr.success('Tutor Added !', 'Success!');
-        setTimeout(function(){self.router.navigate(['manageTutor']);
+        this.toastr.success('Tutor Coures Added !', 'Success!');
+        setTimeout(function(){self.router.navigate(['/manageTutor',self.Usersession['uid']]);
 },1000);
       }
 
     showFailure(){
-        this.toastr.error("Tutor not Added, Something went wrong ");
+        this.toastr.error("Tutor Courses not Added, Something went wrong ");
     }
 
 
@@ -101,8 +125,12 @@ export class TutorRegistrationComponent implements OnInit {
   }
 
   disableSelect(data){
+
+    if(this.course[data-1].course){    
     this.confirmedCourses.push(this.course[data-1].course);
     this.course[data-1].active=false;
+    }
+    console.log("this.confirmed courses is ",this.confirmedCourses);
   }
 
   activateSelect(data){
@@ -140,7 +168,10 @@ export class TutorRegistrationComponent implements OnInit {
   splitCourseData(data){
       for(var d in data){
           for(var list in data[d].courseList){
+              if(!this.existingCourses.includes(data[d].courseList[list]))
+              {
               this.courseName.push(data[d].courseList[list]);
+            }
           }
       }
   }

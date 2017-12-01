@@ -8,6 +8,8 @@ import {FilterPipe} from '../filter.pipe';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ViewContainerRef } from '@angular/core';
 
 import { Subject } from 'rxjs/Subject';
 
@@ -80,12 +82,17 @@ export class CalendarTestComponent implements OnInit {
 
   id:any;
 
+  preevents:any;
+
   modalDataNew:any;
 
   modalRef:any;
 
   startdate:Date;
   enddate:Date;
+
+  eventstartdate:Date;
+  eventenddate:Date;
 
   date: Date;
 
@@ -104,7 +111,10 @@ export class CalendarTestComponent implements OnInit {
     action: string;
     event: CalendarEvent;
   };
-  constructor(private session: SessionService,private modal: NgbModal,private route: ActivatedRoute, private datasource:DataOpService) {}
+  constructor(private router: Router,private session: SessionService,public toastr: ToastsManager,vcr: ViewContainerRef,private modal: NgbModal,private route: ActivatedRoute, private datasource:DataOpService) {
+        this.toastr.setRootViewContainerRef(vcr);
+
+  }
 
  ngOnInit() {
    this.startTimeStruct = {hour:9, minute:0,second:0};
@@ -150,11 +160,29 @@ export class CalendarTestComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
+   showConflictFailure(){
+        this.toastr.error("Time Conflict Detected, Cannot Register Slot");
+    }
+
   check(modalContent){
 
+        console.log("Modal this data is",this.modalDataNew.selected,this.startTimeStruct,this.endTimeStruct);
 
+        this.eventstartdate = this.createDateTime(this.modalDataNew.selected,this.startTimeStruct);
+        this.eventenddate = this.createDateTime(this.modalDataNew.selected,this.endTimeStruct);
+
+        var conflict =  this.checkTimeConflict(this.eventstartdate,this.eventenddate,this.preevents);
 /*        if(this.myRadio == "one"){
-*/          this.addEvent();
+*/         
+            if(!conflict)
+            {
+              this.addEvent();
+            }
+            else{
+
+              this.showConflictFailure();
+
+            }
         /*}
         else{
           this.addEventRepeat();
@@ -180,6 +208,7 @@ export class CalendarTestComponent implements OnInit {
         this.activeDayIsOpen = true;
         this.viewDate = date;
       }
+     this.preevents = this.events.slice(0);
     }
 
     this.handleDayEvent("addday",date);
@@ -206,8 +235,8 @@ export class CalendarTestComponent implements OnInit {
   addEvent(): void {
     this.events.push({
       title: 'New event',
-      start: this.addStartEventTime(new Date(this.modalDataNew.selected)),
-      end: this.addEndEventTime(new Date(this.modalDataNew.selected)),
+      start: this.eventstartdate,
+      end: this.eventenddate,
       color: colors.red,
       draggable: true,
       resizable: {
@@ -215,7 +244,10 @@ export class CalendarTestComponent implements OnInit {
         afterEnd: true
       },
     });
+
     this.refresh.next();
+    this.datasource.setTutorAvailableDate({tutorId:this.sessiontutor['uid'],startdate:this.eventstartdate,enddate:this.eventenddate});
+
   }
 
   addInitEvent(){
@@ -238,6 +270,30 @@ export class CalendarTestComponent implements OnInit {
 
   }
 
+  createDateTime(date,time){
+    var dateTime = new Date(date);
+    dateTime.setHours(dateTime.getHours()+time.hour);
+    dateTime.setMinutes(dateTime.getMinutes()+time.minute);
+
+    return dateTime;
+  }
+
+  checkTimeConflict(starttime:Date,endtime:Date ,events){
+    console.log("preevent",events);
+    var check = false;
+    if(events.length > 0){
+      events.forEach(function(event){
+       console.log("starttime date and event date is",starttime.getTime(),endtime.getTime(),event.start.getTime(),event.end.getTime());
+       (starttime.getTime() >= event.start.getTime() && starttime.getTime() <= event.end.getTime())? check = true: check = false;               
+       (endtime.getTime() >= event.start.getTime() && endtime.getTime() <= event.end.getTime())? check = true: check = false;                          
+    });
+    return check;
+  }
+    else{
+      return false;
+    }
+  }
+
   addStartEventTime(date:Date){
 
    this.startdate = date;
@@ -252,7 +308,6 @@ export class CalendarTestComponent implements OnInit {
    this.enddate.setHours(this.enddate.getHours()+this.endTimeStruct.hour);
    this.enddate.setMinutes(this.enddate.getMinutes()+this.endTimeStruct.minute);
 
-   this.datasource.setTutorAvailableDate({tutorId:this.sessiontutor['uid'],startdate:this.startdate,enddate:this.enddate});
    return this.enddate;
   }
 
@@ -281,4 +336,7 @@ export class CalendarTestComponent implements OnInit {
     this.onChangeCallback(newDate,newEndDate);
   }
 
+  back(){
+    this.router.navigate(['/manageTutor',this.sessiontutor['uid'],"none","tutor"]);
+  }
 }

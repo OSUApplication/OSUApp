@@ -34,8 +34,14 @@ export class ManageTutorComponent implements OnInit {
   ttimeslot:any;
   availability:any;
   subj:any;
+  coursesOffered:any;
   constructor(private route: ActivatedRoute,vcr: ViewContainerRef,public toastr: ToastsManager,private router: Router, private session:SessionService, private datasource:DataOpService){
        this.user=this.session.getSession();
+       this.datasource.getUser(this.user.email).subscribe(data=>{
+         console.log("data is",data);
+         this.coursesOffered = data['courseOffering'];
+       });
+
        this.toastr.setRootViewContainerRef(vcr);
 
        console.log(this.user);

@@ -11,9 +11,7 @@
         <a class="nav-link" routerLink="/search-tutor">Search Tutor</a>
       </li>
 
-       <li class="nav-item">
-        <a class="nav-link" routerLink="/contact-us">Contact Us</a>
-      </li>
+     
      
     </ul>
 </nav> 
@@ -30,11 +28,12 @@
     <div *ngIf="istutor===true" class="col-md-3" style="text-align: center">
    <div class="card">
      <div class="bg-primary text-white">
-      <h5 class="card-title">Registered Courses</h5>
+      <h5 class="card-title">Registered Courses <a  style="float:right" class="btn btn-success btn-sm" [routerLink]="['/tutor-registration']">
+  <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>Register More Courses</a></h5>
         </div>
     <div class="card-body">
      
-          <li class="list-group-item" *ngFor="let course of user.course_offerings">
+          <li class="list-group-item" *ngFor="let course of coursesOffered">
                    <h6> {{course}}</h6>
              </li>
               </div>
@@ -133,15 +132,13 @@
 
 </div>
 
-  <div class="col-md-8"  style="left:20%" *ngIf="istutor===false" >
+  <div class="col-md-7"  style="left:20%" *ngIf="istutor===false" >
     <div class="card">
        <div class="card-body">
             <div class="bg-primary text-white">
             <h5 class="card-title">Available Slots For Tutor</h5>
   </div>
    <span *ngFor="let slots of availability">
-                <div class="card">
-                     <div class="card-body">
                       <div class="row">
                       <div class="col-md-11">
                        <h6> {{slots.startdate}}  - {{slots.enddate}}</h6>
@@ -150,8 +147,6 @@
                        <button class="btn btn-secondary" style="color: green" (click)  ="createTimeSlot(slots.startdate,slots.enddate);deleteTimeSlot(slots)"><i class="fa fa-handshake-o" aria-hidden="true"></i></button>
                       </div>
                     </div>
-                     </div> 
-                   </div>
              </span>
  
   </div>

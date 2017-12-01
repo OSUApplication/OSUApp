@@ -26,10 +26,20 @@
     </ul>
 </nav> 
 
+<div class="container" style="width :90%;" >
+  <div class="row" style="padding-top: 5%">
+<div class="col-md-2">
+    <div class="card card-inverse" style="background-color: #333; border-color: #333;">
+      <h6 class="card-title">Selected Courses</h6>
+     <span *ngFor="let course of confirmedCourses">
+      <p class="card-text">{{course}}</p>
+      </span>
+    </div>
+    </div>
 
-
-<div id="baseForm" class="container" style="padding-top: 5%;">
+<div class="col-md-10" >
     <h1>Tutor Registration Form</h1>
+
 
   <form>
 
@@ -39,28 +49,30 @@
 
      <span *ngFor="let person of course; let i = index">
 
-   <div class="card">
+    <div class="card">
     <div class="card-body">
       <div class="bg-primary text-white">
       <h5 class="card-title">New Course</h5>
       </div>    
+
     <div class="form-group">
       <div class="container">
         <div class="row">
         <div class="col-md-10">
       <h6>Select Course</h6>
       <select [disabled]="!person.active==true" class="form-control" id="sel1" [(ngModel)]="person.course" name="select{{i}}" (change)="checkCourse(person)" >
-        <option>Select Course</option>
+        <option></option>
         <option *ngFor="let dept of courseName | myfilter:confirmedCourses" >{{dept}}</option>
       </select>
     </div>
 
-    <div class="col-md-2">
-     <a class="btn" disabled="!person.active==true" (click)="disableSelect(person.id)"><i class="fa fa-check-square fa-lg" style="color: green" aria-hidden="true"></i>
-    </a>
 
-    <a class="btn" disabled="person.active==true" (click)="activateSelect(person.id)"><i class="fa fa-pencil-square-o fa-lg" style="color:orange" aria-hidden="true"></i>
-    </a>
+    <div class="col-md-2">
+     <button class="btn btn-sm" [disabled]="!person.active==true" (click)="disableSelect(person.id)"><i class="fa fa-check-square fa-lg" style="color: green" aria-hidden="true"></i>
+    </button>
+
+    <button class="btn btn-sm" [disabled]="person.active==true" (click)="activateSelect(person.id)"><i class="fa fa-pencil-square-o fa-lg" style="color:orange" aria-hidden="true"></i>
+    </button>
 
     </div>
       </div>
@@ -87,8 +99,7 @@
 
  
 </form>
+</div>
+</div>
+</div>
 
-
-
-
-  </div>

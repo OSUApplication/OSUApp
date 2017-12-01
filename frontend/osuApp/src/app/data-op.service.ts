@@ -156,4 +156,14 @@ export class DataOpService {
 
     return this.http.post("http://localhost:8084/api/schedule/timeslot/updateTimeSlot",postBody,{headers:headers}).map((response)=>response.json());
  }
+
+ getUser(email){
+      let headers = new Headers();
+    headers.append('Content-Type','application/json')
+    headers.append('Authentication','Bearer f6b81340-e7b5-4075-8f16-ba244778cb62')
+     return this.http.get('http://localhost:8084/api/getUser/'+email,{headers:headers}).map((response)=>response.json());
+      
+ }
+
+
 }
