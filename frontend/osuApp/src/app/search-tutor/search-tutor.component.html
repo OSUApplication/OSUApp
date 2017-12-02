@@ -45,7 +45,7 @@
 
         <tbody>
         <tr *ngFor="let i of tutors | filter:searchText" name="tutors_list" id="abc">
-          <td><button (click)="open(content,ngmodalpage)">{{i.name}}</button></td>
+          <td><button (click)="open(content,ngmodalpage,i)">{{i.name}}</button></td>
           <td>{{i.email}}</td>
           <td>{{i.courseOffering}}</td>
         </tr>

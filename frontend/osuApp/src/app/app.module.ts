@@ -87,7 +87,7 @@ const appRoutes : Routes = [
     NgbModule.forRoot(),
   ],
   exports:[ProfileComponent],
-  providers: [DataOpService,SessionService,DataService],
+  providers: [DataOpService,SessionService,DataService,ProfileComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

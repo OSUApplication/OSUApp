@@ -104,7 +104,6 @@ export class LoginComponent implements OnInit {
 
   signup() {
       var self = this;
-
       this.dataservice.signup(this.email, this.password, this.name).subscribe(function(resp){
           if(resp.status == 201){
               self.toastr.success('Sign Up Completed', 'Success!');

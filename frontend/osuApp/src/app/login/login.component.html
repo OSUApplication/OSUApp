@@ -54,9 +54,9 @@
             <span class="validation" *ngIf="!pword.valid&&pword.touched">Required</span>
           </div>
           <div class="form-group form-inline">
-            <input type="file" ngf-select="onFileSelect($files)" multiple>
+            <input type="file" class="photo" [(ngModel)]='photo' #uname="ngModel" name="photos">
           </div>
-          <div class="log-button-group" align="center">
+          <div class="log-button-group" align="center" style="margin-top:30px;" >
             <button type="back" class="btn btn-primary" (click)="flip()">I have account</button>
             <button [disabled]="!(em.valid&&pword.valid&&uname.valid)" type="submit" class="btn btn-primary" (click) ="signup()">Submit</button>
           </div>
